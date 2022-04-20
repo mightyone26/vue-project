@@ -7,7 +7,7 @@
   <div class="item4"> <RoomCarousal /> </div>
   
   <div class="item5"> <About /> </div>
-  <div class="item6">Footer</div>
+  <div class="item6"> <Foot /> </div>
 </div>
 
 </template>
@@ -34,19 +34,18 @@ import Foot from '@/components/Footer.vue'
 .grid-container {
   display: grid;
   grid-template-areas:
-    'header header header header header'   
-    '... ... MainCarousal ... ... '
-    '... ... RoomAvailabilty ... ... '
-    '... RoomCarousal RoomCarousal RoomCarousal ... '
-   
-    '... ... About About ... '
-    'footer footer footer footer footer ';
+    'Header Header Header Header'   
+    '...  MainCarousal MainCarousal ...'
+    '...  RoomAvailabilty RoomAvailabilty ...'
+    '...  RoomCarousal RoomCarousal ...'   
+    '...  About About ...'
+    'Footer Footer Footer Footer';
     gap: 20px;
   
 }
 
 .item1 { 
-  grid-area: header; 
+  grid-area: Header; 
   }
 
 .item2 {
@@ -64,7 +63,7 @@ import Foot from '@/components/Footer.vue'
   grid-area: About; 
   }
 .item6 { 
-  grid-area: footer; 
+  grid-area: Footer; 
   }
 
 

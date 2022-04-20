@@ -22,22 +22,22 @@
     const room = [{
         id: "1",
         description: "Southern Rooms",
-        url: "/src/assets/pexels1268871.jpg"      
+        url: "/src/assets/imagesRooms/pexels1268871.jpg"      
     },
     {
         id: "2",
         description: "Nothern Rooms",
-        url: "src/assets/pexels-asad-photo-maldives-1450363.jpg"
+        url: "src/assets/imagesRooms/pexels-asad-photo-maldives-1450363.jpg"
     },
     {
         id: "3",
         description: "Western Rooms",
-        url: "src/assets/pexels-leonardo-rossatti-2598638.jpg"
+        url: "src/assets/imagesRooms/pexels-leonardo-rossatti-2598638.jpg"
     },
     {
         id: "4",
         description: "Eastern Rooms",
-        url: "src/assets/pexels-vincent-gerbouin-1179156.jpg"
+        url: "src/assets/imagesRooms/pexels-vincent-gerbouin-1179156.jpg"
     },
     ];
     

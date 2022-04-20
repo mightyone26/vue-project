@@ -1,15 +1,24 @@
 <template>
 
-  <h5>Select Checkin and Checkout Dates</h5>
-  <div class="availDate">
+ 
+  <div class="itemContainer">
     
-    <label for="startDate">Check in</label> 
-    <input id="startDate" class="form-control" type="date" />
-
-    <label for="startDate">Check out</label>
-    <input id="startDate" class="form-control" type="date" />
-
-    <button type="button" class="btn btn-outline-secondary">Check Room Availbility</button>
+     
+    <div class="item1">
+      <label><b>Check in</b></label>      
+      <input id="startDate"  type="date" />
+    </div>
+    
+    
+    <div  class="item2"> 
+      <label><b>Check out</b></label>        
+      <input id="endDate"  type="date" />
+    </div>
+    
+    <div >     
+      <button type="button" class="btn btn-outline-dark btn-sm">Check Room Availbility</button>
+    </div>
+  
   </div>
 </template>
 
@@ -18,8 +27,15 @@
 </script>
 
 <style>
-.availDate {
+.itemContainer {
   display: flex;
   flex-direction: row;
+
+  
+ 
 }
+label {
+  padding-right: 10px;
+}
+
 </style>
