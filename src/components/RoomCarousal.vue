@@ -1,15 +1,16 @@
 <template>
-<div v-for="room in room" :key="room.id">
-    
+<div class="carRoom">
+<div v-for="room in room" :key="room.id">    
  
     <div class="card" style="width: 18rem;" >
-    <img src="{{room.pic}}" class="card-img-top" alt="room pic">
+    <img :src="room.url" class="card-img-top" alt="room pic" >
     <div class="card-body"  >
-        <p class="card-text">{{room.description}}</p>
+       <p class="card-text">{{room.description}}</p>        
+    </div>
     </div>
     </div>
 </div>
-<div>Room carousal component</div>
+
  
 
 </template>
@@ -21,22 +22,22 @@
     const room = [{
         id: "1",
         description: "Southern Rooms",
-        pic: "@/assets/RoomPictures/pexels-asad-photo-maldives-1268871.jpg"
+        url: "/src/assets/pexels1268871.jpg"      
     },
     {
         id: "2",
         description: "Nothern Rooms",
-        pic: "@/assets/RoomPictures/pexels-asad-photo-maldives-1450363.jpg"
+        url: "src/assets/pexels-asad-photo-maldives-1450363.jpg"
     },
     {
         id: "3",
         description: "Western Rooms",
-        pic: "@/assets/RoomPictures/pexels-leonardo-rossatti-2598638.jpg"
+        url: "src/assets/pexels-leonardo-rossatti-2598638.jpg"
     },
     {
         id: "4",
         description: "Eastern Rooms",
-        pic: "@/src/assets/RoomPictures/pexels-vincent-gerbouin-1179156.jpg"
+        url: "src/assets/pexels-vincent-gerbouin-1179156.jpg"
     },
     ];
     
@@ -45,3 +46,15 @@
 
 
 </script>
+
+<style>
+
+.carRoom {
+    display: flex;
+    flex-direction:row ;
+    justify-content:space-evenly;
+    
+   
+}
+
+</style>
