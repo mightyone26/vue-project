@@ -1,7 +1,5 @@
 <template>
-   <div class="itemContainer">
-        
-       
+   <div class="itemContainer">       
         
         <div class="item1">
                 <a href="https://facebook.com">
@@ -21,11 +19,12 @@
 
 </template>
 
-<style>
+<style scoped>
 .itemContainer {
     display: flex;
     flex-direction:row ;
-    justify-content: center;
+    justify-content: center;    
+    padding-bottom: 50px;
 }
 .item1 {
    margin: 0% 0%;

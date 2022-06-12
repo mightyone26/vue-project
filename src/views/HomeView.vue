@@ -1,13 +1,16 @@
 <template>
+
 <div class="grid-container">
-  <div class="item1"> <navBar /> </div>
-  <div class="item2">  <mainCarousal /> </div>
-  
-  <div class="item3"> <RoomAvailabilty /> </div>  
-  <div class="item4"> <RoomCarousal /> </div>
-  
-  <div class="item5"> <About /> </div>
-  <div class="item6"> <Foot /> </div>
+  <div class=" item1"><NavBar /></div>
+  <div class=" item2"><PictureModal /></div>
+  <div class=" item3"><About /></div>
+  <div class=" item4"><Booking /></div>
+  <div class=" item5"><Reviews /></div>
+  <div class=" item6" ><Maps /></div>
+  <div class=" item7" ><ThingsToKnow /></div>
+  <div class=" item8" ><SurroundingArea /></div>
+  <div class=" item9"><Foot /></div> 
+
 </div>
 
 </template>
@@ -15,56 +18,54 @@
 <script setup>
 
 //imports
-
 import NavBar from '@/components/NavBar.vue'
-import MainCarousal from '@/components/MainCarousal.vue'
-import RoomAvailabilty from '@/components/RoomAvailabilty.vue';
-import RoomCarousal from '@/components/RoomCarousal.vue';
-import About from '@/components/About.vue';
+import PictureModal from '@/components/PictureModal.vue'
+import Booking from '@/components/Booking.vue'
+import About from '@/components/About.vue'
+import Reviews from '@/components/Reviews.vue'
+import Maps from '@/components/MapsGoogle.vue'
+import ThingsToKnow from '@/components/ThingsToKnow.vue'
+import SurroundingArea from '@/components/SurroundingArea.vue'
 import Foot from '@/components/Footer.vue'
-
 
 
 </script>
 
-<style> 
-
-
-
-.grid-container {
-  display: grid;
-  grid-template-areas:
-    'Header Header Header Header'   
-    '...  MainCarousal MainCarousal ...'
-    '...  RoomAvailabilty RoomAvailabilty ...'
-    '...  RoomCarousal RoomCarousal ...'   
-    '...  About About ...'
-    'Footer Footer Footer Footer';
-    gap: 20px;
-  
+<style scoped> 
+.grid-container {   
+  display: grid; 
+  grid-template-columns: 65% auto;
+  /* grid-template-rows: auto; */
+  gap: 45px;
+  background-color: #ffffff;  
 }
-
-.item1 { 
-  grid-area: Header; 
-  }
-
+.item1 {
+  grid-column: 1 / -1;
+  grid-row: 1;
+}
 .item2 {
-  grid-area: MainCarousal; 
-  }
-
-.item3 { 
-  grid-area: RoomAvailabilty;
-  }
-
-.item4 {
-  grid-area: RoomCarousal; 
-  }
-.item5 { 
-  grid-area: About; 
-  }
-.item6 { 
-  grid-area: Footer; 
-  }
-
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+.item5 {
+  grid-column: 1 / -1;
+  grid-row: 4;
+}
+.item6 {
+  grid-column: 1 / -1;
+  grid-row: 5;
+}
+.item7 {
+  grid-column: 1 / -1;
+  grid-row: 6;
+}
+.item8 {
+  grid-column: 1/ -1;
+  grid-row: 7;
+}
+.item9 {
+  grid-column: 1/ -1;
+  grid-row: 8;
+}
 
 </style>

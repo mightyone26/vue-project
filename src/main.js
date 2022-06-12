@@ -1,14 +1,32 @@
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-import "bootstrap/dist/css/bootstrap.min.css"
+//bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.js'
 
+//fontawesome
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+library.add(fas)
+// vue
+import { createApp } from 'vue'
 import App from './App.vue'
+
+//vue route 
 import router from './router'
 
-const app = createApp(App)
+//firebase
+import { auth } from './firebase/config'
+import { onAuthStateChanged } from 'firebase/auth'
 
-app.use(createPinia())
-app.use(router)
+//gives firebase a chance to check if anyone is logged in (or login status/authentication status) before the entire application is mounted to DOM
+let app
+onAuthStateChanged(auth, () => {
+    if (!app) {
+        app = createApp(App).use(router)
+        app.component('fa', FontAwesomeIcon)       
+                
+        app.mount('#app')       
+    }
+})
 
-app.mount('#app')
-import "bootstrap/dist/js/bootstrap.js"
+
