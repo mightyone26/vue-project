@@ -19,9 +19,9 @@
     <div>
         <label style="float:left padding-top:10% "> Adult Guests </label> 
         <div style="float:right ">        
-            <button class="addGuestButton" :disabled="counterAdults === 0" @click="decreaseCountAdults"> <fa icon="circle-minus" /></button>
+            <button class="btnAddGuest" :disabled="counterAdults === 0" @click="decreaseCountAdults"> <fa icon="circle-minus" /></button>
             &nbsp; <span >{{ counterAdults }}</span> &nbsp;
-            <button class="addGuestButton" :disabled="counterAdults === 6" @click="increaseCountAdults"><fa icon="circle-plus" /></button>
+            <button class="btnAddGuest" :disabled="counterAdults === 6" @click="increaseCountAdults"><fa icon="circle-plus" /></button>
         </div>
     </div>
    
@@ -29,9 +29,9 @@
     <div>
         <label style="float:left padding-top:5%"> Under 18 yrs  </label> 
         <div style="float:right ">
-        <button class="addGuestButton" :disabled="counterKids === 0" @click="decreaseCountKids"> <fa icon="circle-minus" /></button>
+        <button class="btnAddGuest" :disabled="counterKids === 0" @click="decreaseCountKids"> <fa icon="circle-minus" /></button>
         &nbsp; <span >{{ counterKids }}</span> &nbsp;
-        <button class="addGuestButton" :disabled="counterKids === 6" @click="increaseCountKids"> <fa icon="circle-plus" /></button>
+        <button class="btnAddGuest" :disabled="counterKids === 6" @click="increaseCountKids"> <fa icon="circle-plus" /></button>
         </div>            
     </div>
     <hr>
@@ -42,10 +42,10 @@
   
   <br>
   <br>
-   <button class="reserveButton" @click="handleSubmit" >Make a reservation</button> 
+   <button class="btnReserve" @click="handleSubmit" >Make a reservation</button> 
 </div> 
 
-
+ <Datepicker />
 
 </template>
 
@@ -54,7 +54,10 @@
 import { ref, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
-//router imports
+//datepicker imports
+ import Datepicker from '@vuepic/vue-datepicker';
+ import '@vuepic/vue-datepicker/dist/main.css'
+//router 
 const route = useRoute()
 const router = useRouter()
 
@@ -103,19 +106,18 @@ const costs = computed(() => {
 .myCard:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);  
 }
-.addGuestButton {    
+.btnAddGuest {    
     border: 0;
     background-color: white;   
 }
-.reserveButton {    
-    background-color: rgb(122, 215, 255);
+.btnReserve {    
+    background-color: rgb(210, 231, 240);
     border-radius: 5px;
     border: 0;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     width: 100%;
     height: 7%;   
-    font-size: 130%;
-      
+    font-size: 130%;      
 }
 input {
     padding-top: 1%;
@@ -125,8 +127,6 @@ input {
 label {
     font-size: 120%;
 }
-/* span {
-    font-size: 70%;
-} */
+
 
 </style>

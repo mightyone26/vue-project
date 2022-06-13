@@ -14,7 +14,7 @@
   <br>  
 
   <!-- Button trigger modal -->
-<button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button class="btnSeeMore" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
   <p>See more images</p> 
 </button>
 
@@ -95,15 +95,15 @@ img {
   grid-column: 2 / span 1;
   grid-row: 2;
 }
-button { 
-  background-color: rgb(195, 195, 195);
+.btnSeeMore { 
+  background-color: rgb(210, 231, 240);
   border-radius: 5px;
   border: 0;
   /* box-shadow: 0px 1px 1px 0 rgb(239, 2, 2); */
   margin-left: 50%;
   height: 25px;    
 }
-button:hover {
+.btnSeeMore:hover {
   box-shadow: 0 1px 6px 0 rgba(91, 165, 255, 0.781);
 }   
 </style>

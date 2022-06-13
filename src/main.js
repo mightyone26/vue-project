@@ -2,6 +2,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.js'
 
+//datepicker
+import Datepicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
+
 //fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
@@ -23,7 +27,8 @@ let app
 onAuthStateChanged(auth, () => {
     if (!app) {
         app = createApp(App).use(router)
-        app.component('fa', FontAwesomeIcon)       
+        app.component('fa', FontAwesomeIcon) 
+        app.component('Datepicker', Datepicker)      
                 
         app.mount('#app')       
     }
