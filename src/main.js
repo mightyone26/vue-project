@@ -2,15 +2,20 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.js'
 
-//datepicker
-import Datepicker from '@vuepic/vue-datepicker';
-import '@vuepic/vue-datepicker/dist/main.css'
+//datepicker primevue
+import PrimeVue from 'primevue/config'
+import Calendar from 'primevue/calendar'
+//style
+import 'primevue/resources/themes/lara-light-purple/theme.css' //theme
+import 'primeicons/primeicons.css'                           //icons
+import 'primevue/resources/primevue.min.css'                 //core css
 
 //fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add(fas)
+
 // vue
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -26,10 +31,13 @@ import { onAuthStateChanged } from 'firebase/auth'
 let app
 onAuthStateChanged(auth, () => {
     if (!app) {
-        app = createApp(App).use(router)
+        app = createApp(App).use(router).use(PrimeVue)
         app.component('fa', FontAwesomeIcon) 
-        app.component('Datepicker', Datepicker)      
-                
+            
+        
+        //primevue calendar
+        app.component('Calendar', Calendar)
+
         app.mount('#app')       
     }
 })

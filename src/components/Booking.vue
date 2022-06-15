@@ -2,19 +2,33 @@
 
 <div class="myCard" >       
  
-     <h3>Make a Booking</h3>        
-       
+    <h3>Make a Booking</h3>  
+    <br>
+    <label style="float:left ">Select dates</label>
+    <div class="datePicker">
+        <div class="p-fluid grid formgrid">
+       <Calendar v-model="value"  dateFormat="dd MM yy" id="icon range" :showIcon="true" 
+         selection-mode="range" :manualInput="false"  />       
+        </div>
+    </div> 
+    <br>
+    <br>  
+    <br> 
+    <div >
+        <label style="float:left ">Check-in:</label>  &nbsp;
+        <label> {{ value[0].toLocaleDateString() }}</label>                 
+                      
+
         <br>
-        <label style="float:left ">Check-in</label>
-        <input style="float:right" type="date">           
+        <br>        
+        <label style="float:left">Checkout:</label>  &nbsp;
+        <label> {{ value[1].toLocaleDateString() }}</label> 
+                     
+
         <br>
         <br>
-        
-        <label style="float:left">Checkout</label> 
-        <input style="float:right " type="date" > 
-        <br>
-        <br>
-        <hr>
+        <hr>    
+    </div>
 
     <div>
         <label style="float:left padding-top:10% "> Adult Guests </label> 
@@ -45,21 +59,23 @@
    <button class="btnReserve" @click="handleSubmit" >Make a reservation</button> 
 </div> 
 
- <Datepicker />
-
 </template>
 
 <script setup>
+   
 //vue imports
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
-//datepicker imports
- import Datepicker from '@vuepic/vue-datepicker';
- import '@vuepic/vue-datepicker/dist/main.css'
+//calendar
+const value = ref(new Date)       
+
 //router 
 const route = useRoute()
 const router = useRouter()
+
+
+//GUEST COUNTER and COST
 
 //counter adults
 const counterAdults = ref(0)
@@ -93,6 +109,7 @@ const costs = computed(() => {
 
 </script>
 
+
 <style scoped>
 .myCard {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -105,6 +122,10 @@ const costs = computed(() => {
 }
 .myCard:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);  
+}
+.datePicker {
+    float: right;
+    width: 70%;
 }
 .btnAddGuest {    
     border: 0;
@@ -126,6 +147,13 @@ input {
 }
 label {
     font-size: 120%;
+}
+/* Calendar line through for diabled dates */
+.special-day {
+    text-decoration: line-through;
+}
+#icon {
+    background-color: blueviolet;
 }
 
 
