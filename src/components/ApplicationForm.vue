@@ -18,8 +18,6 @@
 	<InputText id="username" type="text" v-model="value" />
 	<label for="username">Username</label>
 </span>
-
-
       
       <div class="field">
         <label class="label" >Last Name</label> 

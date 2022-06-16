@@ -82,7 +82,7 @@
                     <label style="float:left">Password:</label>
                     <input style="float:right" type="password" name="password" v-model="password" placeholder="Password" required> &nbsp;
                      <br>
-                     <br>
+                     <br>                    
                     <button class="btnLogin"  data-bs-dismiss="modal" aria-label="Close">Login your account</button>
                     <div v-if="error">{{error}}</div>                    
                 </form>
@@ -93,7 +93,7 @@
         </div>    
        
         <!-- Modal -->
-          <div class="modal fade" id="privacyStatement" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="privacyStatement" tabindex="-1" aria-labelledby="privacyStatement" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
