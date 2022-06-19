@@ -6,14 +6,6 @@ import 'bootstrap/dist/js/bootstrap.js'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
-//datepicker primevue
-import PrimeVue from 'primevue/config'
-import Calendar from 'primevue/calendar'
-//style
-import 'primevue/resources/themes/lara-light-purple/theme.css' //theme
-import 'primeicons/primeicons.css'                           //icons
-import 'primevue/resources/primevue.min.css'                 //core css
-
 //fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
@@ -35,12 +27,8 @@ import { onAuthStateChanged } from 'firebase/auth'
 let app
 onAuthStateChanged(auth, () => {
     if (!app) {
-        app = createApp(App).use(router).use(PrimeVue).use(ElementPlus)
-        app.component('fa', FontAwesomeIcon) 
-            
-        
-        //primevue calendar
-        app.component('Calendar', Calendar)
+        app = createApp(App).use(router).use(ElementPlus)
+        app.component('fa', FontAwesomeIcon)          
 
         app.mount('#app')       
     }

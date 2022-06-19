@@ -1,18 +1,24 @@
 <template>
   <NavBar />
-  <div>
-    <label for="">Search by Last Name</label>
-     <input type="text" v-model="inputText">
+  <div class="searchBox">
+    <label ><b>Search by Last Name:</b></label> &nbsp;
+    <input type="text" v-model="inputText">
   </div>
 
   <div >
-    <table   >
+    <table id="tableStyle"  >
       <thead>
         <tr>      
           <th>First Name</th>
           <th >Last Name</th>
           <th >email</th>
           <th >Phone</th>
+          <th>Check-in</th>
+          <th>Checkout</th>
+          <th>Cost</th>
+          <th>Edit </th>
+          <th>View</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>          
@@ -22,6 +28,9 @@
           <td>{{ customers.lastName }}</td>
           <td>{{ customers.email}}</td>
           <td>{{ customers.phone}}</td>
+          <td>{{ customers.checkin}}</td>
+          <td>{{ customers.checkout}}</td>
+          <td>{{ customers.costs}}</td>
           
           <td><button @click="handleEdit(customers)"> edit</button></td>
           <td><button @click="handleView(customers)"> view</button></td>          
@@ -85,5 +94,28 @@ let unFiltered = ref ()
 </script>
 
 <style scoped>
+#tableStyle {
+  border-collapse: collapse;
+  width: 80%;
+  margin: 3% 10%;
+}
+#tableStyle td, #tableStyle th {
+  border: 1px solid #ddd;  
+  padding: 8px;
+}
 
+#tableStyle tr:nth-child(even){background-color: #f0f0ea;}
+
+#tableStyle tr:hover {background-color: #ddd;}
+
+#tableStyle th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #b7bb84;
+  color: rgb(0, 0, 0);
+}
+.searchBox {
+  margin: 2% 10%
+}
 </style>

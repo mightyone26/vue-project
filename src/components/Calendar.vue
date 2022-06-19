@@ -1,27 +1,19 @@
 <template>
-  <div>
-    <!-- <el-radio-group v-model="size" label="size control">
-      <el-radio-button label="large">large</el-radio-button>
-      <el-radio-button label="default">default</el-radio-button>
-      <el-radio-button label="small">small</el-radio-button>
-    </el-radio-group> -->
-  </div>
+ 
   <div class="demo-date-picker">
     <div class="block">
-      <!-- <span class="demonstration">Default</span> -->
+     
       <el-date-picker
         v-model="value1"
         type="daterange"
         range-separator="To"
-        start-placeholder="Start date"
-        end-placeholder="End date"
-        :size="size"
+        start-placeholder="Check-in date"
+        end-placeholder="Checkout date"       
         format="DD/MM/YYYY"
-         value-format="DD/MM/YYYY"
-         :id="[]"          
+         value-format="DD/MM/YYYY"                
       />
-
-     <div>        
+  
+    <div>     
         <br>  
         <label style="float:left ">Check-in:</label>  &nbsp;
         <label> {{  value1[0] }}</label> 
@@ -32,61 +24,17 @@
         <br>
         <br>         
     </div>
-
-    </div>
-    <!-- <div class="block">
-      <span class="demonstration">With quick options</span>
-      <el-date-picker
-        v-model="value2"
-        type="daterange"
-        unlink-panels
-        range-separator="To"
-        start-placeholder="Start date"
-        end-placeholder="End date"
-        :shortcuts="shortcuts"
-        :size="size"
-      />
-    </div> -->
+  
+   </div>
   </div>
+  
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
 
-const size = ref<'' | 'large' | 'small'>('')
-
 const value1 = ref('')
-const value2 = ref('')
 
-// const shortcuts = [
-//   {
-//     text: 'Last week',
-//     value: () => {
-//       const end = new Date()
-//       const start = new Date()
-//       start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
-//       return [start, end]
-//     },
-//   },
-//   {
-//     text: 'Last month',
-//     value: () => {
-//       const end = new Date()
-//       const start = new Date()
-//       start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
-//       return [start, end]
-//     },
-//   },
-//   {
-//     text: 'Last 3 months',
-//     value: () => {
-//       const end = new Date()
-//       const start = new Date()
-//       start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
-//       return [start, end]
-//     },
-//   },
-// ]
 </script>
 <style scoped>
 .demo-date-picker {

@@ -15,8 +15,6 @@
     "element-plus": "^2.2.5",
     "firebase": "^9.7.0",
     "pinia": "^2.0.13",
-    "primeicons": "^5.0.0",
-    "primevue": "^3.13.1",
     "vue": "^3.2.31",
     "vue-router": "^4.0.14"
   },

@@ -1,39 +1,39 @@
 <template>
   <NavBar />
-
-   <div >
-    <table class="table"  >
-      <thead>
-        <tr>      
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">email</th>
-          <th scope="col">phone</th>
-        </tr>
-      </thead>
-      <tbody>   
-        <tr v-for="customers in customers" :key="customers.id" >     
-          <td>{{ customers.firstName }}</td> 
-          <td>{{ customers.lastName }}</td>
-          <td>{{ customers.email}}</td>
-          <td>{{ customers.phone}}</td>     
-                   
-        </tr>
-      </tbody>
-    </table>
-   
-</div> 
-
-
+    <label class="heading"><h4><b>Customer Details:</b></h4></label>
+    <div>
+      <table id="tableStyle"  >
+        <thead>
+          <tr>      
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">email</th>
+            <th scope="col">phone</th>
+            <th scope="col">Check-in</th>
+            <th scope="col">Checkout</th>
+            <th scope="col">Costs</th>
+          </tr>
+        </thead>
+        <tbody>   
+          <tr v-for="customers in customers" :key="customers.id" >     
+            <td>{{ customers.firstName }}</td> 
+            <td>{{ customers.lastName }}</td>
+            <td>{{ customers.email}}</td>
+            <td>{{ customers.phone}}</td>
+            <td>{{ customers.checkin}}</td>
+            <td>{{ customers.checkout}}</td>
+            <td>{{ customers.costs}}</td>
+          </tr>
+        </tbody>
+      </table>   
+    </div>
 </template>
 
 <script setup>
 //imports
 import NavBar from '@/components/NavBar.vue'
-
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-
 
 //firebase imports
 import { db } from '@/firebase/config'
@@ -47,31 +47,37 @@ const customers = ref()
 
 //get single customer
  const docRef = doc(db, 'customers', route.params.id )
-getDoc(docRef) 
-.then((doc) => {
+  getDoc(docRef) 
+  .then((doc) => {
   customers.value =  [doc.data()]
-    })
-
+   })
 
 </script>
 
 <style scoped>
-
-.flexContainer {
-  display: flex;
-  justify-content: center;
+#tableStyle {
+  border-collapse: collapse;
+  width: 80%;
+  margin: 1% 10%;
 }
-.flexContainer > div {
-  background-color: #fcfcfc;
-  margin: 10px;
-  padding: 20px;
-  font-size: 30px;
+#tableStyle td, #tableStyle th {
+  border: 1px solid #ddd;  
+  padding: 8px;
 }
-.applyForm {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    /* border: 1px solid black; */
+#tableStyle tr:nth-child(even){
+  background-color: #f0f0ea;
 }
-
+#tableStyle tr:hover {
+  background-color: #ddd;
+}
+#tableStyle th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #b7bb84;
+  color: rgb(0, 0, 0);
+}
+.heading {
+  margin: 2% 10%
+}
 </style>
