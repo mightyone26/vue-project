@@ -3,34 +3,26 @@
   <div class="myCard" >       
   
     <h3>Make a Booking</h3>  
-    <br>
-    <label style="float:left ">Select check-in and checkout dates:</label>
-    <br>
     <br>  
-    <div class="demo-date-picker">
-      <div class="block">
-      
-        <el-date-picker
-          v-model="value1"
-          type="daterange"
-          range-separator="To"
-          start-placeholder="Check-in date"
-          end-placeholder="Checkout date"       
-          format="DD/MM/YYYY"
-          value-format="DD/MM/YYYY"       
-        />    
-        <div>     
-          <br>  
-          <label style="float:left ">Check-in:</label>  &nbsp;
-          <label>  {{  value1[0] }}</label>         
-          <br>
-          <br>        
-          <label style="float:left">Checkout:</label>  &nbsp;
-          <label> {{ value1[1] }}</label> 
-          <br>
-          <br>         
-        </div>  
-      </div>
+    <v-date-picker  
+    v-model="range" 
+    is-range
+    :model-config="modelConfig" 
+    color="teal"
+    :disabled-dates= "Adisabledates"
+    is-expanded
+    />
+
+    <div>     
+      <br>  
+      <label style="float:left ">Check-in:</label>  &nbsp;
+      <label>  {{ range.start }}</label>         
+      <br>
+      <br>        
+      <label style="float:left">Checkout:</label>  &nbsp;
+      <label> {{ range.end }}</label> 
+      <br>
+      <br>         
     </div>    
      
     <div>
@@ -59,8 +51,7 @@
     <br>  
     <button type="button" class="btnReserve" data-bs-toggle="modal" data-bs-target="#applicationForm">
       Make a reservation
-    </button>
-  
+    </button>  
 </div> 
 
 <!-- bootstrap MODAL for Application form -->
@@ -124,13 +115,13 @@
             <br>
             <div class="field">
               <label class=" inputLabel"  >Check-in</label> 
-              <input class="inputValue" type="text"  v-model="value1[0]" disabled>                               
+              <input class="inputValue" type="text"  v-model="range.start" disabled>                               
             </div>
             <br>
             <br>
             <div class="field">
               <label class=" inputLabel"  >Checkout</label> 
-              <input class="inputValue" type="text"  v-model="value1[1]" disabled>                 
+              <input class="inputValue" type="text"  v-model="range.end" disabled>                 
             </div>
             <br>  
             <hr>                
@@ -157,15 +148,15 @@
 <script setup>
    
 //vue imports
-import { ref, computed } from 'vue'
+import { ref, reactive, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 //firebase imports
-import { db } from '@/firebase/config'
-import { addDoc, collection } from 'firebase/firestore'
+import { db } from '../firebase/config.js'
+import { addDoc, collection, getDocs, getDoc, doc, onSnapshot  } from 'firebase/firestore'
 import router from '../router';
 
-//firebase add doc to database
+//firebase- add booking details to database
 const firstName = ref('')
 const lastName = ref('')
 const email = ref('')
@@ -179,19 +170,35 @@ const handleSubmit = async () => {
     lastName: lastName.value,
     email : email.value,
     phone: phone.value,
-    checkout: value1.value[0],
-    checkin: value1.value[1],
+    checkin: range.value.start,
+    checkout:range.value.end,
     costs: costs.value
   })
 
   confirm('Submitted')
   router.push('/')
 }
+//v-calendar
+  const colRef = collection(db, 'customers')
+  let docs = [] 
+  let Adisabledates = ref([])  
 
-//calendar 
-const value1 = ref('')
-  value1[0] =ref('')
-  value1[1] =ref('')
+  onSnapshot(colRef, (snapshot) => {    
+    snapshot.docs.forEach(doc => { docs.push({ ...doc.data(), id: doc.id }) })           
+    
+     Adisabledates.value = docs.map((date) => 
+      ({start : new Date(date.checkin), end : new Date(date.checkout) })) 
+      })
+
+  const range = ref({
+   start : '',
+   end : ''
+   })   
+
+  const modelConfig= {
+        mask: 'D MMMM YYYY', // Uses 'iso' if missing
+        type: 'string'       
+      }
 
 //GUEST COUNTER and COST
 //counter adults
