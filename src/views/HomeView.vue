@@ -34,7 +34,7 @@ import Foot from '@/components/Footer.vue'
 <style scoped> 
 .grid-container {   
   display: grid; 
-  grid-template-columns: 65% auto;
+  grid-template-columns: 60% auto;
   /* grid-template-rows: auto; */
   gap: 45px;
   background-color: #ffffff;  

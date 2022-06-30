@@ -5,28 +5,31 @@
     <h3>Make a Booking</h3>  
     <br>  
     <v-date-picker  
-    v-model="range" 
+    v-model="dateRange" 
     is-range
     :model-config="modelConfig" 
     color="teal"
     :disabled-dates= "Adisabledates"
-    is-expanded
+    :columns ="2"
+    is-expanded    
     />
 
     <div>     
       <br>  
-      <label style="float:left ">Check-in:</label>  &nbsp;
-      <label>  {{ range.start }}</label>         
+      <label style="float:left "> <b>Check-in:</b> </label>  &nbsp;
+      <label> {{ dateRange.start }} </label>
+      <label style="float:right"> {{ dateRange.end }} </label>      
+      <label style="float:right"> <b>Checkout:</b> &nbsp;</label> 
       <br>
-      <br>        
-      <label style="float:left">Checkout:</label>  &nbsp;
-      <label> {{ range.end }}</label> 
+      <br>     
+      <label>Booked for <b>{{ daysBooked() }}</b> {{ dayQty() }}</label>  
+
       <br>
       <br>         
     </div>    
      
     <div>
-      <label style="float:left padding-top:10% "> Adult Guests </label> 
+      <label style="float:left padding-top:10% "> Adult Guests ($50 per day) </label> 
       <div style="float:right ">        
         <button class="btnAddGuest" :disabled="counterAdults === 0" @click="decreaseCountAdults"> <fa icon="circle-minus" /></button>
         &nbsp; <span >{{ counterAdults }}</span> &nbsp;
@@ -35,23 +38,23 @@
     </div>   
     <hr>
     <div>
-    <label style="float:left padding-top:5%"> Under 18 yrs  </label> 
+    <label style="float:left padding-top:5%"> Under 18 yrs ($25 per day)  </label> 
       <div style="float:right ">
       <button class="btnAddGuest" :disabled="counterKids === 0" @click="decreaseCountKids"> <fa icon="circle-minus" /></button>
       &nbsp; <span >{{ counterKids }}</span> &nbsp;
       <button class="btnAddGuest" :disabled="counterKids === 6" @click="increaseCountKids"> <fa icon="circle-plus" /></button>
       </div>            
     </div>
-    <hr>
-    <br>     
-    <br>
+    <hr> 
     <label style="float:left ">Total</label>   
-    <label style="float:right ">${{costs}}</label>  
+    <label style="float:right ">${{ costs() }}</label>  
     <br>
     <br>  
     <button type="button" class="btnReserve" data-bs-toggle="modal" data-bs-target="#applicationForm">
       Make a reservation
-    </button>  
+    </button> 
+    <br>
+    <br> 
 </div> 
 
 <!-- bootstrap MODAL for Application form -->
@@ -115,19 +118,19 @@
             <br>
             <div class="field">
               <label class=" inputLabel"  >Check-in</label> 
-              <input class="inputValue" type="text"  v-model="range.start" disabled>                               
+              <input class="inputValue" type="text"  v-model="dateRange.start" disabled>                               
             </div>
             <br>
             <br>
             <div class="field">
               <label class=" inputLabel"  >Checkout</label> 
-              <input class="inputValue" type="text"  v-model="range.end" disabled>                 
+              <input class="inputValue" type="text"  v-model="dateRange.end" disabled>
             </div>
             <br>  
             <hr>                
             <div class="field">
-              <label class=" inputLabel" >Total Cost</label>                     
-              <input class="inputValue" type="text"  v-model="costs" disabled>                         
+              <label class=" inputLabel" >Total Cost</label>     
+              <label class="inputValue">${{costs()}}</label>                         
             </div>                     
             <br>
             <br>
@@ -162,6 +165,7 @@ const lastName = ref('')
 const email = ref('')
 const phone = ref('')  
 
+
 const handleSubmit = async () => {
   const colRef = collection(db, 'customers') 
 
@@ -170,9 +174,9 @@ const handleSubmit = async () => {
     lastName: lastName.value,
     email : email.value,
     phone: phone.value,
-    checkin: range.value.start,
-    checkout:range.value.end,
-    costs: costs.value
+    checkin: dateRange.value.start,
+    checkout:dateRange.value.end,
+    costs:costs()
   })
 
   confirm('Submitted')
@@ -190,17 +194,17 @@ const handleSubmit = async () => {
       ({start : new Date(date.checkin), end : new Date(date.checkout) })) 
       })
 
-  const range = ref({
+  const dateRange = ref({
    start : '',
-   end : ''
+   end : ''   
    })   
-
+   
   const modelConfig= {
-        mask: 'D MMMM YYYY', // Uses 'iso' if missing
+        mask: 'D MMMM YYYY', // Used to format date , uses 'iso' if missing
         type: 'string'       
       }
 
-//GUEST COUNTER and COST
+//GUEST COUNTER , COST AND AMOUNT OF DAYS BOOKED
 //counter adults
 const counterAdults = ref(0)
 
@@ -210,6 +214,7 @@ const decreaseCountAdults = () => {
 const increaseCountAdults = () => {
     counterAdults.value++
 }
+
 //counter kids
 const counterKids = ref(0)
 
@@ -219,10 +224,31 @@ const decreaseCountKids = () => {
 const increaseCountKids = () => {
     counterKids.value++
 }
-//costing calculations
-const costs = computed(() => {
-    return (50*counterAdults.value)+(25*counterKids.value)
-})
+
+// Days booked
+ const daysBooked = () => { 
+  let dateDifference = new Date((dateRange.value.end)+0).getTime() - new Date((dateRange.value.start)+0).getTime()
+  let totalDaysDifference = Math.ceil(dateDifference  / (1000 * 3600 * 24))
+  return totalDaysDifference 
+}
+
+const dayQty = () => {
+  if(daysBooked() === 1)
+    return 'day.'
+  else{
+    return 'days.'
+    }
+}
+
+// costing calculations per day 
+const perDay = () => {
+    return parseInt((50*counterAdults.value)+(25*counterKids.value))
+}
+
+//total cost
+const costs = ()=> {
+    return perDay() * daysBooked() 
+}
 
 </script>
 
