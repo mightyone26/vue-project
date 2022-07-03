@@ -1,123 +1,135 @@
 <template>
   <ul>
-    <li class="logoNav"> <router-link  to="/"> <img alt="logo" src="src\assets\Home\headlogo.png" height="50"> </router-link> </li>      
-     <!-- displays on navbar when a user is signed in   -->
-    <li><button class="btnLogout" v-if="user" @click="handleSignOut"> <h5> Logout</h5></button></li>    
-    <li class="liLogStatus" v-if="user"> Logged in as: {{ user.email}}</li>    
-    <li>      
-       <!-- User Icon button only displays on navbar when a user is not signed in -->
-        <button button v-if="!user" class="btnUser" type="button" data-bs-toggle="modal" data-bs-target="#createOrSigninModal">
-        <fa  class="btnUserIcon"  icon="user-circle" />
-        </button>
+    <li class="logoNav"> 
+      <router-link 
+       to="/"> <img alt="logo" src="src\assets\Home\headlogo.png" height="50"> 
+      </router-link>    
+    </li>
+    
+    <li>     
+      <button  class="btnUser" type="button" data-bs-toggle="modal" data-bs-target="#createOrSigninModal">         
+      <fa  class="btnUserIcon"  icon="user-circle" />         
+      <p v-if="!user">Sign-In</p>
+      <p v-if="user">{{ user.email}}</p>
+      </button>
+      <br>
+         
 
-         <!-- Modal (Create or sign in modal) -->
-       
-           <div class="modal fade" id="createOrSigninModal" tabindex="-1" aria-labelledby="createOrSigninModal" aria-hidden="true">
-            <div class="modal-dialog modalUserLeft">
-             <div class="modal-content">            
-              <div class="modal-body">
+     <!-- Modal (Create, sign in, my account, logout modal) -->       
+      <div class="modal fade" id="createOrSigninModal" tabindex="-1" aria-labelledby="createOrSigninModal" aria-hidden="true">
+        <div class="modal-dialog modalUserLeft">
+          <div class="modal-content">            
+            <div class="modal-body">
 
-                 <!--Select Create account button-->
-                 <h5>Sign in or create a new account.</h5>
-                 <hr>
-                <button class="btnSigninOrCreate" type="button" data-bs-toggle="modal" data-bs-target="#createAccountModal">
-                <p>Create account</p>
-                </button>
-                <br>
-                 <!--Select Sign In button-->
-                 <button class="btnSigninOrCreate" type="button" data-bs-toggle="modal" data-bs-target="#signInModal">
-                <p>Sign in</p>
-                </button>  
-             </div>      
-            </div>
-          </div>
-        </div>       
-
-        <!-- Modal (create account)-->
-        <div class="modal fade" id="createAccountModal" tabindex="-1" aria-labelledby="createAccountModal" aria-hidden="true">
-          <div class="modal-dialog ">
-            <div class="modal-content" >              
-              <div class="modal-body">
-                
-                  <form @submit.prevent="handleSubmitCreateAccount" >
-                  <h4>Create an account</h4>
-                  <hr>
-                  <br>
-                  <label style="float:left">Email: &nbsp;</label>                
-                  <input style="float:right" type="email" name="email" v-model="email" placeholder="email address" required>                 
-                  <br>
-                  <br>
-                  <label style="float:left">Password: &nbsp;</label>
-                                
-                  <input style="float:right" type="password" name="password" v-model="password" placeholder="Password" required> 
-                  <br>
-                  <br>
-                 
-                  <button class="btnCreateAccount"  data-bs-dismiss="modal" aria-label="Close">Create account</button>
-                  <div v-if="error">{{ error }}</div>
-
-                  <button style="float:right"  class="btnPrivacy" data-bs-toggle="modal" data-bs-target="#privacyStatement">
-                      Our Privacy Statement
-                  </button>
-                  </form> 
-
-              </div>      
-            </div>
+              <!--Select Create account button-->
+              <h5 v-if="!user">Sign in or create a new account.</h5>
+              <h5 v-if="user"> Logged in as: {{ user.email}}</h5>
+              <hr>
+              <button v-if="!user" class="btnSigninOrCreate" type="button" data-bs-toggle="modal" data-bs-target="#createAccountModal">
+              <p>Create account</p>
+              </button>       
+              <button v-if="user" class="btnSigninOrCreate" type="button" data-bs-toggle="modal" data-bs-dismiss="modal" @click="handleMyAccount" >
+              <p>My Account</p>
+              </button> 
+              <br>
+                <!--Select Sign In/out button-->
+              <button v-if="!user" class="btnSigninOrCreate" type="button" data-bs-toggle="modal" data-bs-target="#signInModal">
+              <p>Sign in</p>
+              </button>
+              <button v-if="user" class="btnSigninOrCreate"   @click="handleSignOut" data-bs-dismiss="modal">
+              <p>Logout</p>
+              </button>  
+          
+            </div>      
           </div>
         </div>
+      </div>       
 
-        <!-- Modal (Sign In)-->
-        <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="createAccountModal" aria-hidden="true">
-          <div class="modal-dialog ">
-            <div class="modal-content">              
-              <div class="modal-body">
-                
-                 <form @submit.prevent="handleSubmitSignIn">
-                    <h2>Login</h2>
-                    <br>
-                    <label style="float:left">Email:</label>
-                    <input style="float:right" type="email" name="email" v-model="email" placeholder="email" required> &nbsp;
-                      <br>
-                      <br>
-                    <label style="float:left">Password:</label>
-                    <input style="float:right" type="password" name="password" v-model="password" placeholder="Password" required> &nbsp;
-                     <br>
-                     <br>                    
-                    <button class="btnLogin"  data-bs-dismiss="modal" aria-label="Close">Login your account</button>
-                    <div v-if="error">{{error}}</div>                    
-                </form>
-                
-              </div>      
-            </div>
+      <!-- Modal (create account)-->
+      <div class="modal fade" id="createAccountModal" tabindex="-1" aria-labelledby="createAccountModal" aria-hidden="true">
+        <div class="modal-dialog ">
+          <div class="modal-content" >              
+            <div class="modal-body">
+              
+              <form @submit.prevent="handleSubmitCreateAccount" >
+              <h4>Create an account</h4>
+              <hr>
+              <br>
+              <label style="float:left">Email: &nbsp;</label>                
+              <input style="float:right" type="email" name="email" v-model="email" placeholder="email address" required>                 
+              <br>
+              <br>
+              <label style="float:left">Password: &nbsp;</label>
+                            
+              <input style="float:right" type="password" name="password" v-model="password" placeholder="Password" required> 
+              <br>
+              <br>
+              
+              <button class="btnCreateAccount"  data-bs-dismiss="modal" aria-label="Close">Create account</button>
+              <div v-if="error">{{ error }}</div>
+
+              <button style="float:right"  class="btnPrivacy" data-bs-toggle="modal" data-bs-target="#privacyStatement">
+                  Our Privacy Statement
+              </button>
+              </form> 
+
+            </div>      
           </div>
-        </div>    
-       
-        <!-- Modal -->
-          <div class="modal fade" id="privacyStatement" tabindex="-1" aria-labelledby="privacyStatement" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Privacy Statement</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <p>We collect personal information from you, including information about your:</p>
-                  <p>Contact information e.g., phone numbers, first name, last name, email, address, date of birth, billing information, purchase information.</p>
-                  <p>We collect your personal information in order to, provide you with more information about our service and inform you of upcoming promotions.
-                    Besides our staff, we share this information with our head office in order to provide you with other products within our company. 
-                    Providing some information is optional. If you choose not to enter your personal details, we will not be able to make a booking.
-                    We keep your information safe by encryption and only accessible by management .
-                    You have the right to ask for a copy of any personal information we hold about you, and to ask for it to be corrected if you think it is wrong.
-                    We adhere to the privacy laws set out by the EU General Data Protection Regulation service.</p>
-                  <p>If you’d like to ask for a copy of your information, or to have it corrected, please contact us at oceanview@bnb.com, 
-                    phone on 123456 or write to us at 1 Nowhere Street, Nowhere Ville.</p> 
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>                  
-                </div>
+        </div>
+      </div>
+
+      <!-- Modal (Sign In)-->
+      <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="createAccountModal" aria-hidden="true">
+        <div class="modal-dialog ">
+          <div class="modal-content">              
+            <div class="modal-body">
+              
+                <form @submit.prevent="handleSubmitSignIn">
+                  <h2>Login</h2>
+                  <br>
+                  <label style="float:left">Email:</label>
+                  <input style="float:right" type="email" name="email" v-model="email" placeholder="email" required> &nbsp;
+                    <br>
+                    <br>
+                  <label style="float:left">Password:</label>
+                  <input style="float:right" type="password" name="password" v-model="password" placeholder="Password" required> &nbsp;
+                    <br>
+                    <br>                    
+                  <button class="btnLogin"  data-bs-dismiss="modal" aria-label="Close">Login your account</button>
+                  <div v-if="error">{{error}}</div>                    
+              </form>
+              
+            </div>      
+          </div>
+        </div>
+      </div>    
+      
+      <!-- Modal -->
+        <div class="modal fade" id="privacyStatement" tabindex="-1" aria-labelledby="privacyStatement" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Privacy Statement</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>We collect personal information from you, including information about your:</p>
+                <p>Contact information e.g., phone numbers, first name, last name, email, address, date of birth, billing information, purchase information.</p>
+                <p>We collect your personal information in order to, provide you with more information about our service and inform you of upcoming promotions.
+                  Besides our staff, we share this information with our head office in order to provide you with other products within our company. 
+                  Providing some information is optional. If you choose not to enter your personal details, we will not be able to make a booking.
+                  We keep your information safe by encryption and only accessible by management .
+                  You have the right to ask for a copy of any personal information we hold about you, and to ask for it to be corrected if you think it is wrong.
+                  We adhere to the privacy laws set out by the EU General Data Protection Regulation service.</p>
+                <p>If you’d like to ask for a copy of your information, or to have it corrected, please contact us at oceanview@bnb.com, 
+                  phone on 123456 or write to us at 1 Nowhere Street, Nowhere Ville.</p> 
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>                  
               </div>
             </div>
           </div>
+        </div>
     </li>
 
   </ul>
@@ -168,15 +180,20 @@ import { signOut } from 'firebase/auth'
 
     //signout
     const handleSignOut = () => {
-      signOut(auth)
+      signOut(auth)      
     }
+    //goto myAccount
+    const handleMyAccount = () => {
+      router.push('/UserAccount')
+    }
+    
  
 </script>
 
 <style scoped>
 .modalUserLeft { 
   width:450px;
-  height: 250px;
+  height: 200px;
   left: 35%;
   top: 6%; 
 }
@@ -191,8 +208,9 @@ import { signOut } from 'firebase/auth'
 }
 .logoNav {   
   float: left;
-  margin-left: 2%;
+  margin-left: 1%;
   margin-top: 1%; 
+  margin-bottom: 1%;
 }
 ul {   
   list-style-type: none;
@@ -200,7 +218,7 @@ ul {
   padding: 0;
   overflow: hidden;
   background-color: rgb(48, 48, 48);
-  height: 120%;
+  height: 100px;
 }
 input {
   width: 60%;
@@ -221,8 +239,9 @@ input {
   border-radius: 10px;  
 }
 .btnUser { 
+  color: white;
   float: right;
-  border: navajowhite;
+  border:none;
   background: none;
   margin-right: 2%;
   margin-top: 1%;  
@@ -245,14 +264,19 @@ input {
 
 }
 .liLogStatus {
+  text-decoration: none;
   color: white;
   float:right;
   margin-right: 2%;
   margin-top: 1.5%;
+ 
 }
 .btnUserIcon {  
   font-size:  46px;
-  color: rgb(199, 227, 135);
+  /* color: rgb(199, 227, 135); */
+  color: rgb(112, 112, 112);
+  
+  padding-bottom:3% ;
 }
 
 </style>
