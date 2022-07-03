@@ -57,6 +57,7 @@
     <br> 
 </div> 
 
+<!-- MODAL -->
 <!-- bootstrap MODAL for Application form -->
 <div class="modal fade" id="applicationForm" tabindex="-1" aria-labelledby="applicationForm" aria-hidden="true" data-bs-keyboard="false" data-bs-backdrop="static">
  <div class="modal-dialog modal-lg">
@@ -126,6 +127,24 @@
               <label class=" inputLabel"  >Checkout</label> 
               <input class="inputValue" type="text"  v-model="dateRange.end" disabled>
             </div>
+            <br>
+            <br>
+             <div class="field">
+              <label class=" inputLabel"  >Adults ($50 per day)</label> 
+              <label class=" inputValue"  >{{counterAdults}}</label> 
+            </div>
+            <br>
+            <br>
+             <div class="field">
+              <label class=" inputLabel"  >Kids ($25 per day)</label> 
+              <label class=" inputValue"  >{{counterKids}}</label> 
+            </div>
+            <br>
+            <br>
+             <div class="field">
+              <label class=" inputLabel"  >Days booked</label> 
+              <label class=" inputValue"  >{{daysBooked()}}</label> 
+            </div>
             <br>  
             <hr>                
             <div class="field">
@@ -145,7 +164,7 @@
     </div>
   </div>
 </div>
-
+<!-- MODAL END -->
 </template>
 
 <script setup>
@@ -176,7 +195,10 @@ const handleSubmit = async () => {
     phone: phone.value,
     checkin: dateRange.value.start,
     checkout:dateRange.value.end,
-    costs:costs()
+    costs:costs(),
+    adults:counterAdults.value,
+    kids:counterKids.value,
+    daysBooked:daysBooked()
   })
 
   confirm('Submitted')
@@ -227,7 +249,7 @@ const increaseCountKids = () => {
 
 // Days booked
  const daysBooked = () => { 
-  let dateDifference = new Date((dateRange.value.end)+0).getTime() - new Date((dateRange.value.start)+0).getTime()
+  let dateDifference = new Date((dateRange.value.end)+0).getTime() - new Date((dateRange.value.start)+0).getTime() //the +0 is to make the variable a number when no date is selected. Else it displays as 'NAN'
   let totalDaysDifference = Math.ceil(dateDifference  / (1000 * 3600 * 24))
   return totalDaysDifference 
 }

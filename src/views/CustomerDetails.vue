@@ -14,8 +14,11 @@
           <th >email</th>
           <th >Phone</th>
           <th>Check-in</th>
-          <th>Checkout</th>
-          <th>Cost</th>
+          <th>Checkout</th>         
+          <th>Adult Qty</th>
+          <th>Kid Qty</th>
+          <th>Days Booked</th>
+           <th>Cost</th>
           <th>Edit </th>
           <th>View</th>
           <th>Delete</th>
@@ -29,8 +32,11 @@
           <td>{{ customers.email}}</td>
           <td>{{ customers.phone}}</td>
           <td>{{ customers.checkin}}</td>
-          <td>{{ customers.checkout}}</td>
-          <td>{{ customers.costs}}</td>
+          <td>{{ customers.checkout}}</td>         
+          <td>{{ customers.adults}}</td>
+          <td>{{ customers.kids}}</td>
+          <td>{{ customers.daysBooked}}</td>
+           <td>{{ customers.costs}}</td>
           
           <td><button @click="handleEdit(customers)"> edit</button></td>
           <td><button @click="handleView(customers)"> view</button></td>          
@@ -63,8 +69,7 @@ let docs = []
 let unFiltered = ref () 
 
  //(add customers) realtime collection data (onSnapshot takes two values 1. colref which grabs db info and 2. function that put db data into loop which pushes data to customers array variable)  
-    onSnapshot(q, (snapshot) => {
-    
+    onSnapshot(q, (snapshot) => {    
     snapshot.docs.forEach(doc => { docs.push({ ...doc.data(), id: doc.id }) })           
          unFiltered.value = docs         
     })
