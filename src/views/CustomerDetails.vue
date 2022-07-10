@@ -19,9 +19,11 @@
           <th>Kid Qty</th>
           <th>Days Booked</th>
            <th>Cost</th>
+           <th>Review</th>
           <th>Edit </th>
           <th>View</th>
           <th>Delete</th>
+          
         </tr>
       </thead>
       <tbody>          
@@ -36,7 +38,9 @@
           <td>{{ customers.adults}}</td>
           <td>{{ customers.kids}}</td>
           <td>{{ customers.daysBooked}}</td>
-           <td>{{ customers.costs}}</td>
+          <td>{{ customers.costs}}</td>
+          <td>{{ customers.review}}</td>
+
           
           <td><button @click="handleEdit(customers)"> edit</button></td>
           <td><button @click="handleView(customers)"> view</button></td>          
@@ -68,11 +72,11 @@ const q = query(colRef, orderBy('lastName', 'asc'))
 let docs = [] 
 let unFiltered = ref () 
 
- //(add customers) realtime collection data (onSnapshot takes two values 1. colref which grabs db info and 2. function that put db data into loop which pushes data to customers array variable)  
+ //(get customers) realtime collection data (onSnapshot takes two values 1. colref which grabs db info and 2. function that put db data into loop which pushes data to customers array variable)  
     onSnapshot(q, (snapshot) => {    
-    snapshot.docs.forEach(doc => { docs.push({ ...doc.data(), id: doc.id }) })           
+      snapshot.docs.forEach(doc => { docs.push({ ...doc.data(), id: doc.id }) })           
          unFiltered.value = docs         
-    })
+      })
   
   // Search Customers   
    const filtered = () => { 
@@ -91,7 +95,7 @@ let unFiltered = ref ()
     router.push(`/EditBooking/${customers.id}`)
   }
 
-   // to view customer page
+   // to view individual customer page
   const handleView = (customers) => {    
     router.push({ path: `/IndividualCustomerDetails/${customers.id}` })
     }

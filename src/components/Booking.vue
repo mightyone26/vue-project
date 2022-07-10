@@ -176,14 +176,20 @@ import { useRoute, useRouter } from 'vue-router'
 //firebase imports
 import { db } from '../firebase/config.js'
 import { addDoc, collection, getDocs, getDoc, doc, onSnapshot  } from 'firebase/firestore'
-import router from '../router';
+import router from '../router'
+
+//this is to import user UID (unique id) and add that UID to the booking details in DB
+//this UID is used to retrieve that users data. So only the specific user details are retrieved when that user is logged in.
+import getUser from '../composables/getUser.js'
+const { user } = getUser()
+
 
 //firebase- add booking details to database
 const firstName = ref('')
 const lastName = ref('')
 const email = ref('')
-const phone = ref('')  
-
+const phone = ref('')
+const review = ref('')  
 
 const handleSubmit = async () => {
   const colRef = collection(db, 'customers') 
@@ -198,12 +204,16 @@ const handleSubmit = async () => {
     costs:costs(),
     adults:counterAdults.value,
     kids:counterKids.value,
-    daysBooked:daysBooked()
+    daysBooked:daysBooked(),
+    userUid: user.value.uid,
+    review: review.value
+
   })
 
   confirm('Submitted')
   router.push('/')
 }
+
 //v-calendar
   const colRef = collection(db, 'customers')
   let docs = [] 

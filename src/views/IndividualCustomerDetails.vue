@@ -32,13 +32,14 @@
 <script setup>
 //imports
 import NavBar from '@/components/NavBar.vue'
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 //firebase imports
 import { db } from '@/firebase/config'
-import {collection, getDoc, doc, onSnapshot, deleteDoc} from 'firebase/firestore'
-import CustomerDetailsVue from './CustomerDetails.vue'
+// import {collection, getDoc, doc, onSnapshot, deleteDoc} from 'firebase/firestore'
+import { doc, getDoc } from 'firebase/firestore'
+// import CustomerDetailsVue from './CustomerDetails.vue'
 
 // data variables
 const route = useRoute()

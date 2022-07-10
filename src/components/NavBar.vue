@@ -1,19 +1,19 @@
 <template>
   <ul>
+    <!-- company logo link back to homepage -->
     <li class="logoNav"> 
       <router-link 
        to="/"> <img alt="logo" src="src\assets\Home\headlogo.png" height="50"> 
       </router-link>    
     </li>
-    
+    <!-- User icon for menu -->
     <li>     
       <button  class="btnUser" type="button" data-bs-toggle="modal" data-bs-target="#createOrSigninModal">         
       <fa  class="btnUserIcon"  icon="user-circle" />         
       <p v-if="!user">Sign-In</p>
       <p v-if="user">{{ user.email}}</p>
       </button>
-      <br>
-         
+      <br>         
 
      <!-- Modal (Create, sign in, my account, logout modal) -->       
       <div class="modal fade" id="createOrSigninModal" tabindex="-1" aria-labelledby="createOrSigninModal" aria-hidden="true">
@@ -166,7 +166,7 @@ import { signOut } from 'firebase/auth'
         }
     }
     //sign in user
-     const { login} = useLogin()
+     const { login } = useLogin()
 
     const handleSubmitSignIn = async () => {
         await login(email.value, password.value)
@@ -176,6 +176,7 @@ import { signOut } from 'firebase/auth'
             email.value=''
             password.value='' 
         }
+        router.push('/UserAccount')
     }
 
     //signout
@@ -185,8 +186,8 @@ import { signOut } from 'firebase/auth'
     //goto myAccount
     const handleMyAccount = () => {
       router.push('/UserAccount')
-    }
-    
+      // router.push({ path: `/IndividualCustomerDetails/${customers.id}` })      
+    }    
  
 </script>
 

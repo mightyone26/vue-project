@@ -1,6 +1,6 @@
 <template>
   <NavBar />
-    <label class="heading"><h4><b>Customer Details:</b></h4></label>
+    <label class="heading"><h4><b>Your Booking Details:</b></h4></label>
     <div>
       <table id="tableStyle"  >
         <thead>
@@ -11,7 +11,9 @@
             <th scope="col">phone</th>
             <th scope="col">Check-in</th>
             <th scope="col">Checkout</th>
-            <th scope="col">Costs</th>
+            <th scope="col">Days</th>
+            <th scope="col">Costs</th>           
+
           </tr>
         </thead>
         <tbody>   
@@ -22,10 +24,19 @@
             <td>{{ customers.phone}}</td>
             <td>{{ customers.checkin}}</td>
             <td>{{ customers.checkout}}</td>
-            <td>{{ customers.costs}}</td>
+            <td>{{ customers.daysBooked}}</td>
+            <td>{{ customers.costs}}</td> 
+            
           </tr>
         </tbody>
       </table>   
+    </div>
+
+    <div>
+      <h5>Add review</h5>
+      <textarea v-model="review" cols="30" rows="10"></textarea>
+      <br>
+      <button @click="handleUpdate" >Submit review</button>
     </div>
 </template>
 
@@ -37,20 +48,40 @@ import { useRoute, useRouter } from 'vue-router'
 
 //firebase imports
 import { db } from '@/firebase/config'
-import {collection, getDoc, doc, onSnapshot, deleteDoc} from 'firebase/firestore'
-import CustomerDetailsVue from './CustomerDetails.vue'
+import { collection, onSnapshot, doc, updateDoc, query, where } from 'firebase/firestore'
+
+//import get user to get current user
+import getUser from '../composables/getUser'
+const { user } = getUser()
 
 // data variables
 const route = useRoute()
 const router = useRouter()
-const customers = ref()
+const customers = ref([])
+ let docs = []
+const review = ref()
 
-//get single customer
- const docRef = doc(db, 'customers', route.params.id )
-  getDoc(docRef) 
-  .then((doc) => {
-  customers.value =  [doc.data()]
-   })
+//get customer from db by using query to match to correct customer Uid (unique customer id)
+const colRef = collection(db, 'customers')
+const q = query(colRef, where( 'userUid', '==', user.value.uid))
+ 
+  onSnapshot(q, (snapshot) => {    
+      snapshot.docs.forEach(doc => { docs.push({ ...doc.data(), id: doc.id }) })           
+         customers.value = docs 
+      })
+
+//add review to db
+ const customerId = docs.map((e) => e.phone)
+ console.log('svdv',customerId)
+ const handleUpdate = async () => {
+  const docRef = doc(db, 'customers', customerId )  
+  await updateDoc(docRef, {
+    review: review.value    
+  })
+  confirm('Submitted')
+  router.push('/')
+}
+
 
 </script>
 
