@@ -12,8 +12,7 @@
             <th scope="col">Check-in</th>
             <th scope="col">Checkout</th>
             <th scope="col">Days</th>
-            <th scope="col">Costs</th>           
-
+            <th scope="col">Costs</th>
           </tr>
         </thead>
         <tbody>   
@@ -25,8 +24,7 @@
             <td>{{ customers.checkin}}</td>
             <td>{{ customers.checkout}}</td>
             <td>{{ customers.daysBooked}}</td>
-            <td>{{ customers.costs}}</td> 
-            
+            <td>{{ customers.costs}}</td>             
           </tr>
         </tbody>
       </table>   
@@ -38,12 +36,38 @@
       <br>
       <button @click="handleUpdate" >Submit review</button>
     </div>
+   
+   <!-- ------------------------- -->
+
+    <div class="myCard">
+   
+     <!-- <div class="wrapper"> -->
+    <div class="wrapper">
+      <input type="radio" name="rate" id="rate1">
+      <label for="rate1"></label>
+      <input type="radio" name="rate" id="rate2">
+      <label for="rate2"></label>
+      <input type="radio" name="rate" id="rate3">
+      <label for="rate3"></label>
+      <input type="radio" name="rate" id="rate4">
+      <label for="rate4"></label>
+      <input type="radio" name="rate" id="rate5">
+      <label for="rate5"></label>
+   </div>
+      <!-- </div> -->
+       <h5>Jack</h5>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis nihil nulla officia asperiores, laboriosam expedita soluta amet dicta doloremque deleniti?</p>
+     
+     
+
+  </div>
+   
 </template>
 
 <script setup>
 //imports
 import NavBar from '@/components/NavBar.vue'
-import { ref, onMounted } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 //firebase imports
@@ -57,31 +81,34 @@ const { user } = getUser()
 // data variables
 const route = useRoute()
 const router = useRouter()
-const customers = ref([])
- let docs = []
+const customers = ref() 
 const review = ref()
+const customerId = ref()
+
+
 
 //get customer from db by using query to match to correct customer Uid (unique customer id)
 const colRef = collection(db, 'customers')
 const q = query(colRef, where( 'userUid', '==', user.value.uid))
  
-  onSnapshot(q, (snapshot) => {    
+  onSnapshot(q, (snapshot) => { 
+      let docs = []   
       snapshot.docs.forEach(doc => { docs.push({ ...doc.data(), id: doc.id }) })           
-         customers.value = docs 
-      })
-
-//add review to db
- const customerId = docs.map((e) => e.phone)
- console.log('svdv',customerId)
+         
+         customers.value = docs
+         customerId.value = customers.value.map((customerId) => customerId.id)
+         //console log below was used to see value of customer is in json
+         //console.log('json',JSON.parse(JSON.stringify(customerId.value)))             
+      })  
+  
  const handleUpdate = async () => {
-  const docRef = doc(db, 'customers', customerId )  
+  const docRef = doc(db, 'customers', customerId.value[0] )  
   await updateDoc(docRef, {
     review: review.value    
   })
   confirm('Submitted')
   router.push('/')
 }
-
 
 </script>
 
@@ -111,4 +138,60 @@ const q = query(colRef, where( 'userUid', '==', user.value.uid))
 .heading {
   margin: 2% 10%
 }
+
+/* -------------------- */
+
+.myCard {
+  background-color: rgb(248, 247, 242);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 95%;
+  height: 100%;  
+  font-family:Arial, Helvetica, sans-serif;
+  padding: 2px 26px;
+  margin-left: 20px; 
+}
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background: beige;
+}
+.wrapper {
+	/* position: absolute;
+	top: 50%;
+	left: 50%; */
+	transform: translate(-94%, -10%) rotateY(180deg);
+	display: flex;
+}
+.wrapper input {
+	display: none;
+}
+.wrapper label {
+	display: block;
+	cursor: pointer;
+	width: 20px;
+}
+.wrapper label:before {
+	content: '★';
+	position: relative;
+	display: block;
+	font-size: 25px;
+	color: rgb(207, 205, 205);
+}
+.wrapper label:after {
+	content: '★';
+	position: absolute;
+	display: block;
+	font-size: 25px;
+	color: rgb(210, 5, 152);
+	top: 0;
+	opacity: 0;
+	transition: .6s;
+}
+.wrapper label:hover:after, .wrapper label:hover~label:after, .wrapper input:checked~label:after {
+	opacity: 1;
+}
+
 </style>

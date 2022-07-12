@@ -78,7 +78,7 @@ let unFiltered = ref ()
          unFiltered.value = docs         
       })
   
-  // Search Customers   
+  // Search Customers by lastname   
    const filtered = () => { 
      console.log(unFiltered.value )
      return  docs.filter((customer) => customer.lastName.toLowerCase().includes(inputText.value.toLowerCase()))
