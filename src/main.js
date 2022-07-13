@@ -10,7 +10,6 @@ import 'element-plus/dist/index.css'
 import VCalendar from 'v-calendar'
 import 'v-calendar/dist/style.css'
 
-
 //fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'

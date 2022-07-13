@@ -189,7 +189,8 @@ const firstName = ref('')
 const lastName = ref('')
 const email = ref('')
 const phone = ref('')
-const review = ref('')  
+const review = ref('') 
+const starRating = ref('') 
 
 const handleSubmit = async () => {
   const colRef = collection(db, 'customers') 
@@ -206,8 +207,8 @@ const handleSubmit = async () => {
     kids:counterKids.value,
     daysBooked:daysBooked(),
     userUid: user.value.uid,
-    review: review.value
-
+    review: review.value,
+    rating: starRating.value
   })
 
   confirm('Submitted')

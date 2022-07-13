@@ -1,5 +1,6 @@
 <template>
   <NavBar />
+  <div class="myCard">
     <label class="heading"><h4><b>Your Booking Details:</b></h4></label>
     <div>
       <table id="tableStyle"  >
@@ -32,36 +33,21 @@
 
     <div>
       <h5>Add review</h5>
-      <textarea v-model="review" cols="30" rows="10"></textarea>
+      
+      <el-rate
+        v-model="starRating"
+        :texts="['oops', 'Disappointed', 'Normal', 'Good', 'Great']"
+        show-text
+      />      
+      <br>
+      <br>
+      <textarea v-model="review" cols="50" rows="2" maxlength="50"></textarea>
+      <br>
       <br>
       <button @click="handleUpdate" >Submit review</button>
     </div>
-   
-   <!-- ------------------------- -->
-
-    <div class="myCard">
-   
-     <!-- <div class="wrapper"> -->
-    <div class="wrapper">
-      <input type="radio" name="rate" id="rate1">
-      <label for="rate1"></label>
-      <input type="radio" name="rate" id="rate2">
-      <label for="rate2"></label>
-      <input type="radio" name="rate" id="rate3">
-      <label for="rate3"></label>
-      <input type="radio" name="rate" id="rate4">
-      <label for="rate4"></label>
-      <input type="radio" name="rate" id="rate5">
-      <label for="rate5"></label>
+      
    </div>
-      <!-- </div> -->
-       <h5>Jack</h5>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis nihil nulla officia asperiores, laboriosam expedita soluta amet dicta doloremque deleniti?</p>
-     
-     
-
-  </div>
-   
 </template>
 
 <script setup>
@@ -84,8 +70,7 @@ const router = useRouter()
 const customers = ref() 
 const review = ref()
 const customerId = ref()
-
-
+const starRating = ref()
 
 //get customer from db by using query to match to correct customer Uid (unique customer id)
 const colRef = collection(db, 'customers')
@@ -104,7 +89,8 @@ const q = query(colRef, where( 'userUid', '==', user.value.uid))
  const handleUpdate = async () => {
   const docRef = doc(db, 'customers', customerId.value[0] )  
   await updateDoc(docRef, {
-    review: review.value    
+    review: review.value,
+    rating: starRating.value    
   })
   confirm('Submitted')
   router.push('/')
@@ -113,6 +99,16 @@ const q = query(colRef, where( 'userUid', '==', user.value.uid))
 </script>
 
 <style scoped>
+.myCard {
+  background-color: rgb(248, 247, 242);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 95%;
+  height: 100%;  
+  font-family:Arial, Helvetica, sans-serif;
+  padding: 2px 26px;
+  margin-left: 20px; 
+}
 #tableStyle {
   border-collapse: collapse;
   width: 80%;
@@ -138,60 +134,4 @@ const q = query(colRef, where( 'userUid', '==', user.value.uid))
 .heading {
   margin: 2% 10%
 }
-
-/* -------------------- */
-
-.myCard {
-  background-color: rgb(248, 247, 242);
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 95%;
-  height: 100%;  
-  font-family:Arial, Helvetica, sans-serif;
-  padding: 2px 26px;
-  margin-left: 20px; 
-}
-* {
-	margin: 0;
-	padding: 0;
-}
-body {
-	background: beige;
-}
-.wrapper {
-	/* position: absolute;
-	top: 50%;
-	left: 50%; */
-	transform: translate(-94%, -10%) rotateY(180deg);
-	display: flex;
-}
-.wrapper input {
-	display: none;
-}
-.wrapper label {
-	display: block;
-	cursor: pointer;
-	width: 20px;
-}
-.wrapper label:before {
-	content: '★';
-	position: relative;
-	display: block;
-	font-size: 25px;
-	color: rgb(207, 205, 205);
-}
-.wrapper label:after {
-	content: '★';
-	position: absolute;
-	display: block;
-	font-size: 25px;
-	color: rgb(210, 5, 152);
-	top: 0;
-	opacity: 0;
-	transition: .6s;
-}
-.wrapper label:hover:after, .wrapper label:hover~label:after, .wrapper input:checked~label:after {
-	opacity: 1;
-}
-
 </style>

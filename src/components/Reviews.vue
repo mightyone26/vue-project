@@ -1,8 +1,6 @@
 <template>
   <div class="myCard">
-   
-    
-      
+     <h5>Reviews</h5>
      <div>
       <table >
         <thead>
@@ -16,14 +14,19 @@
           <tr v-for="customers in customers" :key="customers.id" >     
             <td>{{ customers.firstName }}</td> 
             <td>{{ customers.review }}</td>
-           
             
+            <td>
+                <el-rate                                  
+                  v-model= 'customers.rating '
+                  :texts="['oops', 'Disappointed', 'Normal', 'Good', 'Great']"
+                  show-text
+                  disabled
+                />   
+            </td>
           </tr>
         </tbody>
-      </table>   
+      </table>       
     </div>
-
-
   </div>
 </template>
 
@@ -40,16 +43,14 @@ const colRef = collection(db, 'customers')
   onSnapshot(colRef, (snapshot) => { 
       let docs = []   
       snapshot.docs.forEach(doc => { docs.push({ ...doc.data(), id: doc.id }) }) 
-      customers.value = docs 
+      customers.value = docs   
       })  
   
-
-
 </script>
 
 <style scoped>
 .myCard {
-  background-color: rgb(210, 186, 90);
+  background-color: rgb(248, 238, 238);
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   width: 95%;
