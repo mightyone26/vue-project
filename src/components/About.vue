@@ -1,43 +1,41 @@
 <template>
 
-<div class="myCard"> 
-    
-    <form>   
-        <div class="breakText">
-          <br>
-          <h3>About</h3>
-          <br>
-          <fa icon="umbrella-beach" /> <strong><i>136 Beach rd, BeachVille, BeachTown</i></strong> 
-          <p>Stunning ocean views. Lorem ipsum d Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque? Maiores sequi nam consequuntur consectetur. Animi reiciendis suscipit maiores voluptates, provident necessitatibus odit, saepe pariatur fuga commodi, sunt facilis magnam ad iusto voluptatibus beatae. Aliquam rem distinctio recusandae praesentium ad perferendis, dolorum, aut eum vero, sint minus expedita ut labore amet consequatur. Voluptatibus itaque alias rem ipsa quos incidunt quis esse obcaecati nesciunt aliquid placeat blanditiis, porro nemo, corrupti enim eos non deleniti distinctio inventore reiciendis quaerat soluta voluptate sapiente. Suscipit quos quod nam quibusdam consectetur corporis eos incidunt sint, natus eligendi laborum, beatae inventore ullam doloremque explicabo, facilis itaque. olor, sit amet consecous.</p>  
-        
-        </div>
-                
-         <div class="leftList" >
-          <ul class="fa-ul">
-            <li><fa icon="wifi" />  &nbsp; Free Wifi</li>
-            <li><fa icon="car" />  &nbsp; Free Parking</li>
-            <li><fa icon="fan" />  &nbsp; Air Conditioning</li>
-            <li><fa icon="utensils" />  &nbsp; All Utensils</li>
-            <li><fa icon="coffee" />  &nbsp; Coffee Maker</li>            
-            <li><fa icon="newspaper" />  &nbsp; Dishwasher</li>
-          </ul>
-        </div>
+  <div class="myCard"> 
       
-        <div class="rightList" >
+      <form>   
+          <div class="breakText">
+            <br>
+            <h3>About</h3>
+            <br>
+            <fa icon="umbrella-beach" /> <strong><i>136 Beach rd, BeachVille, BeachTown</i></strong> 
+            <p>Stunning ocean views. Lorem ipsum d Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque? Maiores sequi nam consequuntur consectetur. Animi reiciendis suscipit maiores voluptates, provident necessitatibus odit, saepe pariatur fuga commodi, sunt facilis magnam ad iusto voluptatibus beatae. Aliquam rem distinctio recusandae praesentium ad perferendis, dolorum, aut eum vero, sint minus expedita ut labore amet consequatur. Voluptatibus itaque alias rem ipsa quos incidunt quis esse obcaecati nesciunt aliquid placeat blanditiis, porro nemo, corrupti enim eos non deleniti distinctio inventore reiciendis quaerat soluta voluptate sapiente. Suscipit quos quod nam quibusdam consectetur corporis eos incidunt sint, natus eligendi laborum, beatae inventore ullam doloremque explicabo, facilis itaque. olor, sit amet consecous.</p>  
+          
+          </div>
+                  
+          <div class="leftList" >
             <ul class="fa-ul">
-              <li><fa icon="square-virus" /> &nbsp; Washing Machine</li>
-              <li><fa icon="table-cells" />  &nbsp; Dryer</li>
-              <li><fa icon="tv" />  &nbsp; Television</li>
-              <li><fa icon="hand-lizard" />  &nbsp; Hair Dryer</li>
-              <li><fa icon="hands-bubbles" />  &nbsp; Soap, Shampoo</li>
-              <li><fa icon="bacon" />  &nbsp; Breakfast Provided</li>
+              <li><fa icon="wifi" />  &nbsp; Free Wifi</li>
+              <li><fa icon="car" />  &nbsp; Free Parking</li>
+              <li><fa icon="fan" />  &nbsp; Air Conditioning</li>
+              <li><fa icon="utensils" />  &nbsp; All Utensils</li>
+              <li><fa icon="coffee" />  &nbsp; Coffee Maker</li>            
+              <li><fa icon="newspaper" />  &nbsp; Dishwasher</li>
             </ul>
-          </div>     
-    </form>       
-
-</div> 
-
-
+          </div>
+        
+          <div class="rightList" >
+              <ul class="fa-ul">
+                <li><fa icon="square-virus" /> &nbsp; Washing Machine</li>
+                <li><fa icon="table-cells" />  &nbsp; Dryer</li>
+                <li><fa icon="tv" />  &nbsp; Television</li>
+                <li><fa icon="hand-lizard" />  &nbsp; Hair Dryer</li>
+                <li><fa icon="hands-bubbles" />  &nbsp; Soap, Shampoo</li>
+                <li><fa icon="bacon" />  &nbsp; Breakfast Provided</li>
+              </ul>
+            </div>     
+      </form>
+       
+  </div> 
 
 </template>
 

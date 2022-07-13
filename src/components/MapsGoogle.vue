@@ -20,7 +20,8 @@
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;  
   width: 95%;
-  height: 200%; 
-  margin-left: 20px;  
+  height: 100%; 
+  margin-left: 20px;
+  padding: 1% 1%;  
 }
 </style>

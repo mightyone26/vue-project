@@ -59,11 +59,11 @@
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;  
   width: 95%;
-  height: 70%;  
+  height: 100%;  
   font-family:Arial, Helvetica, sans-serif;
   font-size: 120%;
   padding-top: 1%;  
-  margin-top: 160px;
+  /* margin-top: 160px; */
   margin-left: 20px;  
 }
 .myCard:hover {

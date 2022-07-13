@@ -33,11 +33,9 @@
 
     <div>
       <h5>Add review</h5>
-      
+       <!--  rating stars (el-rate) is imported from element-plus -->
       <el-rate
-        v-model="starRating"
-        :texts="['oops', 'Disappointed', 'Normal', 'Good', 'Great']"
-        show-text
+        v-model="starRating"        
       />      
       <br>
       <br>

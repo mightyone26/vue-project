@@ -1,15 +1,16 @@
 <template>
 
 <div class="grid-container">
-  <div class=" item1"><NavBar /></div>
-  <div class=" item2"><PictureModal /></div>
-  <div class=" item3"><About /></div>
-  <div class=" item4"><Booking /></div>
-  <div class=" item5"><Reviews /></div>
-  <div class=" item6" ><Maps /></div>
-  <div class=" item7" ><ThingsToKnow /></div>
-  <div class=" item8" ><SurroundingArea /></div>
-  <div class=" item9"><Foot /></div> 
+  <div class=" navBar"><NavBar /></div>
+  <div class=" pictureModal"><PictureModal /></div>
+  <div><About /></div>
+  <div><Booking /></div> 
+  <div class="maps" ><Maps /></div>  
+  <div class=" thingsToKnow" ><ThingsToKnow /></div>
+   <div  ><Reviews /></div>
+   <div  ><Weather /></div>
+  <div class="surroundingArea" ><SurroundingArea /></div>
+  <div class=" foot"><Foot /></div> 
 
 </div>
 
@@ -24,6 +25,7 @@ import Booking from '@/components/Booking.vue'
 import About from '@/components/About.vue'
 import Reviews from '@/components/Reviews.vue'
 import Maps from '@/components/MapsGoogle.vue'
+import Weather from '@/components/Weather.vue'
 import ThingsToKnow from '@/components/ThingsToKnow.vue'
 import SurroundingArea from '@/components/SurroundingArea.vue'
 import Foot from '@/components/Footer.vue'
@@ -39,33 +41,44 @@ import Foot from '@/components/Footer.vue'
   gap: 45px;
   background-color: #ffffff;  
 }
-.item1 {
+.navBar {
   grid-column: 1 / -1;
   grid-row: 1;
 }
-.item2 {
+.pictureModal {
   grid-column: 1 / -1;
   grid-row: 2;
 }
-.item5 {
+/* .about {
   grid-column: 1 / -1;
-  grid-row: 4;
-}
-.item6 {
+  grid-row: 3;
+} */
+.maps {
   grid-column: 1 / -1;
-  grid-row: 5;
+  grid-row: 11/ 21;
 }
-.item7 {
-  grid-column: 1 / -1;
-  grid-row: 6;
+/* .booking {
+  grid-column: 3 / -1 ;
+  grid-row: 3;
+} */
+.thingsToKnow {
+  grid-column: 1/ -1;
+  grid-row: 10;
 }
-.item8 {
+.surroundingArea {
+  grid-column: 1/ -1;
+  grid-row: 4 / 9;
+}
+/* .reviews {
   grid-column: 1/ -1;
   grid-row: 7;
-}
-.item9 {
+} */
+/* .weather {
   grid-column: 1/ -1;
-  grid-row: 8;
+  grid-row: 7;
+} */
+.foot {
+  grid-column: 1/ -1;
+  grid-row: 22;
 }
-
 </style>

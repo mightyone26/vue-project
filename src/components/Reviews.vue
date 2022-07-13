@@ -1,32 +1,15 @@
 <template>
   <div class="myCard">
      <h5>Reviews</h5>
-     <div>
-      <table >
-        <thead>
-          <tr>      
-            <th scope="col">Name</th>
-            <th scope="col">Review</th>
-           
-          </tr>
-        </thead>
-        <tbody>   
-          <tr v-for="customers in customers" :key="customers.id" >     
-            <td>{{ customers.firstName }}</td> 
-            <td>{{ customers.review }}</td>
-            
-            <td>
-                <el-rate                                  
-                  v-model= 'customers.rating '
-                  :texts="['oops', 'Disappointed', 'Normal', 'Good', 'Great']"
-                  show-text
-                  disabled
-                />   
-            </td>
-          </tr>
-        </tbody>
-      </table>       
-    </div>
+     <div  v-for="customers in customers" :key="customers.id">
+        <h6>
+          {{ customers.firstName }}
+          <!--  rating stars (el-rate) is imported from element-plus -->
+          <el-rate v-model= 'customers.rating' disabled />   
+        </h6>       
+          
+        <p>{{ customers.review }}</p>
+      </div>
   </div>
 </template>
 
@@ -53,7 +36,7 @@ const colRef = collection(db, 'customers')
   background-color: rgb(248, 238, 238);
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  width: 95%;
+  width: 100%;
   height: 100%;  
   font-family:Arial, Helvetica, sans-serif;
   padding: 2px 26px;
