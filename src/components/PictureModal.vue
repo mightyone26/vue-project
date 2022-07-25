@@ -1,7 +1,7 @@
 <template>
 
-  <div class="homeDescriptionTitle">
-      <h3>Ocean Views, 6+ bedroom, Heated Pool, Gamesroom, 5 Minute Walk to the Beach</h3> 
+  <div>
+      <p class="homeDescriptionTitle">Ocean Views, 6+ bedroom, Heated Pool, Gamesroom, 5 Minute Walk to the Beach</p> 
   </div>
  
   <div class="grid-container">
@@ -54,6 +54,7 @@
 .homeDescriptionTitle{
     text-align: center;
     padding: 2% 0% 2% 0%;
+    font-size: 150%;
 }
 .grid-container {
   display: grid;
@@ -98,12 +99,63 @@ img {
 .btnSeeMore { 
   background-color: rgb(210, 231, 240);
   border-radius: 5px;
-  border: 0;
-  /* box-shadow: 0px 1px 1px 0 rgb(239, 2, 2); */
+  border: 0;  
   margin-left: 50%;
   height: 25px;    
 }
 .btnSeeMore:hover {
   box-shadow: 0 1px 6px 0 rgba(91, 165, 255, 0.781);
 }   
+@media only screen and (max-width: 600px){
+.homeDescriptionTitle{  
+  font-size: 100%;
+  text-align: center;
+  padding: 2% 2% 2% 2%; 
+}
+.grid-container {
+  display: grid;
+  grid-template-rows:auto;  
+  background-color: #ffffff; 
+  padding: 0 5% 0 5%;
+}
+.model-grid-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 10px; 
+  background-color: #ffffff; 
+  padding: 0 5% 0 5%;
+}
+img {
+   border-radius: 1%;
+   width:100%;
+   height:100%;
+   
+}
+.item1 {
+ width: 0px;
+}
+.item2 {
+  grid-column: 0;
+  grid-row: 0;
+}
+.item3 {
+  width: 0px;
+}
+.item4 {
+  width: 0px;
+}
+.item5 {
+  width: 0px;
+}
+.btnSeeMore {   
+  background-color: rgb(210, 231, 240);
+  border-radius: 5px;
+  border: 0;  
+  margin-left: 10%;
+  height: 25px;    
+}
+.btnSeeMore:hover {
+  box-shadow: 0 1px 6px 0 rgba(91, 165, 255, 0.781);
+}   
+}
 </style>

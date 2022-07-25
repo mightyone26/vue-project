@@ -75,4 +75,27 @@ li {
   padding: 0% 5% 5% 0%;
   inline-size: 250px;
 }
+@media only screen and (max-width: 600px){
+  .myCard {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;  
+  width: 95%;
+  height: 100%;  
+  font-family:Arial, Helvetica, sans-serif;  
+  font-size: 100%;
+  padding: 2px 26px;
+  margin-left: 20px; 
+}
+.leftList{
+  float: left;
+  padding: 2% 5%;
+  text-align: left;
+}
+.rightList {
+  float: left;
+  
+  padding: 2% 5%;
+  text-align: left;  
+}
+}
 </style>

@@ -4,16 +4,16 @@
   
     <h3>Make a Booking</h3>  
     <br>  
-    <v-date-picker  
+    <v-date-picker class="calendarWidth"  
     v-model="dateRange" 
     is-range
     :model-config="modelConfig" 
     color="teal"
-    :disabled-dates= "Adisabledates"
-    :columns ="2"
+    :disabled-dates= "Adisabledates"    
+    :columns="$screens({ default: 1, lg: 2 })"
     is-expanded    
     />
-
+      
     <div>     
       <br>  
       <label style="float:left "> <b>Check-in:</b> </label>  &nbsp;
@@ -364,5 +364,16 @@ label {
   color: var(--el-text-color-secondary);
   font-size: 14px;
   margin-bottom: 20px;
+}
+@media only screen and (max-width: 600px){
+.myCard {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 95%;  
+  height: 100%;
+  font-family:Arial, Helvetica, sans-serif;
+  padding: 4% 2%;
+  margin-left: 20px;
+}
 }
 </style>

@@ -62,8 +62,7 @@
   height: 100%;  
   font-family:Arial, Helvetica, sans-serif;
   font-size: 120%;
-  padding-top: 1%;  
-  /* margin-top: 160px; */
+  padding-top: 1%; 
   margin-left: 20px;  
 }
 .myCard:hover {
@@ -72,14 +71,14 @@
 .breakText {  
   padding-left:1vw
 }
-#myDIV {
-  height:200px;  
+#myDIV { 
+  height: 100%;
   display: flex;
   justify-content: space-evenly;
 }
 #myDIV div {
   width: 40%;
-  height: 80px;  
+  height: 100%;  
 }     
 
 </style>

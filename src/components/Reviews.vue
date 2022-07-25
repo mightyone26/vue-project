@@ -42,5 +42,16 @@ const colRef = collection(db, 'customers')
   padding: 2px 26px;
   margin-left: 20px; 
 }
-
+@media only screen and (max-width: 600px){
+.myCard {
+  background-color: rgb(248, 238, 238);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 95%;
+  height: 100%;  
+  font-family:Arial, Helvetica, sans-serif;
+  padding: 2px 26px;
+  margin-left: 20px; 
+}
+}
 </style>

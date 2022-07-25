@@ -36,8 +36,7 @@ import Foot from '@/components/Footer.vue'
 <style scoped> 
 .grid-container {   
   display: grid; 
-  grid-template-columns: 60% auto;
-  /* grid-template-rows: auto; */
+  grid-template-columns: 60% auto;  
   gap: 45px;
   background-color: #ffffff;  
 }
@@ -49,18 +48,10 @@ import Foot from '@/components/Footer.vue'
   grid-column: 1 / -1;
   grid-row: 2;
 }
-/* .about {
-  grid-column: 1 / -1;
-  grid-row: 3;
-} */
 .maps {
   grid-column: 1 / -1;
   grid-row: 11/ 21;
 }
-/* .booking {
-  grid-column: 3 / -1 ;
-  grid-row: 3;
-} */
 .thingsToKnow {
   grid-column: 1/ -1;
   grid-row: 10;
@@ -69,16 +60,41 @@ import Foot from '@/components/Footer.vue'
   grid-column: 1/ -1;
   grid-row: 4 / 9;
 }
-/* .reviews {
-  grid-column: 1/ -1;
-  grid-row: 7;
-} */
-/* .weather {
-  grid-column: 1/ -1;
-  grid-row: 7;
-} */
 .foot {
   grid-column: 1/ -1;
   grid-row: 22;
+}
+
+@media only screen and (max-width: 600px){
+  .grid-container {   
+  display: grid; 
+  grid-template-columns: auto;  
+  gap: 25px;
+  background-color: #ffffff;  
+}
+/* .navBar {
+  grid-column: 1 / -1;
+  grid-row: 1;
+}
+.pictureModal {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+.maps {
+  grid-column: 1 / -1;
+  grid-row: 11/ 21;
+}
+.thingsToKnow {
+  grid-column: 1/ -1;
+  grid-row: 10;
+}
+.surroundingArea {
+  grid-column: 1/ -1;
+  grid-row: 4 / 9;
+}
+.foot {
+  grid-column: 1/ -1;
+  grid-row: 22;
+} */
 }
 </style>

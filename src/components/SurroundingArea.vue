@@ -44,8 +44,16 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 20px;
   padding-left: 10%;
-  padding-bottom: 3%;  
-
+  padding-bottom: 3%;
 }
-
+@media only screen and (max-width: 600px){
+  .linkMatrix { 
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+  padding: 1%;
+  /* padding-left: 1%;
+  padding-bottom: 3%; */
+}
+}
 </style>
