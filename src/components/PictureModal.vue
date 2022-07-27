@@ -10,13 +10,13 @@
     <div class=" item3"> <img src="../assets/Home/Picture9.png  " ></div>  
     <div class=" item4"> <img src="../assets/Home/Picture4.jpg  " ></div>
     <div class=" item5"> <img src="../assets/Home/Picture5.png  " ></div>
+    <br>
+     <!-- Button trigger modal -->
+    <button class="btnSeeMore" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <p>See more images</p> 
+    </button>
   </div>
   <br>  
-
-  <!-- Button trigger modal -->
-<button class="btnSeeMore" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  <p>See more images</p> 
-</button>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -59,9 +59,9 @@
 .grid-container {
   display: grid;
   grid-template-rows: 200px 200px;
-  gap: 10px; 
+  gap: 1px; 
   background-color: #ffffff; 
-  padding: 0 5% 0 5%;
+  padding: 0% 5% 0 5%;
 }
 .model-grid-container {
   display: grid;
@@ -110,27 +110,28 @@ img {
 .homeDescriptionTitle{  
   font-size: 100%;
   text-align: center;
-  padding: 2% 2% 2% 2%; 
+  padding: 0 2% 2% 2%;
+  width: 100%;  
+  height: 100%;  
+  background-color: #ffffff;
 }
 .grid-container {
   display: grid;
   grid-template-rows:auto;  
   background-color: #ffffff; 
-  padding: 0 5% 0 5%;
+  padding: 1% 5% 0% 5%;
+  width: 100%;  
+  height: 80%;
+  /* margin-left: 20px; */
 }
-.model-grid-container {
+/* .model-grid-container {
   display: grid;
   grid-template-columns: 50% 50%;
   gap: 10px; 
   background-color: #ffffff; 
   padding: 0 5% 0 5%;
 }
-img {
-   border-radius: 1%;
-   width:100%;
-   height:100%;
-   
-}
+*/
 .item1 {
  width: 0px;
 }
@@ -147,15 +148,13 @@ img {
 .item5 {
   width: 0px;
 }
-.btnSeeMore {   
+.btnSeeMore {  
   background-color: rgb(210, 231, 240);
   border-radius: 5px;
   border: 0;  
-  margin-left: 10%;
-  height: 25px;    
+  margin-left: 1%;
+  height: 25px; 
+  width: 100%;       
 }
-.btnSeeMore:hover {
-  box-shadow: 0 1px 6px 0 rgba(91, 165, 255, 0.781);
-}   
 }
 </style>

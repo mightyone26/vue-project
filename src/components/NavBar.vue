@@ -220,6 +220,7 @@ ul {
   overflow: hidden;
   background-color: rgb(48, 48, 48);
   height: 100px;
+  width: 100%;
 }
 input {
   width: 60%;
@@ -273,11 +274,17 @@ input {
  
 }
 .btnUserIcon {  
-  font-size:  46px;
-  /* color: rgb(199, 227, 135); */
-  color: rgb(112, 112, 112);
-  
+  font-size:  46px;  
+  color: rgb(112, 112, 112);  
   padding-bottom:3% ;
+}
+@media only screen and (max-width: 600px){
+ul {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 100%;  
+  height: 80%;
+}
 }
 
 </style>
