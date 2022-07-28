@@ -4,7 +4,7 @@
   
     <h3>Make a Booking</h3>  
     <br>  
-    <v-date-picker class="calendarWidth"  
+    <v-date-picker   
     v-model="dateRange" 
     is-range
     :model-config="modelConfig" 
@@ -22,8 +22,7 @@
       <label style="float:right"> <b>Checkout:</b> &nbsp;</label> 
       <br>
       <br>     
-      <label>Booked for <b>{{ daysBooked() }}</b> {{ dayQty() }}</label>  
-
+      <label v-if="daysBooked()">Booked for <b v-if="daysBooked()">{{ daysBooked() }}</b> {{ dayQty() }}</label>       
       <br>
       <br>         
     </div>    
@@ -47,7 +46,7 @@
     </div>
     <hr> 
     <label style="float:left ">Total</label>   
-    <label style="float:right ">${{ costs() }}</label>  
+    <label  v-if="daysBooked()" style="float:right ">${{ costs() }}</label>  
     <br>
     <br>  
     <button type="button" class="btnReserve" data-bs-toggle="modal" data-bs-target="#applicationForm">
@@ -259,7 +258,8 @@ const increaseCountKids = () => {
 }
 
 // Days booked
- const daysBooked = () => { 
+   
+  const daysBooked = () => { 
   let dateDifference = new Date((dateRange.value.end)+0).getTime() - new Date((dateRange.value.start)+0).getTime() //the +0 is to make the variable a number when no date is selected. Else it displays as 'NAN'
   let totalDaysDifference = Math.ceil(dateDifference  / (1000 * 3600 * 24))
   return totalDaysDifference 
@@ -279,7 +279,8 @@ const perDay = () => {
 }
 
 //total cost
-const costs = ()=> {
+
+let costs = ()=> {
     return perDay() * daysBooked() 
 }
 
@@ -365,14 +366,41 @@ label {
   font-size: 14px;
   margin-bottom: 20px;
 }
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .myCard {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 100%;  
+  height: 100%;
+  font-family:Arial, Helvetica, sans-serif;  
+  padding-right: 5%;
+  margin-left: 0px;
+  background-color: rgb(255, 255, 255);
+}
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 600px) {
+  .myCard {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 100%;  
+  height: 100%;
+  font-family:Arial, Helvetica, sans-serif;  
+  padding-right: 5%;
+  margin-left: 0px;
+  background-color: rgb(255, 255, 255);
+}
+}
+/* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px){
 .myCard {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   width: 100%;  
   height: 100%;
-  font-family:Arial, Helvetica, sans-serif;
-  padding: 4% 2%;
+  font-family:Arial, Helvetica, sans-serif; 
   margin-left: 0px;
   background-color: rgb(255, 255, 255);
 }

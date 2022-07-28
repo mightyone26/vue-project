@@ -59,8 +59,7 @@
 .grid-container {
   display: grid;
   grid-template-rows: 200px 200px;
-  gap: 1px; 
-  background-color: #ffffff; 
+  gap: 5px;   
   padding: 0% 5% 0 5%;
 }
 .model-grid-container {
@@ -99,13 +98,82 @@ img {
 .btnSeeMore { 
   background-color: rgb(210, 231, 240);
   border-radius: 5px;
-  border: 0;  
-  margin-left: 50%;
+  border: 0; 
   height: 25px;    
+  margin-top: 2%;
 }
 .btnSeeMore:hover {
   box-shadow: 0 1px 6px 0 rgba(91, 165, 255, 0.781);
-}   
+} 
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 992px) {
+.homeDescriptionTitle{  
+  font-size: 120%;
+  text-align: center;  
+  width: 100%;  
+  height: 80%;  
+  background-color: #ffffff;
+}
+.grid-container {
+  display: grid;
+  grid-template-rows: 200px 200px;
+  gap: 1px; 
+  background-color: #ffffff; 
+  padding: 0% 5% 0 5%;
+}
+.btnSeeMore {  
+  background-color: rgb(210, 231, 240);
+  border-radius: 5px;
+  border: 0;  
+  margin-left: 1%;
+  height: 25px; 
+  width: 100%;       
+}
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+  .homeDescriptionTitle{  
+  font-size: 100%;
+  text-align: center;
+  padding: 0 2% 2% 2%;
+  width: 100%;  
+  height: 100%;  
+  background-color: #ffffff;
+}
+.grid-container {
+  display: grid;
+  grid-template-rows:auto;  
+  background-color: #ffffff; 
+  padding: 1% 5% 0% 5%;
+  width: 100%;  
+  height: 80%;  
+}
+.item1 {
+ width: 0px;
+}
+.item2 {
+  grid-column: 0;
+  grid-row: 0;
+}
+.item3 {
+  width: 0px;
+}
+.item4 {
+  width: 0px;
+}
+.item5 {
+  width: 0px;
+}
+.btnSeeMore {  
+  background-color: rgb(210, 231, 240);
+  border-radius: 5px;
+  border: 0;  
+  margin-left: 1%;
+  height: 25px; 
+  width: 100%;       
+}
+}
+/* Extra small devices (phones, 600px and down)   */
 @media only screen and (max-width: 600px){
 .homeDescriptionTitle{  
   font-size: 100%;
@@ -121,17 +189,8 @@ img {
   background-color: #ffffff; 
   padding: 1% 5% 0% 5%;
   width: 100%;  
-  height: 80%;
-  /* margin-left: 20px; */
+  height: 80%;  
 }
-/* .model-grid-container {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  gap: 10px; 
-  background-color: #ffffff; 
-  padding: 0 5% 0 5%;
-}
-*/
 .item1 {
  width: 0px;
 }

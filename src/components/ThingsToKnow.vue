@@ -58,12 +58,11 @@
 .myCard {  
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;  
-  width: 95%;
+  width: 100%;
   height: 100%;  
   font-family:Arial, Helvetica, sans-serif;
-  font-size: 120%;
-  padding-top: 1%; 
-  margin-left: 20px;
+  font-size: 100%;
+  padding-top: 1%;  
   background-color: rgb(255, 255, 255);  
 }
 .myCard:hover {
@@ -74,18 +73,83 @@
 }
  .leftList{
   float: left;
-  padding: 2% 5%;
-  text-align: left;
+  /* padding: 2% 5%; */
+  /* text-align: left; */
 }
 .rightList {
   float: right;
-  padding-top: 2%;
-  padding-right: 15%;
-  text-align: left;  
+  /* padding-top: 2%; */
+  padding-right: 35%;
+  /* text-align: left;   */
 }
 .cancelPolicy {
   float: left;
 }
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 992px) {
+  .myCard {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 100%;  
+  height: 100%;
+  font-family:Arial, Helvetica, sans-serif;
+  padding: 4% 2%;
+  margin-left: 0px;
+  background-color: rgb(255, 255, 255);
+  font-size: 90%;
+}
+.leftList{
+  float: left;
+  padding: 0%;
+  text-align: left;
+  margin-left: -25px;
+}
+.rightList {
+  float: right;
+  padding-top: 0%;
+  padding-right: 10%;
+  text-align: left;
+  margin-left: -25px;
+  margin-top: 0px;
+}
+.cancelPolicy {
+  float: left;
+  margin-left: 0%;
+}
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+  .myCard {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 100%;  
+  height: 100%;
+  font-family:Arial, Helvetica, sans-serif;
+  padding: 4% 2%;
+  margin-left: 0px;
+  background-color: rgb(255, 255, 255);
+  font-size: 80%;
+}
+.leftList{
+  float: left;
+  padding: 0%;
+  text-align: left;
+  margin-left: -25px;
+}
+.rightList {
+  float: right;
+  padding-top: 0%;
+  padding-right: 0%;
+  text-align: left;
+  margin-left: -25px;
+  margin-top: 0px;
+}
+.cancelPolicy {
+  float: left;
+  margin-left: -25px;
+}
+}
+/* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px){
   .myCard {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -116,6 +180,5 @@
   float: left;
   margin-left: -25px;
 }
-
 }
 </style>

@@ -34,8 +34,8 @@ import Foot from '@/components/Footer.vue'
 <style scoped> 
 .grid-container {   
   display: grid; 
-  grid-template-columns: 60% auto;  
-  gap: 45px;
+  grid-template-columns: 45% auto;  
+  gap: 8px;
   background-color: #ffffff;  
 }
 .navBar {
@@ -62,21 +62,44 @@ import Foot from '@/components/Footer.vue'
   grid-column: 1/ -1;
   grid-row: 22;
 }
-@media only screen and (min-width: 768px) {
+/* @media only screen and (max-width: 1920px) {
+  .grid-container {     
+  display: grid; 
+  grid-template-columns: 50% 50%;  
+  gap: 10px;
+  background-color: #ffffff; 
+}
+}  */
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 992px) {
+  .grid-container {     
+  display: grid; 
+  grid-template-columns: 50% 50%;  
+  gap: 8px;
+  background-color: #ffffff; 
+} 
+}
+/* Medium devices (landscape tablets, to 768px) */
+@media only screen and (max-width: 768px) {
   .grid-container {   
   display: grid; 
-  grid-template-columns: 50% auto;  
-  gap: 45px;
+  grid-template-columns:  50% 50%;  
+  gap: 5px;
   background-color: #ffffff;  
+} 
+ .foot {
+  grid-column: 1 / -1;
+  grid-row: 23;
 }
 }
+/* Extra small devices (phones, 600px and down)   */
 @media only screen and (max-width: 600px){
   .grid-container {   
   display: grid; 
   grid-template-columns:  auto;  
-  gap: 20px;
+  gap: 10px;
   width: 100%;
-  background-color: #fff5ff;  
+  background-color: #ffffff;  
 }
 
  .foot {

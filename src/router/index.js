@@ -5,7 +5,6 @@ import CustomerDetails from '../views/CustomerDetails.vue'
 import IndividualCustomerDetails from '../views/IndividualCustomerDetails.vue'
 import EditBooking from '../views/EditBooking.vue'
 import LogInPage from '../components/LogInPage.vue'
-import AvailableRooms from '../views/AvailableRooms.vue'
 import ApplicationForm from '../components/ApplicationForm.vue'
 import UserAccount from '../views/UserAccount.vue'
 
@@ -42,12 +41,7 @@ const router = createRouter({
       path: '/LogInPage',
       name: 'LogInPage',
       component: LogInPage
-      },
-    {
-      path: '/AvailableRooms',
-      name: 'AvailableRooms',
-      component: AvailableRooms
-      },
+      },    
     {
       path: '/ApplicationForm',
       name: 'ApplicationForm',
