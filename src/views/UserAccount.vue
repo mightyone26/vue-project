@@ -25,7 +25,7 @@
             <td>{{ customers.checkin}}</td>
             <td>{{ customers.checkout}}</td>
             <td>{{ customers.daysBooked}}</td>
-            <td>{{ customers.costs}}</td>             
+            <td>${{ customers.costs}}</td>             
           </tr>
         </tbody>
       </table>   

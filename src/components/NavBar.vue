@@ -3,11 +3,12 @@
     <!-- company logo link back to homepage -->
     <li class="logoNav"> 
       <router-link 
-       to="/"> <img alt="logo" src="src\assets\Home\headlogo.png" height="50"> 
+       to="/"> <img alt="logo" src="..\assets\Home\headlogo.png" height="50"> 
       </router-link>    
     </li>
-    <!-- User icon for menu -->
-    <li>     
+
+    <li>
+      <button v-if="adminLoggedIn" class="customerDetailsButton"  @click="handleCustomerDetails">View or Edit Customer Details</button>         
       <button  class="btnUser" type="button" data-bs-toggle="modal" data-bs-target="#createOrSigninModal">         
       <fa  class="btnUserIcon"  icon="user-circle" />         
       <p v-if="!user">Sign-In</p>
@@ -23,7 +24,7 @@
 
               <!--Select Create account button-->
               <h5 v-if="!user">Sign in or create a new account.</h5>
-              <h5 v-if="user"> Logged in as: {{ user.email}}</h5>
+              <h5 v-if="user"> Logged in as: {{ user.email}}</h5>              
               <hr>
               <button v-if="!user" class="btnSigninOrCreate" type="button" data-bs-toggle="modal" data-bs-target="#createAccountModal">
               <p>Create account</p>
@@ -36,7 +37,8 @@
               <button v-if="!user" class="btnSigninOrCreate" type="button" data-bs-toggle="modal" data-bs-target="#signInModal">
               <p>Sign in</p>
               </button>
-              <button v-if="user" class="btnSigninOrCreate"   @click="handleSignOut" data-bs-dismiss="modal">
+              <button v-if="user" class="btnSigninOrCreate"   @click=" handleSignOut" data-bs-dismiss="modal">              
+
               <p>Logout</p>
               </button>  
           
@@ -95,7 +97,7 @@
                   <input style="float:right" type="password" name="password" v-model="password" placeholder="Password" required> &nbsp;
                     <br>
                     <br>                    
-                  <button class="btnLogin"  data-bs-dismiss="modal" aria-label="Close">Login your account</button>
+                  <button class="btnLogin"  data-bs-dismiss="modal" aria-label="Log in">Login your account</button>
                   <div v-if="error">{{error}}</div>                    
               </form>
               
@@ -104,7 +106,7 @@
         </div>
       </div>    
       
-      <!-- Modal -->
+      <!-- Modal for privacy Statement -->
         <div class="modal fade" id="privacyStatement" tabindex="-1" aria-labelledby="privacyStatement" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -131,15 +133,15 @@
           </div>
         </div>
     </li>
-
+  
   </ul>
 
 </template>
 
 <script setup>
-
+ 
 //vue imports
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router';
 import useSignup from '@/composables/useSignup'
 import useLogin from '@/composables/useLogin'
@@ -148,47 +150,68 @@ import getUser from '@/composables/getUser'
 //firebase imports
 import { auth } from '@/firebase/config'
 import { signOut } from 'firebase/auth'
-
-    //new user sign up (create account)
-    const { user } = getUser()
-    const email = ref('')
-    const password = ref('')
-
-    const { signup, error } = useSignup()
-    const router = useRouter()
-
-    const handleSubmitCreateAccount = async () => {
-        await signup(email.value, password.value)
-        if(!error.value) { 
-          //clears form once submitted          
-            email.value=''
-            password.value=''            
-        }
-    }
-    //sign in user
-     const { login } = useLogin()
-
-    const handleSubmitSignIn = async () => {
-        await login(email.value, password.value)
-
-        if(!error.value) {
-           //clears form once submitted 
-            email.value=''
-            password.value='' 
-        }
-        router.push('/UserAccount')
-    }
-
-    //signout
-    const handleSignOut = () => {
-      signOut(auth)      
-    }
-    //goto myAccount
-    const handleMyAccount = () => {
-      router.push('/UserAccount')
-      // router.push({ path: `/IndividualCustomerDetails/${customers.id}` })      
-    }    
  
+  const { user } = getUser()
+  const email = ref('')
+  const password = ref('')
+  const { signup, error } = useSignup()
+  const router = useRouter()
+
+//toggle customer details link on nav bar for when admin is logged in. The
+//watch function from vue updates the value of adminLogged to false so that the 
+//DOM button element 'View or Edit Customer Details' disappears when admin logs out 
+  let adminLoggedIn = ref()  
+    if(user.value){
+      if(user.value.email === 'admin@admin.com') {
+        adminLoggedIn.value= true
+      }  
+    }
+
+  watch(user, () => {
+    if(user.value === null){
+      adminLoggedIn.value = false 
+    }
+  })
+   //create account
+  const handleSubmitCreateAccount = async () => {
+      await signup(email.value, password.value)
+      if(!error.value) { 
+        //clears form once submitted          
+          email.value=''
+          password.value=''            
+      }
+  }
+  //sign in user
+ const { login } = useLogin() 
+
+  const handleSubmitSignIn = async () => {    
+    await login(email.value, password.value)             
+   
+    if(email.value === 'admin@admin.com') {        
+      router.push('/CustomerDetails')
+      }else {
+      router.push('/UserAccount')
+      }                  
+    if(!error.value) {
+        //clears form once submitted 
+        email.value=''
+        password.value=''       
+    }}   
+
+  //signout
+  const handleSignOut = () => {    
+   signOut(auth)
+   router.push('/')                      
+  } 
+  //pushes to customers account
+  const handleMyAccount = () => {
+    router.push('/UserAccount')      
+  } 
+//pushes to all customers for (CRUD) for admin user
+  const handleCustomerDetails = () => {
+    router.push('/CustomerDetails')
+  }
+      
 </script>
 
 <style scoped>
@@ -224,6 +247,11 @@ ul {
 }
 input {
   width: 60%;
+}
+.customerDetailsButton {
+  float: left;
+  margin-left: 30%;
+  margin-top: 30px;
 }
 .btnCreateAccount {
   background-color: rgba(251, 59, 59, 0.785);
