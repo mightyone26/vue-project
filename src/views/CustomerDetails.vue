@@ -27,7 +27,8 @@
         </tr>
       </thead>
       <tbody>          
-        <tr v-for="customers in filtered()" :key="customers.id" >     
+        <!-- <tr v-for="customers in filtered()" :key="customers.id" > -->
+        <tr v-for="customers in unFiltered" :key="customers.id" >
 
           <td>{{ customers.firstName }}</td> 
           <td>{{ customers.lastName }}</td>
@@ -44,12 +45,27 @@
           
           <td><button @click="handleEdit(customers)"> edit</button></td>
           <td><button @click="handleView(customers)"> view</button></td>          
-          <td><button @click="handleDelete(customers)"> delete</button></td>         
+          <!-- <td><button @click="handleDelete(customers)"> delete</button></td> -->
+          <td><button  class="btnUser" type="button" data-bs-toggle="modal" data-bs-target="#deleteConfirm"> delete</button></td>
           
+           <!-- Modal (Comfirm Delete) -->       
+          <div class="modal fade" id="deleteConfirm" tabindex="-1" aria-labelledby="deleteConfirm" >
+            <div class="modal-dialog">
+              <div class="modal-content">            
+                <div class="modal-body">                      
+                  <h5>Delete booking?</h5>
+                  <br>      
+                  <button data-bs-dismiss="modal">Cancel</button>&nbsp; &nbsp;             
+                  <button style="background-color:red" @click="handleDelete(customers)" data-bs-dismiss="modal" aria-label="delete" >Delete</button>
+                </div>      
+              </div>
+            </div>
+          </div>       
+
         </tr>        
       </tbody>
     </table>    
-</div>
+  </div>  
 
 </template>
 
@@ -73,21 +89,22 @@ let docs = []
 let unFiltered = ref () 
 
  //(get customers) realtime collection data (onSnapshot takes two values 1. colref which grabs db info and 2. function that put db data into loop which pushes data to customers array variable)  
-    onSnapshot(q, (snapshot) => {    
-      snapshot.docs.forEach(doc => { docs.push({ ...doc.data(), id: doc.id }) })           
+    onSnapshot(colRef, (querySnapshot) => {    
+      querySnapshot.docs.forEach(doc => { docs.push({ ...doc.data(), id: doc.id }) })           
          unFiltered.value = docs         
       })
   
   // Search Customers by lastname   
-   const filtered = () => { 
-     console.log(unFiltered.value )
-     return  docs.filter((customer) => customer.lastName.toLowerCase().includes(inputText.value.toLowerCase()))
-     }     
+  //  const filtered = () => { 
+  //    console.log(unFiltered.value )
+  //    return  docs.filter((customer) => customer.lastName.toLowerCase().includes(inputText.value.toLowerCase()))
+  //    }     
  
  // delete customer
   const handleDelete = (customers) => {
-    const docRef = doc(db, 'customers', customers.id)
+    const docRef = doc(db, 'customers', customers.id)   
     deleteDoc(docRef)
+     router.push(`/CustomerDetails`)
   }
 
   // to edit customer page
@@ -106,10 +123,10 @@ let unFiltered = ref ()
 #tableStyle {
   border-collapse: collapse;
   width: 80%;
-  margin: 3% 10%;
+  margin: 3% 5%;
 }
 #tableStyle td, #tableStyle th {
-  border: 1px solid #ddd;  
+  border: 1px solid rgb(245, 240, 240);  
   padding: 8px;
 }
 
@@ -121,10 +138,11 @@ let unFiltered = ref ()
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #b7bb84;
+  background-color: #f0eeed7d;
   color: rgb(0, 0, 0);
 }
 .searchBox {
   margin: 2% 10%
 }
+
 </style>

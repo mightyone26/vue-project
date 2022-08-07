@@ -126,7 +126,7 @@ const q = query(colRef, where( 'userUid', '==', user.value.uid))
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #b7bb84;
+  background-color: #f0eeed7d;
   color: rgb(0, 0, 0);
 }
 .heading {

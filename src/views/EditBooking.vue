@@ -251,7 +251,7 @@ const costs = ()=> {
 
 <style scoped>
 .heading {
-  background-color: #b7bb84;
+  background-color: #eaebe5;
   padding: 1%;
 }
 .myCardEditForm {

@@ -158,7 +158,7 @@ import { signOut } from 'firebase/auth'
   const router = useRouter()
 
 //toggle customer details link on nav bar for when admin is logged in. The
-//watch function from vue updates the value of adminLogged to false so that the 
+//watch function imported from vue updates the value of adminLogged to false so that the 
 //DOM button element 'View or Edit Customer Details' disappears when admin logs out 
   let adminLoggedIn = ref()  
     if(user.value){
@@ -234,14 +234,14 @@ import { signOut } from 'firebase/auth'
   float: left;
   margin-left: 1%;
   margin-top: 1%; 
-  margin-bottom: 1%;
+  margin-bottom: 1%;  
 }
 ul {   
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: rgb(48, 48, 48);
+  background-color: rgb(255, 255, 255);
   height: 100px;
   width: 100%;
 }
@@ -252,6 +252,9 @@ input {
   float: left;
   margin-left: 30%;
   margin-top: 30px;
+  border-radius: 10px;
+  border-color: rgba(199, 199, 199, 0.119);
+  background-color: rgba(255, 255, 255, 0.221);
 }
 .btnCreateAccount {
   background-color: rgba(251, 59, 59, 0.785);
@@ -269,7 +272,7 @@ input {
   border-radius: 10px;  
 }
 .btnUser { 
-  color: white;
+  color: rgb(0, 0, 0);
   float: right;
   border:none;
   background: none;
