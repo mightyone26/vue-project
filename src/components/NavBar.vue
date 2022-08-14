@@ -58,7 +58,7 @@
               <hr>
               <br>
               <label style="float:left">Email: &nbsp;</label>                
-              <input style="float:right" type="email" name="email" v-model="email" placeholder="email address" required>                 
+              <input style="float:right" type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" v-model="email" placeholder="email address"   required>                 
               <br>
               <br>
               <label style="float:left">Password: &nbsp;</label>
@@ -225,10 +225,10 @@ import { signOut } from 'firebase/auth'
   width: 100%;
   height: 100%;  
   font-family:Arial, Helvetica, sans-serif;
-  font-size: 120%;  
+  font-size: 100%;  
   color: black;
   background-color: rgb(255, 255, 255);
-  border-radius: 10px; 
+  border-radius: 5px; 
 }
 .logoNav {   
   float: left;
@@ -257,19 +257,19 @@ input {
   background-color: rgba(255, 255, 255, 0.221);
 }
 .btnCreateAccount {
-  background-color: rgba(251, 59, 59, 0.785);
+  background-color: rgba(59, 117, 251, 0.139);
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 .btnPrivacy {
-  background-color: rgb(146, 189, 255);
+  background-color: rgba(161, 180, 105, 0.16);
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 .btnLogin {
-  background-color: rgb(59, 147, 163);
+  background-color: rgba(59, 147, 163, 0.169);
   border: none;
-  border-radius: 10px;  
+  border-radius: 5px;  
 }
 .btnUser { 
   color: rgb(0, 0, 0);

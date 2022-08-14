@@ -2,10 +2,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.js'
 
-//elementplus
-import ElementPlus from 'element-plus'
-import 'element-plus/dist/index.css'
-
 //V-caledar
 import VCalendar from 'v-calendar'
 import 'v-calendar/dist/style.css'
@@ -31,7 +27,7 @@ import { onAuthStateChanged } from 'firebase/auth'
 let app
 onAuthStateChanged(auth, () => {
     if (!app) {
-        app = createApp(App).use(router).use(ElementPlus).use(VCalendar, {})
+        app = createApp(App).use(router).use(VCalendar, {})
         app.component('fa', FontAwesomeIcon)          
 
         app.mount('#app')       

@@ -67,12 +67,28 @@
       <label class="inputLabel">Total</label>   
       <label class="inputValue">${{ costs() }}</label>
       <br>
-      <br>
+      <br>      
       <br>  
       <div class="inputValue" >
         <button  @click="handleUpdate">Update Booking</button>
       </div> 
+      <div class="inputLabel" >
+        <button style="background-color:palevioletred" class="btnUser" type="button" data-bs-toggle="modal" data-bs-target="#deleteConfirm"> Delete </button>       
+      </div> 
   </div>
+    <!-- Modal (Comfirm Delete) --> 
+  <div class="modal fade" id="deleteConfirm" tabindex="-1" aria-labelledby="deleteConfirm" >           
+    <div class="modal-dialog modal-sm">                
+      <div class="modal-content">            
+        <div class="modal-body">                      
+          <h5>Delete booking?</h5>          
+          <br>      
+          <button data-bs-dismiss="modal">Cancel</button>&nbsp; &nbsp;             
+          <button style="background-color:red" @click="handleDelete()" data-bs-dismiss="modal" aria-label="delete" >Delete</button>
+        </div>      
+      </div>
+    </div>
+  </div> 
    
   <div class="calendarPosition">
       <v-date-picker  
@@ -96,7 +112,7 @@
 
   //firebase imports
   import { db } from '@/firebase/config'
-  import {collection, getDoc, doc, updateDoc, onSnapshot} from 'firebase/firestore'
+  import {collection, getDoc, doc, updateDoc, onSnapshot, deleteDoc} from 'firebase/firestore'
   import CustomerDetailsVue from './CustomerDetails.vue'  
 
   // data variables
@@ -110,7 +126,7 @@
       phone : '' ,
       start: '',
       end: '',
-      costs: ''
+      costs: ''      
   })   
  
 //Retrieving customer details from DB and displaying it when the form loads on browser
@@ -129,7 +145,7 @@
       form.value.end = singleCustomerDetails.checkout
       form.value.costs = singleCustomerDetails.costs
       counterAdults.value = singleCustomerDetails.adults
-      counterKids.value = singleCustomerDetails.kids
+      counterKids.value = singleCustomerDetails.kids     
     } else {        
     console.log("No such document!");
     }
@@ -246,10 +262,20 @@ const costs = ()=> {
   router.push('/CustomerDetails')
 }
 
- 
+ // delete customer
+  const handleDelete = () => {
+    const docRef = doc(db, 'customers', route.params.id)   
+    deleteDoc(docRef)
+    router.push(`/CustomerDetails`)
+  }
+  
 </script>
 
 <style scoped>
+button {
+  border:none;
+  border-radius: 5px;
+}
 .heading {
   background-color: #eaebe5;
   padding: 1%;
@@ -283,6 +309,9 @@ const costs = ()=> {
 .btnAddGuest {    
     border: 0;
     background-color: white;   
+}
+.modal-body {
+  text-align: center;
 }
 </style>
 

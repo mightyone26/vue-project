@@ -2,6 +2,8 @@
   <NavBar />
   <div class="myCard">
     <label class="heading"><h4><b>Your Booking Details:</b></h4></label>
+    <br>
+    <br>
     <div>
       <table id="tableStyle"  >
         <thead>
@@ -16,7 +18,8 @@
             <th scope="col">Costs</th>
           </tr>
         </thead>
-        <tbody>   
+        <tbody> 
+         
           <tr v-for="customers in customers" :key="customers.id" >     
             <td>{{ customers.firstName }}</td> 
             <td>{{ customers.lastName }}</td>
@@ -30,19 +33,45 @@
         </tbody>
       </table>   
     </div>
+    <br>
+    <h5>Please rate your stay</h5>
+    <div> 
+      <!-- &#11088; is the html value for the yellow star symbol taking from https://www.htmlsymbols.xyz/     -->
+      <div>
+        <!-- Rating for 1 star -->
+        <label>&#11088; Terrible</label>&nbsp;&nbsp;        
+        <input type="radio" value=" &#11088; Terrible"  v-model="review" /> &nbsp;&nbsp;
+        <!-- Rating for 2 star -->
+        <label>&#11088;&#11088; Below average</label>&nbsp;&nbsp;&nbsp;
+        <input type="radio" value="&#11088; &#11088; Below average" v-model="review" /> &nbsp;&nbsp; 
+        <!-- Rating for 3 star -->
+        <label>&#11088;&#11088;&#11088; Acceptable </label>&nbsp;&nbsp;&nbsp;        
+        <input type="radio"  value="&#11088;&#11088;&#11088; Acceptable" v-model="review" />&nbsp;&nbsp; 
+        <!-- Rating for 4 star -->
+        <label>&#11088;&#11088;&#11088;&#11088; Enjoyable</label>&nbsp;&nbsp;&nbsp;
+        <input type="radio" value="&#11088;&#11088;&#11088;&#11088; Enjoyable" v-model="review" />&nbsp;&nbsp; &nbsp; 
+        <!-- Rating for 5 star -->
+        <label>&#11088;&#11088;&#11088;&#11088;&#11088; Excellent</label>&nbsp;&nbsp;  
+        <input type="radio" value="&#11088;&#11088;&#11088;&#11088;&#11088; Excellent" v-model="review" />&nbsp;&nbsp;
+     </div>
+     <br>
+     <div v-if="review">
+      <h6>You are changing your rating to</h6>      
+      <i>{{review}}</i>
+     </div>
 
-    <div>
-      <h5>Add review</h5>
-       <!--  rating stars (el-rate) is imported from element-plus -->
-      <el-rate
-        v-model="starRating"        
-      />      
-      <br>
-      <br>
-      <textarea v-model="review" cols="50" rows="2" maxlength="50"></textarea>
-      <br>
-      <br>
-      <button @click="handleUpdate" >Submit review</button>
+     <div v-if="!review">
+      <h6>You rated your stay as</h6> 
+      <div v-for="customers in customers" :key="customers.id">
+          {{customers.review}}
+      </div>
+     </div> 
+
+     <br>
+     <br>
+     <button @click="handleUpdate" class="btnSubmitRating" >Submit rating</button>
+     <br>
+     <br>
     </div>
       
    </div>
@@ -68,7 +97,6 @@ const router = useRouter()
 const customers = ref() 
 const review = ref()
 const customerId = ref()
-const starRating = ref()
 
 //get customer from db by using query to match to correct customer Uid (unique customer id)
 const colRef = collection(db, 'customers')
@@ -88,7 +116,7 @@ const q = query(colRef, where( 'userUid', '==', user.value.uid))
   const docRef = doc(db, 'customers', customerId.value[0] )  
   await updateDoc(docRef, {
     review: review.value,
-    rating: starRating.value    
+      
   })
   confirm('Submitted')
   router.push('/')
@@ -109,8 +137,7 @@ const q = query(colRef, where( 'userUid', '==', user.value.uid))
 }
 #tableStyle {
   border-collapse: collapse;
-  width: 80%;
-  margin: 1% 10%;
+  width: 80%;  
 }
 #tableStyle td, #tableStyle th {
   border: 1px solid #ddd;  
@@ -130,6 +157,11 @@ const q = query(colRef, where( 'userUid', '==', user.value.uid))
   color: rgb(0, 0, 0);
 }
 .heading {
-  margin: 2% 10%
+  margin-top: 2%;   
 }
+.btnSubmitRating{
+  background-color: rgb(179, 210, 224);
+  border-radius: 5px;
+  border: 0;
+}    
 </style>

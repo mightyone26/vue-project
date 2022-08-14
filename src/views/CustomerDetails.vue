@@ -20,16 +20,15 @@
           <th>Days Booked</th>
            <th>Cost</th>
            <th>Review</th>
-          <th>Edit </th>
-          <th>View</th>
-          <th>Delete</th>
+          <th>Edit/Delete</th>
+          <th>View</th>         
           
         </tr>
       </thead>
-      <tbody>          
-        <!-- <tr v-for="customers in filtered()" :key="customers.id" > -->
-        <tr v-for="customers in unFiltered" :key="customers.id" >
-
+      <tbody> 
+             
+        <tr v-for="customers in filtered()" :key="customers.id" >       
+        
           <td>{{ customers.firstName }}</td> 
           <td>{{ customers.lastName }}</td>
           <td>{{ customers.email}}</td>
@@ -41,28 +40,12 @@
           <td>{{ customers.daysBooked}}</td>
           <td>{{ customers.costs}}</td>
           <td>{{ customers.review}}</td>
-
           
-          <td><button @click="handleEdit(customers)"> edit</button></td>
+          <td><button @click="handleEdit(customers)"> edit/delete</button></td>
           <td><button @click="handleView(customers)"> view</button></td>          
           <!-- <td><button @click="handleDelete(customers)"> delete</button></td> -->
-          <td><button  class="btnUser" type="button" data-bs-toggle="modal" data-bs-target="#deleteConfirm"> delete</button></td>
-          
-           <!-- Modal (Comfirm Delete) -->       
-          <div class="modal fade" id="deleteConfirm" tabindex="-1" aria-labelledby="deleteConfirm" >
-            <div class="modal-dialog">
-              <div class="modal-content">            
-                <div class="modal-body">                      
-                  <h5>Delete booking?</h5>
-                  <br>      
-                  <button data-bs-dismiss="modal">Cancel</button>&nbsp; &nbsp;             
-                  <button style="background-color:red" @click="handleDelete(customers)" data-bs-dismiss="modal" aria-label="delete" >Delete</button>
-                </div>      
-              </div>
-            </div>
-          </div>       
-
-        </tr>        
+        </tr> 
+              
       </tbody>
     </table>    
   </div>  
@@ -85,20 +68,20 @@ const route = useRoute()
 const router = useRouter()
 const colRef = collection(db, 'customers')
 const q = query(colRef, orderBy('lastName', 'asc'))
-let docs = [] 
-let unFiltered = ref () 
+let unFiltered = ref ([]) 
 
  //(get customers) realtime collection data (onSnapshot takes two values 1. colref which grabs db info and 2. function that put db data into loop which pushes data to customers array variable)  
-    onSnapshot(colRef, (querySnapshot) => {    
+    onSnapshot(q, (querySnapshot) => { 
+      let docs = []    
       querySnapshot.docs.forEach(doc => { docs.push({ ...doc.data(), id: doc.id }) })           
          unFiltered.value = docs         
       })
   
   // Search Customers by lastname   
-  //  const filtered = () => { 
-  //    console.log(unFiltered.value )
-  //    return  docs.filter((customer) => customer.lastName.toLowerCase().includes(inputText.value.toLowerCase()))
-  //    }     
+   const filtered = () => { 
+    //  console.log(unFiltered.value )
+     return  unFiltered.value.filter((customer) => customer.lastName.toLowerCase().includes(inputText.value.toLowerCase()))
+     }     
  
  // delete customer
   const handleDelete = (customers) => {

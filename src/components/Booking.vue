@@ -49,8 +49,11 @@
     <label  v-if="daysBooked()" style="float:right ">${{ costs() }}</label>  
     <br>
     <br>  
-    <button type="button" class="btnReserve" data-bs-toggle="modal" data-bs-target="#applicationForm">
+    <button v-if="user" type="button" class="btnReserve" data-bs-toggle="modal" data-bs-target="#applicationForm">
       Make a reservation
+    </button> 
+    <button v-if="!user" type="button" class="btnReserve" data-bs-toggle="modal" data-bs-target="#applicationForm">
+      Log in to make a booking
     </button> 
     <br>
     <br> 
@@ -58,7 +61,7 @@
 
 <!-- MODAL -->
 <!-- bootstrap MODAL for Application form -->
-<div class="modal fade" id="applicationForm" tabindex="-1" aria-labelledby="applicationForm" aria-hidden="true" data-bs-keyboard="false" data-bs-backdrop="static">
+<div v-if="user" class="modal fade" id="applicationForm" tabindex="-1" aria-labelledby="applicationForm" aria-hidden="true" data-bs-keyboard="false" data-bs-backdrop="static">
  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div 
@@ -94,13 +97,14 @@
             <br>
             <div class="field">
             <label class=" inputLabel" >Email</label>    
-            <input 
+            <!-- <input 
               class="inputValue" 
               type="email" 
               name="email"
               placeholder="Email" 
-              v-model="email"  
-              aria-describedby="email" >        
+              v-model="user.value.email"              
+              aria-describedby="email"
+              disabled >         -->
             </div>   
             <br>
             <br>
@@ -150,7 +154,7 @@
               <label class=" inputLabel" >Total Cost</label>     
               <label class="inputValue">${{costs()}}</label>                         
             </div>                     
-            <br>
+            <br>                    
             <br>
             <div class="modal-footer">        
             <br><br><br><br>
@@ -181,15 +185,20 @@ import router from '../router'
 //this UID is used to retrieve that users data. So only the specific user details are retrieved when that user is logged in.
 import getUser from '../composables/getUser.js'
 const { user } = getUser()
-
-
+// const userEmail = user.value.email
 //firebase- add booking details to database
 const firstName = ref('')
 const lastName = ref('')
-const email = ref('')
+// const email = ref('')
 const phone = ref('')
 const review = ref('') 
 const starRating = ref('') 
+
+// If there is a user the that users email is saved to DB
+let email
+if(user.value){
+  email= user.value.email
+}
 
 const handleSubmit = async () => {
   const colRef = collection(db, 'customers') 
@@ -197,7 +206,7 @@ const handleSubmit = async () => {
   await addDoc(colRef, {
     firstName: firstName.value,
     lastName: lastName.value,
-    email : email.value,
+    email : email,
     phone: phone.value,
     checkin: dateRange.value.start,
     checkout:dateRange.value.end,
@@ -206,8 +215,7 @@ const handleSubmit = async () => {
     kids:counterKids.value,
     daysBooked:daysBooked(),
     userUid: user.value.uid,
-    review: review.value,
-    rating: starRating.value
+    review: review.value    
   })
 
   confirm('Submitted')

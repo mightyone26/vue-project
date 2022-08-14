@@ -2,13 +2,8 @@
   <div class="myCard">
      <h5>Reviews</h5>
      <div  v-for="customers in customers" :key="customers.id">
-        <h6>
-          {{ customers.firstName }}
-          <!--  rating stars (el-rate) is imported from element-plus -->
-          <el-rate v-model= 'customers.rating' disabled />   
-        </h6>       
-          
-        <p>{{ customers.review }}</p>
+        <h6><b>{{ customers.firstName }}</b></h6> <i>{{ customers.review }}</i> 
+        
       </div>
   </div>
 </template>
