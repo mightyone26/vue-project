@@ -17,12 +17,11 @@
 
 <style scoped>
 .myCard {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;  
+  box-shadow: 1px 1px 10px 1px rgba(116, 116, 116, 0.2);  
   width: 95%;
-  height: 100%; 
-  margin-left: 20px;
-  padding: 1% 1%;  
+  height: 100%;  
+  padding: 1% 1%;
+  border-radius: 5px;  
 }
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {

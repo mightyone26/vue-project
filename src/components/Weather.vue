@@ -24,15 +24,13 @@ axios.get('https://api.openweathermap.org/data/2.5/weather?lat=-35.2821&lon=174.
 </script>
 
 <style scoped>
-.myCard {
-  background-color: rgb(248, 238, 238);
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
+.myCard {  
+    box-shadow: 1px 1px 10px 1px rgba(116, 116, 116, 0.2); 
   width: 85%;
   height: 100%;  
   font-family:Arial, Helvetica, sans-serif;
   padding: 2px 26px;
-  margin-left: 20px; 
+  border-radius: 5px;
 }
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {

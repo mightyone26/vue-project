@@ -4,16 +4,17 @@
   
     <h3>Make a Booking</h3>  
     <br>  
+    <!-- Calendar -->
     <v-date-picker   
     v-model="dateRange" 
     is-range
     :model-config="modelConfig" 
-    color="teal"
+    color="blue"
     :disabled-dates= "Adisabledates"    
     :columns="$screens({ default: 1, lg: 2 })"
     is-expanded    
     />
-      
+   <!-- Checkin and checkout  options  -->
     <div>     
       <br>  
       <label style="float:left "> <b>Check-in:</b> </label>  &nbsp;
@@ -48,11 +49,15 @@
     <label style="float:left ">Total</label>   
     <label  v-if="daysBooked()" style="float:right ">${{ costs() }}</label>  
     <br>
-    <br>  
-    <button v-if="user" type="button" class="btnReserve" data-bs-toggle="modal" data-bs-target="#applicationForm">
+    <br>
+    <!-- Conditional buttons for making a booking     -->
+    <button v-if="user && !costs()" type="button" class="btnReserveAmber" >
+      Select date and guest to make a reservation
+    </button>
+    <button v-if="user && costs()" type="button" class="btnReserve" data-bs-toggle="modal" data-bs-target="#applicationForm">
       Make a reservation
-    </button> 
-    <button v-if="!user" type="button" class="btnReserve" data-bs-toggle="modal" data-bs-target="#applicationForm">
+    </button>    
+    <button v-if="!user" type="button" class="btnReserveNotLogged" >
       Log in to make a booking
     </button> 
     <br>
@@ -92,20 +97,7 @@
               placeholder="Last Name" 
               v-model="lastName" 
               aria-describedby="lastName">
-            </div> 
-            <br>
-            <br>
-            <div class="field">
-            <label class=" inputLabel" >Email</label>    
-            <!-- <input 
-              class="inputValue" 
-              type="email" 
-              name="email"
-              placeholder="Email" 
-              v-model="user.value.email"              
-              aria-describedby="email"
-              disabled >         -->
-            </div>   
+            </div>           
             <br>
             <br>
             <div class="field">
@@ -158,8 +150,8 @@
             <br>
             <div class="modal-footer">        
             <br><br><br><br>
-            <button @click="handleSubmit" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Submit booking</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button @click="handleSubmit" type="button" class="btnStyle" data-bs-dismiss="modal">Submit booking</button>
+            <button type="button" class="btnStyle" data-bs-dismiss="modal">Close</button>
             </div>
           </form> 
         </div>
@@ -297,29 +289,49 @@ let costs = ()=> {
 
 <style scoped>
 .myCard {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
+  box-shadow: 1px 1px 10px 1px rgba(116, 116, 116, 0.059); 
   width: 85%;  
   height: 100%;
   font-family:Arial, Helvetica, sans-serif;
-  padding: 4% 2%;
-  margin-left: 20px;
-}
-.myCard:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);  
+  padding: 4% 2%;  
+  border-radius: 5px;
 }
 .btnAddGuest {    
     border: 0;
     background-color: white;   
 }
-.btnReserve {    
-    background-color: rgb(210, 231, 240);
+.btnReserveNotLogged {
+   background-color: rgb(247, 9, 9);
     border-radius: 5px;
     border: 0;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(114, 176, 243, 0.2);
+    width: 100%;
+    height: 7%;   
+    font-size: 130%; 
+    font-weight: bold; 
+}
+.btnReserve {    
+    background-color: rgb(169, 225, 250);
+    border-radius: 5px;
+    border: 0;
+    box-shadow: 0 8px 16px 0 rgba(114, 176, 243, 0.2);
     width: 100%;
     height: 7%;   
     font-size: 130%;      
+}
+.btnReserveAmber {    
+    background-color: rgb(246, 143, 48);
+    border-radius: 5px;
+    border: 0;
+    box-shadow: 0 8px 16px 0 rgba(114, 176, 243, 0.2);
+    width: 100%;
+    height: 7%;   
+    font-size: 130%;      
+} 
+.btnStyle {
+  background-color: rgb(255, 255, 255);
+  border: solid 1px;
+  border-radius: 3px;
 }
 input {
     padding-top: 1%;
@@ -341,7 +353,7 @@ label {
   font-family:Arial, Helvetica, sans-serif;
   padding: 4% 2%;
   margin-left: 7%;
-  background-color: rgb(248, 248, 248);
+  background-color: rgb(255, 255, 255);
 }
 .inputLabel {
     float: left;

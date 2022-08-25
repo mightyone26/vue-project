@@ -1,7 +1,7 @@
 <template>
-
+  <div class="myCard">
   <div>
-      <p class="homeDescriptionTitle">Ocean Views, 6+ bedroom, Heated Pool, Gamesroom, 5 Minute Walk to the Beach</p> 
+      <p class="homeDescriptionTitle">Bed and Breakfast , 6+ bedroom, Heated Pool, 5 Minute Walk to the Beach</p> 
   </div>
  
   <div class="grid-container">
@@ -9,13 +9,12 @@
     <div class=" item2"> <img src="../assets/Home/Picture1.png  " ></div>
     <div class=" item3"> <img src="../assets/Home/Picture9.png  " ></div>  
     <div class=" item4"> <img src="../assets/Home/Picture4.jpg  " ></div>
-    <div class=" item5"> <img src="../assets/Home/Picture5.png  " ></div>
-    <br>
-     <!-- Button trigger modal -->
-    <button class="btnSeeMore" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      <p>See more images</p> 
-    </button>
+    <div class=" item5"> <img src="../assets/Home/Picture5.png  " ></div> 
   </div>
+   <!-- Button trigger modal -->
+  <button class="btnSeeMore" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    See more images 
+  </button>
   <br>  
 
 <!-- Modal -->
@@ -43,7 +42,7 @@
     </div>
   </div>
 </div>
-
+</div>
 </template>
 
 <script setup>
@@ -51,6 +50,17 @@
 </script>
 
 <style scoped>
+.myCard {
+  background-color: rgb(255, 255, 255);
+  box-shadow: 1px 1px 10px 1px rgba(116, 116, 116, 0.03);  
+  width: 100%;
+  height: 100%;  
+  font-family:Arial, Helvetica, sans-serif;
+  font-size: 120%;
+  padding-top: 1%;  
+  padding-left: 1%; 
+  border-radius: 5px;
+}
 .homeDescriptionTitle{
     text-align: center;
     padding: 2% 0% 2% 0%;
@@ -96,15 +106,13 @@ img {
   grid-row: 2;
 }
 .btnSeeMore { 
-  background-color: rgb(210, 231, 240);
-  border-radius: 5px;
-  border: 0; 
-  height: 25px;    
-  margin-top: 2%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 3px;
+  border: solid 1px;  
+  width: 15%; 
+  margin: 2% 45%;   
 }
-.btnSeeMore:hover {
-  box-shadow: 0 1px 6px 0 rgba(91, 165, 255, 0.781);
-} 
+
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 992px) {
 .homeDescriptionTitle{  
@@ -122,9 +130,9 @@ img {
   padding: 0% 5% 0 5%;
 }
 .btnSeeMore {  
-  background-color: rgb(210, 231, 240);
-  border-radius: 5px;
-  border: 0;  
+   background-color: rgb(255, 255, 255);
+  border-radius: 3px;
+  border: solid 1px;  
   margin-left: 1%;
   height: 25px; 
   width: 100%;       
@@ -165,11 +173,10 @@ img {
   width: 0px;
 }
 .btnSeeMore {  
-  background-color: rgb(210, 231, 240);
-  border-radius: 5px;
-  border: 0;  
-  margin-left: 1%;
-  height: 25px; 
+   background-color: rgb(255, 255, 255);
+  border-radius: 3px;
+  border: solid 1px;  
+  margin-left: 1%;  
   width: 100%;       
 }
 }
@@ -211,8 +218,7 @@ img {
   background-color: rgb(210, 231, 240);
   border-radius: 5px;
   border: 0;  
-  margin-left: 1%;
-  height: 25px; 
+  margin-left: 1%;  
   width: 100%;       
 }
 }

@@ -42,45 +42,27 @@
 
 </template>
 
-<script setup>
-
-</script>
 
 <style scoped>
-.titleDecoration {  
-  width: 14%;
-  border: 0;
-  border-radius: 25px;
-  padding-left: 1%;
-  font-size: 100%;
-  text-decoration: underline;
-}
 .myCard {  
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;  
+  box-shadow: 1px 1px 10px 1px rgba(116, 116, 116, 0.2);
   width: 100%;
   height: 100%;  
   font-family:Arial, Helvetica, sans-serif;
   font-size: 100%;
   padding-top: 1%;  
+  border-radius: 5px;
   background-color: rgb(255, 255, 255);  
 }
-.myCard:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-.breakText {  
-  padding-left:1vw
+.titleDecoration {   
+  padding-left: 1%;  
 }
  .leftList{
   float: left;
-  /* padding: 2% 5%; */
-  /* text-align: left; */
 }
 .rightList {
-  float: right;
-  /* padding-top: 2%; */
-  padding-right: 35%;
-  /* text-align: left;   */
+  float: right;  
+  padding-right: 35%; 
 }
 .cancelPolicy {
   float: left;
@@ -88,7 +70,7 @@
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 992px) {
   .myCard {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.187);
   transition: 0.3s;
   width: 100%;  
   height: 100%;

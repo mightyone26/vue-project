@@ -25,19 +25,15 @@
 
 <style scoped>
 .myCard {
-  background-color: rgba(94, 94, 94, 0.068);
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;  
-  width: 95%;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 1px 1px 10px 1px rgba(116, 116, 116, 0.2);  
+  width: 100%;
   height: 100%;  
   font-family:Arial, Helvetica, sans-serif;
   font-size: 120%;
   padding-top: 1%;  
-  padding-left: 1%;
-  margin-left: 20px;  
-}
-.myCard:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  padding-left: 1%; 
+  border-radius: 5px;
 }
 .linkMatrix { 
   display: grid;
@@ -47,7 +43,7 @@
   padding-bottom: 3%;
 }
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) {
   .myCard {
   background-color: rgba(94, 94, 94, 0.068);
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -62,7 +58,7 @@
   background-color: rgb(255, 255, 255);
   font-size: 100%;  
 }
-}
+} */
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
    .linkMatrix { 

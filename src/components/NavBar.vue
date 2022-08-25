@@ -47,58 +47,65 @@
         </div>
       </div>       
 
-      <!-- Modal (create account)-->
-      <div class="modal fade" id="createAccountModal" tabindex="-1" aria-labelledby="createAccountModal" aria-hidden="true">
-        <div class="modal-dialog ">
-          <div class="modal-content" >              
-            <div class="modal-body">
-              
-              <form @submit.prevent="handleSubmitCreateAccount" >
-              <h4>Create an account</h4>
-              <hr>
-              <br>
-              <label style="float:left">Email: &nbsp;</label>                
-              <input style="float:right" type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" v-model="email" placeholder="email address"   required>                 
-              <br>
-              <br>
-              <label style="float:left">Password: &nbsp;</label>
-                            
-              <input style="float:right" type="password" name="password" v-model="password" placeholder="Password" required> 
-              <br>
-              <br>
-              
-              <button class="btnCreateAccount"  data-bs-dismiss="modal" aria-label="Close">Create account</button>
-              <div v-if="error">{{ error }}</div>
+      <!-- Modal (create account)-->      
+       <div class="modal fade" id="createAccountModal" tabindex="-1" aria-labelledby="createAccountModal" aria-hidden="true" >
+        <div  class="modal-dialog">
+          <div class="modal-content" >
+            <div class="modal-header">
+            <h4 v-if="!user" class="modal-title">Create an account</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>             
+              <div class="modal-body">
+                
+                <form @submit.prevent="handleSubmitCreateAccount" >
+                <br>
+                <label v-if="user">Your account has been created. Please make a booking. </label>
+                <label v-if="!user" style="float:left">Email: &nbsp;</label>                
+                <input v-if="!user" style="float:right" type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" v-model="email" placeholder="e.g. example@email.com"   required>               
+                <br>              
+                <br>
+                <label v-if="!user" style="float:left">Password: &nbsp;</label>                            
+                <input v-if="!user" style="float:right" type="password" name="password" v-model="password" placeholder="6 characters minimum" required> 
+                <br>
+                <br>
+                <div v-if="error">{{ error }}</div>
+                <br>
+                <br>             
+                <button v-if="!user" class="btnStyle" style="float:right" aria-label="Create Account">Create account</button> 
+                <button style="float:left"  class="btnStyle" data-bs-toggle="modal" data-bs-target="#privacyStatement">Our Privacy Statement</button>              
+                </form>              
 
-              <button style="float:right"  class="btnPrivacy" data-bs-toggle="modal" data-bs-target="#privacyStatement">
-                  Our Privacy Statement
-              </button>
-              </form> 
-
-            </div>      
+              </div>      
           </div>
         </div>
       </div>
-
+      
       <!-- Modal (Sign In)-->
       <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="createAccountModal" aria-hidden="true">
         <div class="modal-dialog ">
-          <div class="modal-content">              
+          <div class="modal-content">
+            <div class="modal-header">
+            <h4 v-if="!user" class="modal-title">Login</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>               
             <div class="modal-body">
               
-                <form @submit.prevent="handleSubmitSignIn">
-                  <h2>Login</h2>
-                  <br>
-                  <label style="float:left">Email:</label>
-                  <input style="float:right" type="email" name="email" v-model="email" placeholder="email" required> &nbsp;
-                    <br>
-                    <br>
-                  <label style="float:left">Password:</label>
-                  <input style="float:right" type="password" name="password" v-model="password" placeholder="Password" required> &nbsp;
-                    <br>
-                    <br>                    
-                  <button class="btnLogin"  data-bs-dismiss="modal" aria-label="Log in">Login your account</button>
-                  <div v-if="error">{{error}}</div>                    
+              <form @submit.prevent="handleSubmitSignIn">
+                <br>
+                <label v-if="!user" style="float:left">Email:</label>
+                <input v-if="!user" style="float:right" type="email" name="email" v-model="email" placeholder="email" required> &nbsp;
+                <br>
+                <label v-if="user"> <h5>You are logged in as {{ user.email }} </h5> </label>
+                <br>
+                <label v-if="!user" style="float:left">Password:</label>
+                <input v-if="!user" style="float:right" type="password" name="password" v-model="password" placeholder="Password" required> &nbsp;
+                <br>
+                <br>                    
+                <button v-if="!user" class="btnStyle"  aria-label="Log in">Login your account</button>
+                <br>
+                <br>                          
+                <p v-if="errorS" style="color:red">Email or password incorrect. Please try again.</p>                   
+               
               </form>
               
             </div>      
@@ -127,7 +134,7 @@
                   phone on 123456 or write to us at 1 Nowhere Street, Nowhere Ville.</p> 
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>                  
+                <button type="button" class="btnStyle" data-bs-dismiss="modal">Close</button>                  
               </div>
             </div>
           </div>
@@ -161,47 +168,47 @@ import { signOut } from 'firebase/auth'
 //watch function imported from vue updates the value of adminLogged to false so that the 
 //DOM button element 'View or Edit Customer Details' disappears when admin logs out 
   let adminLoggedIn = ref()  
+    
     if(user.value){
       if(user.value.email === 'admin@admin.com') {
         adminLoggedIn.value= true
       }  
     }
-
+  
   watch(user, () => {
     if(user.value === null){
       adminLoggedIn.value = false 
     }
   })
-   //create account
+   //create user
   const handleSubmitCreateAccount = async () => {
       await signup(email.value, password.value)
       if(!error.value) { 
         //clears form once submitted          
           email.value=''
-          password.value=''            
-      }
+          password.value='' 
+      }      
   }
-  //sign in user
- const { login } = useLogin() 
+
+     //sign in user
+ const { login, errorS } = useLogin() 
 
   const handleSubmitSignIn = async () => {    
-    await login(email.value, password.value)             
-   
-    if(email.value === 'admin@admin.com') {        
-      router.push('/CustomerDetails')
-      }else {
-      router.push('/UserAccount')
-      }                  
-    if(!error.value) {
+    await login(email.value, password.value)  
+    if(!errorS.value) {
+      
+      if(email.value === 'admin@admin.com') {        
+       adminLoggedIn.value= true
+      }       
         //clears form once submitted 
         email.value=''
         password.value=''       
     }}   
-
+ 
   //signout
   const handleSignOut = () => {    
    signOut(auth)
-   router.push('/')                      
+   router.push('/')                    
   } 
   //pushes to customers account
   const handleMyAccount = () => {
@@ -244,6 +251,7 @@ ul {
   background-color: rgb(255, 255, 255);
   height: 100px;
   width: 100%;
+  box-shadow: 1px 1px 5px 1px rgba(116, 116, 116, 0.034); 
 }
 input {
   width: 60%;
@@ -256,20 +264,10 @@ input {
   border-color: rgba(199, 199, 199, 0.119);
   background-color: rgba(255, 255, 255, 0.221);
 }
-.btnCreateAccount {
-  background-color: rgba(59, 117, 251, 0.139);
-  border: none;
-  border-radius: 5px;
-}
-.btnPrivacy {
-  background-color: rgba(161, 180, 105, 0.16);
-  border: none;
-  border-radius: 5px;
-}
-.btnLogin {
-  background-color: rgba(59, 147, 163, 0.169);
-  border: none;
-  border-radius: 5px;  
+.btnStyle {
+  background-color: rgb(255, 255, 255);
+  border: solid 1px;
+  border-radius: 3px;
 }
 .btnUser { 
   color: rgb(0, 0, 0);
@@ -285,17 +283,7 @@ input {
   margin-right: 2%;
   margin-top: 1%;  
 }
-.btnLogout {
-  float: right;
-  background-color: rgb(151, 204, 237);
-  border:none;
-  float:right;  
-  border: none;
-  border-radius: 50px;
-  margin-right: 2%;
-  margin-top: 1%;
 
-}
 .liLogStatus {
   text-decoration: none;
   color: white;

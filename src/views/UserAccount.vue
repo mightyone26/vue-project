@@ -160,8 +160,8 @@ const q = query(colRef, where( 'userUid', '==', user.value.uid))
   margin-top: 2%;   
 }
 .btnSubmitRating{
-  background-color: rgb(179, 210, 224);
-  border-radius: 5px;
-  border: 0;
+  background-color: rgb(255, 255, 255);
+  border: solid 1px;
+  border-radius: 3px;
 }    
 </style>

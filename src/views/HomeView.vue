@@ -1,7 +1,7 @@
 <template>
-
+   <div class=" navBar"><NavBar /></div>
   <div class="grid-container">
-    <div class=" navBar"><NavBar /></div>
+   
     <div class=" pictureModal"><PictureModal /></div>
     <div><About /></div>
     <div><Booking /></div> 
@@ -16,7 +16,6 @@
 </template>
 
 <script setup>
-
 //imports
 import NavBar from '@/components/NavBar.vue'
 import PictureModal from '@/components/PictureModal.vue'
@@ -35,16 +34,19 @@ import Foot from '@/components/Footer.vue'
 .grid-container {   
   display: grid; 
   grid-template-columns: 45% auto;  
-  gap: 8px;
-  background-color: #ffffff;  
+  gap: 10px;
+  /* background-color: #12a3d424;   */
+  background-color: #12a3d418;  
+
+  padding: 20px 40px;
 }
-.navBar {
+/* .navBar {
   grid-column: 1 / -1;
   grid-row: 1;
-}
+} */
 .pictureModal {
   grid-column: 1 / -1;
-  grid-row: 2;
+  grid-row: 1;
 }
 .maps {
   grid-column: 1 / -1;

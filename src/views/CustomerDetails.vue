@@ -103,6 +103,11 @@ let unFiltered = ref ([])
 </script>
 
 <style scoped>
+button {
+  background-color: rgb(255, 255, 255);
+  border: solid 1px;
+  border-radius: 3px;
+}
 #tableStyle {
   border-collapse: collapse;
   width: 80%;

@@ -73,7 +73,7 @@
         <button  @click="handleUpdate">Update Booking</button>
       </div> 
       <div class="inputLabel" >
-        <button style="background-color:palevioletred" class="btnUser" type="button" data-bs-toggle="modal" data-bs-target="#deleteConfirm"> Delete </button>       
+        <button style="background-color:red" class="btnUser" type="button" data-bs-toggle="modal" data-bs-target="#deleteConfirm"> Delete </button>       
       </div> 
   </div>
     <!-- Modal (Comfirm Delete) --> 
@@ -272,12 +272,12 @@ const costs = ()=> {
 </script>
 
 <style scoped>
-button {
-  border:none;
-  border-radius: 5px;
+button {  
+  background-color: rgb(255, 255, 255);
+  border: solid 1px;
+  border-radius: 3px; 
 }
-.heading {
-  background-color: #eaebe5;
+.heading {  
   padding: 1%;
 }
 .myCardEditForm {
@@ -291,7 +291,7 @@ button {
   margin-left: 7%;
   margin-top: 2%;
   margin-bottom: 2%;
-  background-color: rgb(248, 248, 248);
+  background-color: rgb(255, 255, 255);
 }
 .inputLabel {
     float: left;

@@ -5,11 +5,11 @@ import { auth } from '../firebase/config'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 
 
-const error = ref(null)
+const errorS = ref(null)
 const isPending = ref(false)
 
 const login = async (email, password) => {
-    error.value = null
+    errorS.value = null
     isPending.value = true
     
     try{
@@ -17,18 +17,18 @@ const login = async (email, password) => {
         if(!res) {
             throw new Error('Could not Login')
         }
-        error.value = null
+        errorS.value = null
         isPending.value = false
     }
     catch (err) {
         console.log(err.message)
-        error.value = err.message
+        errorS.value = err.message
         isPending.value = false
     }
 }
 
 const useLogin = () => {
-    return {error, isPending, login}
+    return {errorS, isPending, login}
 }
 
 export default useLogin

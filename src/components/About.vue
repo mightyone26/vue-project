@@ -44,18 +44,14 @@
 
 <style scoped>
 .myCard {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;  
+  box-shadow: 1px 1px 10px 1px rgba(116, 116, 116, 0.043);   
   width: 100%;
   height: 100%;  
   font-family:Arial, Helvetica, sans-serif;  
   font-size: 120%;
-  padding: 2px 2px;
-  margin-left: 0px;
-  background-color: rgb(255, 255, 255); 
-}
-.myCard:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  padding: 2px 2px;  
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
 }
 .breakText { 
   padding-left:1vw
