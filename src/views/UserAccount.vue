@@ -61,9 +61,10 @@
      </div>
 
      <div v-if="!review">
+      
       <h6>You rated your stay as</h6> 
       <div v-for="customers in customers" :key="customers.id">
-          {{customers.review}}
+       <p v-if="customers.firstName && customers.review ">{{customers.firstName}}  {{customers.review}}</p>
       </div>
      </div> 
 

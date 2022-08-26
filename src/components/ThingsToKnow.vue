@@ -3,7 +3,7 @@
 <div class="myCard">     
   
     <div>
-      <strong class="titleDecoration"><fa icon="lightbulb" /> Things to know</strong>       
+      <h3 class="titleDecoration"> Things to know</h3>       
     </div>
     <br>
     <div class="leftList">

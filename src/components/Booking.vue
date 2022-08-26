@@ -5,15 +5,8 @@
     <h3>Make a Booking</h3>  
     <br>  
     <!-- Calendar -->
-    <v-date-picker   
-    v-model="dateRange" 
-    is-range
-    :model-config="modelConfig" 
-    color="blue"
-    :disabled-dates= "Adisabledates"    
-    :columns="$screens({ default: 1, lg: 2 })"
-    is-expanded    
-    />
+    <v-date-picker v-model="dateRange" is-range :model-config="modelConfig"  color="blue" :disabled-dates= "Adisabledates" :columns="$screens({ default: 1, lg: 2 })" is-expanded  />
+   
    <!-- Checkin and checkout  options  -->
     <div>     
       <br>  
@@ -21,11 +14,9 @@
       <label> {{ dateRange.start }} </label>
       <label style="float:right"> {{ dateRange.end }} </label>      
       <label style="float:right"> <b>Checkout:</b> &nbsp;</label> 
-      <br>
-      <br>     
+      <br><br>     
       <label v-if="daysBooked()">Booked for <b v-if="daysBooked()">{{ daysBooked() }}</b> {{ dayQty() }}</label>       
-      <br>
-      <br>         
+      <br><br>         
     </div>    
      
     <div>
@@ -48,8 +39,7 @@
     <hr> 
     <label style="float:left ">Total</label>   
     <label  v-if="daysBooked()" style="float:right ">${{ costs() }}</label>  
-    <br>
-    <br>
+    <br><br>
     <!-- Conditional buttons for making a booking     -->
     <button v-if="user && !costs()" type="button" class="btnReserveAmber" >
       Select date and guest to make a reservation
@@ -67,94 +57,75 @@
 <!-- MODAL -->
 <!-- bootstrap MODAL for Application form -->
 <div v-if="user" class="modal fade" id="applicationForm" tabindex="-1" aria-labelledby="applicationForm" aria-hidden="true" data-bs-keyboard="false" data-bs-backdrop="static">
- <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div 
-      class="modal-header" style="background-color:ghostwhite"> <h4>Make Booking</h4>
+  <div class="modal-dialog modal-md">
+   
+   <div class="modal-content">
+      <div v-if="!isSubmitted" class="modal-header" style="background-color:white"> 
+       <h4>Make a booking</h4>       
       </div>
-
-      <div class="modal-body">       
-        <div class="myCardApplicationForm">  
-          <form  @submit.prevent="handleSubmit">          
-            <div class="field" >
+      <label v-if="isSubmitted" class="modal-header">Booking has been submitted</label> 
+      
+      <div class="modal-body">                   
+        
+        <form @submit.prevent="handleSubmitBooking">
+          <div v-if="!isSubmitted">
+            <div>
               <label class="inputLabel" >First Name</label> 
-              <input 
-              class="inputValue"
-              type="text"
-              name="firstName"
-              placeholder="First Name"
-              v-model="firstName" 
-              aria-describedby="firstName">    
+              <input class="inputValue" type="text" name="firstName" placeholder="First Name" v-model="firstName"  aria-describedby="firstName" required>    
             </div>            
-            <br>
-            <br>
-            <div class="field">
-            <label class=" inputLabel" >Last Name</label> 
-            <input 
-              class="inputValue"
-              type="text" 
-              name="lastName"
-              placeholder="Last Name" 
-              v-model="lastName" 
-              aria-describedby="lastName">
+            <br><br>
+            <div>
+              <label class=" inputLabel" >Last Name</label> 
+              <input class="inputValue" type="text" name="lastName" placeholder="Last Name" v-model="lastName" aria-describedby="lastName" required>
             </div>           
-            <br>
-            <br>
-            <div class="field">
-            <label class=" inputLabel" for="phone" >Telephone</label> 
-            <input 
-              class="inputValue" 
-              type="text"  
-              name="phone"
-              placeholder="Phone"  
-              v-model="phone" 
-              aria-describedby="phone" >
+            <br><br>
+            <div>
+              <label class=" inputLabel" for="phone" >Telephone</label> 
+              <input class="inputValue" type="tel" name="phone" placeholder="Phone" v-model="phone" aria-describedby="phone" required>
             </div>               
-            <br>
-            <br>
-            <div class="field">
+            <br><br>
+            <div>
               <label class=" inputLabel"  >Check-in</label> 
               <input class="inputValue" type="text"  v-model="dateRange.start" disabled>                               
             </div>
             <br>
             <br>
-            <div class="field">
+            <div>
               <label class=" inputLabel"  >Checkout</label> 
               <input class="inputValue" type="text"  v-model="dateRange.end" disabled>
             </div>
-            <br>
-            <br>
-             <div class="field">
+            <br><br>
+            <div>
               <label class=" inputLabel"  >Adults ($50 per day)</label> 
               <label class=" inputValue"  >{{counterAdults}}</label> 
             </div>
-            <br>
-            <br>
-             <div class="field">
+            <br><br>
+            <div>
               <label class=" inputLabel"  >Kids ($25 per day)</label> 
               <label class=" inputValue"  >{{counterKids}}</label> 
             </div>
-            <br>
-            <br>
-             <div class="field">
+            <br><br>
+            <div>
               <label class=" inputLabel"  >Days booked</label> 
               <label class=" inputValue"  >{{daysBooked()}}</label> 
             </div>
             <br>  
             <hr>                
-            <div class="field">
+            <div>
               <label class=" inputLabel" >Total Cost</label>     
               <label class="inputValue">${{costs()}}</label>                         
-            </div>                     
-            <br>                    
-            <br>
-            <div class="modal-footer">        
-            <br><br><br><br>
-            <button @click="handleSubmit" type="button" class="btnStyle" data-bs-dismiss="modal">Submit booking</button>
-            <button type="button" class="btnStyle" data-bs-dismiss="modal">Close</button>
             </div>
-          </form> 
-        </div>
+          </div>                     
+          <br><br>
+          <div class="inputValue">        
+            <br>
+            <button v-if="!isSubmitted"  class="btnStyle"  aria-label="Submit booking" >Submit booking</button>&nbsp;&nbsp;
+            <button v-if="!isSubmitted" type="button" class="btnStyle" data-bs-dismiss="modal">Close</button>              
+            <router-link v-if="isSubmitted" 
+            to="/UserAccount"><button type="button" class="btnStyle" data-bs-dismiss="modal">Close</button>
+            </router-link>              
+          </div>
+        </form>                  
       </div>      
     </div>
   </div>
@@ -192,7 +163,11 @@ if(user.value){
   email= user.value.email
 }
 
-const handleSubmit = async () => {
+//sumbit booking to DB
+
+const isSubmitted = ref()
+
+const handleSubmitBooking = async () => {
   const colRef = collection(db, 'customers') 
 
   await addDoc(colRef, {
@@ -210,7 +185,7 @@ const handleSubmit = async () => {
     review: review.value    
   })
 
-  confirm('Submitted')
+  isSubmitted.value = true
   router.push('/')
 }
 

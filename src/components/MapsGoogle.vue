@@ -1,17 +1,20 @@
 <template>
     
-    <div class="myCard">
-       
-        <iframe title="Embedded google map" width="100%" height="100%" id="gmap_canvas"
-            src="https://maps.google.com/maps?q=bay%20of%20islands%20new%20zealand&t=&z=13&ie=UTF8&iwloc=&output=embed"
-            frameborder="0" scrolling="yes" marginheight="0" marginwidth="0" >
-        </iframe>
-
-    </div>
+   <div class="myCard"> 
+    <GoogleMap api-key="AIzaSyAtj2uLMHeN-Ik4XIfpcbRamIqfHqKCTyA" style="width: 100%; height: 300px" :center="center" :zoom="13">
+      <Marker :options="{ position: center }" />
+    </GoogleMap>       
+   </div>
     
 </template>
 
-<script>
+<script setup>
+
+//vue imports
+import { defineComponent } from "vue"
+import { GoogleMap, Marker } from "vue3-google-map"
+
+ const center = { lat: -35.2103 , lng: 174.0783  }
 
 </script>
 

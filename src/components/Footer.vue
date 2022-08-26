@@ -22,7 +22,8 @@
     display: flex;
     flex-direction:row ;
     justify-content: center;    
-    padding-bottom: 50px;  
+    padding-bottom: 10px;  
+    padding-top: 30px;
 }
 .item1 {
    margin: 0% 0%;

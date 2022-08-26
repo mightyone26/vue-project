@@ -16,7 +16,8 @@
     "pinia": "^2.0.13",
     "v-calendar": "^3.0.0-alpha.8",
     "vue": "^3.2.31",
-    "vue-router": "^4.0.14"
+    "vue-router": "^4.0.14",
+    "vue3-google-map": "^0.14.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.1",

@@ -1,10 +1,12 @@
 <template>
   <div class="myCard">
-     <h5>Reviews</h5>
-     <div  v-for="customers in customers" :key="customers.id">
-     <br>
-     <h6><b>{{ customers.firstName }}</b></h6> <i>{{ customers.review }}</i>         
-     </div>
+     <h3>Reviews</h3>     
+     <div  v-for="customers in customers" :key="customers.id">     
+      <div v-if="customers.review">
+      <br>
+      <h6><b>{{ customers.firstName }}</b></h6> <i>{{ customers.review }}</i>
+      </div>     
+     </div>     
   </div>
 </template>
 
@@ -30,48 +32,20 @@ const colRef = collection(db, 'customers')
 .myCard {  
   box-shadow: 1px 1px 10px 1px rgba(116, 116, 116, 0.2);  
   width: 100%;
-  height: 100%;  
+  height: 300px;  
   font-family:Arial, Helvetica, sans-serif;
   padding: 2px 26px;
   border-radius: 5px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  
 }
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-  .myCard {
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 100%;
-  height: 100%;  
-  font-family:Arial, Helvetica, sans-serif;
-  padding: 2px 26px;
-  margin-left: 0px;  
-}
-}
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 600px){
-.myCard {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 100%;  
+::-webkit-scrollbar {
+  width: 5px;
   height: 100%;
-  font-family:Arial, Helvetica, sans-serif;
-  padding: 4% 2%;
-  margin-left: 0px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(189, 189, 189); /* or add it to the track */
 }
-}
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px){
-.myCard {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 100%;  
-  height: 100%;
-  font-family:Arial, Helvetica, sans-serif;
-  padding: 4% 2%;
-  margin-left: 0px;
-  background-color: rgb(255, 255, 255);
-}
+::-webkit-scrollbar-thumb {
+  background:  rgb(103, 100, 100);
 }
 </style>

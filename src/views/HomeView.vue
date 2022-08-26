@@ -1,15 +1,17 @@
 <template>
-   <div class=" navBar"><NavBar /></div>
+  <div class=" navBar"><NavBar /></div>
   <div class="grid-container">
    
     <div class=" pictureModal"><PictureModal /></div>
-    <div><About /></div>
-    <div><Booking /></div> 
-    <div class="maps" ><Maps /></div>  
-    <div class=" thingsToKnow" ><ThingsToKnow /></div>
-    <div  ><Reviews /></div>
-    <div  ><Weather /></div>
+    <div class="about"><About /></div>
+    <div class="booking"><Booking /></div>
+     <div class=" thingsToKnow" ><ThingsToKnow /></div> 
+    <div class="weather" ><Weather /></div> 
+    <div class="maps" ><Maps /></div>     
+   
     <div class="surroundingArea" ><SurroundingArea /></div>
+     <div class="review" ><Reviews /></div>
+     <div class="contactUs"><ContactUs /></div>
     <div class=" foot"><Foot /></div>
   </div>
 
@@ -26,7 +28,9 @@ import Maps from '@/components/MapsGoogle.vue'
 import Weather from '@/components/Weather.vue'
 import ThingsToKnow from '@/components/ThingsToKnow.vue'
 import SurroundingArea from '@/components/SurroundingArea.vue'
+import ContactUs from '@/components/ContactUs.vue'
 import Foot from '@/components/Footer.vue'
+
 
 </script>
 
@@ -36,33 +40,24 @@ import Foot from '@/components/Footer.vue'
   grid-template-columns: 45% auto;  
   gap: 10px;
   /* background-color: #12a3d424;   */
-  background-color: #12a3d418;  
-
+  background-color: #12a3d418;
   padding: 20px 40px;
 }
-/* .navBar {
-  grid-column: 1 / -1;
-  grid-row: 1;
-} */
 .pictureModal {
   grid-column: 1 / -1;
   grid-row: 1;
 }
-.maps {
-  grid-column: 1 / -1;
-  grid-row: 11/ 21;
+.surroundingArea {
+  grid-column: 1/ -1;
+  grid-row: 3 ;
 }
 .thingsToKnow {
   grid-column: 1/ -1;
-  grid-row: 10;
-}
-.surroundingArea {
-  grid-column: 1/ -1;
-  grid-row: 4 / 9;
+  grid-row: 5;
 }
 .foot {
   grid-column: 1/ -1;
-  grid-row: 22;
+  grid-row: 7;
 }
 /* @media only screen and (max-width: 1920px) {
   .grid-container {     

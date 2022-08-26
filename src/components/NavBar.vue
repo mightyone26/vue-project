@@ -52,8 +52,8 @@
         <div  class="modal-dialog">
           <div class="modal-content" >
             <div class="modal-header">
-            <h4 v-if="!user" class="modal-title">Create an account</h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <h4 v-if="!user" class="modal-title">Create an account</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>             
               <div class="modal-body">
                 
@@ -104,8 +104,7 @@
                 <button v-if="!user" class="btnStyle"  aria-label="Log in">Login your account</button>
                 <br>
                 <br>                          
-                <p v-if="errorS" style="color:red">Email or password incorrect. Please try again.</p>                   
-               
+                <p v-if="errorSignIn" style="color:red">Email or password incorrect. Please try again.</p>
               </form>
               
             </div>      
@@ -191,11 +190,11 @@ import { signOut } from 'firebase/auth'
   }
 
      //sign in user
- const { login, errorS } = useLogin() 
+ const { login, errorSignIn } = useLogin() 
 
   const handleSubmitSignIn = async () => {    
     await login(email.value, password.value)  
-    if(!errorS.value) {
+    if(!errorSignIn.value) {
       
       if(email.value === 'admin@admin.com') {        
        adminLoggedIn.value= true
@@ -260,9 +259,10 @@ input {
   float: left;
   margin-left: 30%;
   margin-top: 30px;
-  border-radius: 10px;
-  border-color: rgba(199, 199, 199, 0.119);
-  background-color: rgba(255, 255, 255, 0.221);
+  border: solid 1px;
+  border-radius: 3px;
+  border-color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
 }
 .btnStyle {
   background-color: rgb(255, 255, 255);

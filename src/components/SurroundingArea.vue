@@ -1,8 +1,8 @@
 <template>
 
     <div class="myCard">
-        <h4>Surrounding area activities</h4>
-        
+      <h3>Surrounding area activities</h3>
+      <br> 
       <div class="linkMatrix">
         <a href="https://www.sydney.com/things-to-do/food-and-drink/drink/pubs">Pub</a>
         <a href="https://www.sbw.org.au/">Hiking</a>

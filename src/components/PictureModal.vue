@@ -110,7 +110,7 @@ img {
   border-radius: 3px;
   border: solid 1px;  
   width: 15%; 
-  margin: 2% 45%;   
+  margin: 2% 40%;   
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
