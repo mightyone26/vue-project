@@ -71,17 +71,26 @@
           <div v-if="!isSubmitted">
             <div>
               <label class="inputLabel" >First Name</label> 
-              <input class="inputValue" type="text" name="firstName" placeholder="First Name" v-model="firstName"  aria-describedby="firstName" required>    
+              <input v-model="formInfo.firstName" class="inputValue" placeholder="First Name" aria-describedby="firstName">
+              <span  style="color:red" v-for="error in v$.firstName.$errors" :key="error.$uid">
+                 {{error.$message}}            
+              </span>             
             </div>            
             <br><br>
             <div>
-              <label class=" inputLabel" >Last Name</label> 
-              <input class="inputValue" type="text" name="lastName" placeholder="Last Name" v-model="lastName" aria-describedby="lastName" required>
+              <label class=" inputLabel" >Last Name</label>
+              <input v-model="formInfo.lastName" class="inputValue" placeholder="Last Name" aria-describedby="lastName">
+              <span  style="color:red" v-for="error in v$.lastName.$errors" :key="error.$uid">
+                 {{error.$message}}            
+              </span>              
             </div>           
             <br><br>
-            <div>
-              <label class=" inputLabel" for="phone" >Telephone</label> 
-              <input class="inputValue" type="tel" name="phone" placeholder="Phone" v-model="phone" aria-describedby="phone" required>
+            <div>             
+              <label class=" inputLabel" >Phone</label>
+              <input v-model="formInfo.phone" class="inputValue" placeholder="Phone" aria-describedby="phone">
+              <span  style="color:red" v-for="error in v$.phone.$errors" :key="error.$uid">
+                 {{error.$message}}            
+              </span>              
             </div>               
             <br><br>
             <div>
@@ -125,6 +134,7 @@
             to="/UserAccount"><button type="button" class="btnStyle" data-bs-dismiss="modal">Close</button>
             </router-link>              
           </div>
+         
         </form>                  
       </div>      
     </div>
@@ -148,12 +158,11 @@ import router from '../router'
 //this UID is used to retrieve that users data. So only the specific user details are retrieved when that user is logged in.
 import getUser from '../composables/getUser.js'
 const { user } = getUser()
-// const userEmail = user.value.email
+
 //firebase- add booking details to database
-const firstName = ref('')
-const lastName = ref('')
-// const email = ref('')
-const phone = ref('')
+// const firstName = ref('')
+// const lastName = ref('')
+// const phone = ref('')
 const review = ref('') 
 const starRating = ref('') 
 
@@ -164,17 +173,63 @@ if(user.value){
 }
 
 //sumbit booking to DB
+// const isSubmitted = ref()
 
+// const handleSubmitBooking = async () => {
+//   const colRef = collection(db, 'customers') 
+
+//   await addDoc(colRef, {
+//     firstName: firstName.value,
+//     lastName: lastName.value,
+//     email : email,
+//     phone: phone.value,
+//     checkin: dateRange.value.start,
+//     checkout:dateRange.value.end,
+//     costs:costs(),
+//     adults:counterAdults.value,
+//     kids:counterKids.value,
+//     daysBooked:daysBooked(),
+//     userUid: user.value.uid,
+//     review: review.value    
+//   })
+
+//   isSubmitted.value = true
+//   router.push('/')
+// }
+
+
+
+//valiate with vuelidate library
+import useVuelidate from '@vuelidate/core'
+import { required, numeric, maxLength } from '@vuelidate/validators'
+
+const formInfo = reactive({
+      firstName: '',
+      lastName:'',
+      phone: ''      
+      })
+
+const rules = {
+      firstName: { required },
+      lastName: { required },
+      phone: { required, numeric, maxLength: maxLength(10) }    
+    }
+
+const v$ = useVuelidate(rules, formInfo) 
+
+//submit booking to DB
 const isSubmitted = ref()
 
 const handleSubmitBooking = async () => {
+   
   const colRef = collection(db, 'customers') 
-
-  await addDoc(colRef, {
-    firstName: firstName.value,
-    lastName: lastName.value,
+   const result = await v$.value.$validate()
+    if(result){
+    await addDoc(colRef, {
+    firstName: formInfo.firstName,
+    lastName: formInfo.lastName,
     email : email,
-    phone: phone.value,
+    phone: formInfo.phone,
     checkin: dateRange.value.start,
     checkout:dateRange.value.end,
     costs:costs(),
@@ -184,10 +239,10 @@ const handleSubmitBooking = async () => {
     userUid: user.value.uid,
     review: review.value    
   })
+    isSubmitted.value = true   
+    }  
+ }
 
-  isSubmitted.value = true
-  router.push('/')
-}
 
 //v-calendar
   const colRef = collection(db, 'customers')
@@ -254,7 +309,6 @@ const perDay = () => {
 }
 
 //total cost
-
 let costs = ()=> {
     return perDay() * daysBooked() 
 }
