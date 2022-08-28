@@ -57,15 +57,24 @@
             </div>             
               <div class="modal-body">
                 
-                <form @submit.prevent="handleSubmitCreateAccount" >
+                <form @submit.prevent="handleSubmitCreateAccount" >                
+                <label class="inputLabel">Email</label> 
+                <input v-if="!user" v-model="formInfo.email" class="inputValue" type="email" placeholder="email" aria-describedby="email">
+                <label v-if="!user" class="inputValue" ><small class="validateInput" v-for="error in v$.email.$errors" :key="error.$uid">Email address:  {{error.$message}}</small></label>  
+                <br>     
+                <br>
                 <br>
                 <label v-if="user">Your account has been created. Please make a booking. </label>
-                <label v-if="!user" style="float:left">Email: &nbsp;</label>                
-                <input v-if="!user" style="float:right" type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" v-model="email" placeholder="e.g. example@email.com"   required>               
-                <br>              
+                
+                <label v-if="!user" class="inputLabel">Password: &nbsp;</label>                            
+                <input v-if="!user" class="inputValue" type="password" v-model="formInfo.password" placeholder="6 characters minimum" > 
+                <label v-if="!user" class="inputValue" ><small class="validateInput" v-for="error in v$.password.$errors" :key="error.$uid">Password:  {{error.$message}}</small></label>  
+                <br>          
                 <br>
-                <label v-if="!user" style="float:left">Password: &nbsp;</label>                            
-                <input v-if="!user" style="float:right" type="password" name="password" v-model="password" placeholder="6 characters minimum" required> 
+                <br>
+                <label v-if="!user" class="inputLabel">Confirm Password: &nbsp;</label>                            
+                <input v-if="!user" class="inputValue" type="password"  v-model="formInfo.confirmPassword" placeholder="6 characters minimum" > 
+                <label v-if="!user" class="inputValue" ><small class="validateInput" v-for="error in v$.confirmPassword.$errors" :key="error.$uid">Confirm password:  {{error.$message}}</small></label>  
                 <br>
                 <br>
                 <div v-if="error">{{ error }}</div>
@@ -92,14 +101,17 @@
               
               <form @submit.prevent="handleSubmitSignIn">
                 <br>
-                <label v-if="!user" style="float:left">Email:</label>
-                <input v-if="!user" style="float:right" type="email" name="email" v-model="email" placeholder="email" required> &nbsp;
+                <label v-if="!user" class="inputLabel">Email</label> 
+                <input v-if="!user" class="inputValue" type="email" v-model="formInfo.email"  placeholder="email" aria-describedby="email">
+                <label v-if="!user" class="inputValue" ><small class="validateInput" v-for="error in w$.email.$errors" :key="error.$uid">Email address:  {{error.$message}}</small></label>  
                 <br>
                 <label v-if="user"> <h5>You are logged in as {{ user.email }} </h5> </label>
                 <br>
-                <label v-if="!user" style="float:left">Password:</label>
-                <input v-if="!user" style="float:right" type="password" name="password" v-model="password" placeholder="Password" required> &nbsp;
+                <label v-if="!user" class="inputLabel">Password: &nbsp;</label>                            
+                <input v-if="!user" class="inputValue" type="password" v-model="formInfo.password" placeholder="password" aria-describedby="password" > 
+                <label v-if="!user" class="inputValue" ><small class="validateInput" v-for="error in w$.password.$errors" :key="error.$uid">Password:  {{error.$message}}</small></label>  
                 <br>
+                <br> 
                 <br>                    
                 <button v-if="!user" class="btnStyle"  aria-label="Log in">Login your account</button>
                 <br>
@@ -147,7 +159,7 @@
 <script setup>
  
 //vue imports
-import { ref, watch } from 'vue'
+import { ref, watch, reactive, computed } from 'vue'
 import { useRouter } from 'vue-router';
 import useSignup from '@/composables/useSignup'
 import useLogin from '@/composables/useLogin'
@@ -157,13 +169,37 @@ import getUser from '@/composables/getUser'
 import { auth } from '@/firebase/config'
 import { signOut } from 'firebase/auth'
  
-  const { user } = getUser()
-  const email = ref('')
-  const password = ref('')
+  const { user } = getUser()  
   const { signup, error } = useSignup()
   const router = useRouter()
 
-//toggle customer details link on nav bar for when admin is logged in. The
+//valiate with vuelidate library
+import useVuelidate from '@vuelidate/core'
+import { required, email, sameAs, minLength } from '@vuelidate/validators'
+
+  const formInfo = reactive({
+        email: '',
+        password: '',
+        confirmPassword: ''
+        })
+
+  const rule = {      //for signin validation
+        email: { required, email },      
+        password: {required, minLength: minLength(6)}
+      }
+
+  const rules = computed (() => {
+        return {    //for create account validation
+        email: { required, email },      
+        password: {required, minLength: minLength(6)},
+        confirmPassword: { sameAs: sameAs(formInfo.password)}      
+        }
+      })  
+  
+  const w$ = useVuelidate(rule, formInfo)
+  const v$ = useVuelidate(rules, formInfo) 
+
+//The 'adminlogged' variable toggles 'customer details' link button on nav bar for when admin is logged in. The
 //watch function imported from vue updates the value of adminLogged to false so that the 
 //DOM button element 'View or Edit Customer Details' disappears when admin logs out 
   let adminLoggedIn = ref()  
@@ -179,31 +215,39 @@ import { signOut } from 'firebase/auth'
       adminLoggedIn.value = false 
     }
   })
-   //create user
+
+  //create user
   const handleSubmitCreateAccount = async () => {
-      await signup(email.value, password.value)
+    const result = await v$.value.$validate()
+    if(result){
+    await signup(formInfo.email, formInfo.password)
       if(!error.value) { 
         //clears form once submitted          
-          email.value=''
-          password.value='' 
-      }      
+          formInfo.email=''
+          formInfo.password='' 
+      }     
+    }
   }
-
-     //sign in user
+ 
+      //sign in user
  const { login, errorSignIn } = useLogin() 
 
-  const handleSubmitSignIn = async () => {    
-    await login(email.value, password.value)  
+  const handleSubmitSignIn = async () => {
+    const result = await w$.value.$validate()
+    if(result){  
+    await login(formInfo.email, formInfo.password)  
     if(!errorSignIn.value) {
       
-      if(email.value === 'admin@admin.com') {        
+      if(formInfo.email === 'admin@admin.com') {        
        adminLoggedIn.value= true
       }       
         //clears form once submitted 
-        email.value=''
-        password.value=''       
-    }}   
- 
+        formInfo.email=''
+        formInfo.password=''        
+    } 
+   }
+  }     
+
   //signout
   const handleSignOut = () => {    
    signOut(auth)
@@ -257,7 +301,7 @@ input {
 }
 .customerDetailsButton {
   float: left;
-  margin-left: 30%;
+  margin-left: 25%;
   margin-top: 30px;
   border: solid 1px;
   border-radius: 3px;
@@ -283,19 +327,26 @@ input {
   margin-right: 2%;
   margin-top: 1%;  
 }
-
-.liLogStatus {
-  text-decoration: none;
-  color: white;
-  float:right;
-  margin-right: 2%;
-  margin-top: 1.5%;
- 
-}
 .btnUserIcon {  
   font-size:  46px;  
   color: rgb(112, 112, 112);  
   padding-bottom:3% ;
+}.inputLabel {
+    float: left;
+    margin-left: 2%;
+}
+.inputValue {
+    float: right;
+    margin-right: 5%;
+}
+.validateInput {
+  color: red;
+  font-size: small;  
+}
+@media only screen and (max-width: 768px) {
+.customerDetailsButton {  
+  margin-left: 20%;  
+}
 }
 @media only screen and (max-width: 600px){
 ul {

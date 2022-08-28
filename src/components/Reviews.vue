@@ -38,7 +38,7 @@ const colRef = collection(db, 'customers')
   border-radius: 5px;
   overflow-y: scroll;
   scrollbar-width: thin;
-  
+  background-color: rgb(255, 255, 255);
 }
 ::-webkit-scrollbar {
   width: 5px;
@@ -47,5 +47,20 @@ const colRef = collection(db, 'customers')
 }
 ::-webkit-scrollbar-thumb {
   background:  rgb(103, 100, 100);
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+ 
+}
+@media only screen and (max-width: 600px){
+.myCard {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 100%;  
+  height: 100%;
+  font-family:Arial, Helvetica, sans-serif;
+  padding: 4% 2%;
+  margin-left: 0px;  
+}
 }
 </style>

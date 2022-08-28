@@ -24,6 +24,7 @@
     justify-content: center;    
     padding-bottom: 10px;  
     padding-top: 30px;
+    background-color: rgb(255, 255, 255);
 }
 .item1 {
    margin: 0% 0%;
@@ -31,13 +32,11 @@
 .item2 {
    margin: 0% 1%;
 }
-@media only screen and (max-width: 600px){
+/* @media only screen and (max-width: 600px){
 .itemContainer {
   font-size: 80%;
   width: 100%;
-  padding: 10px;  
-  
-  background-color: rgb(255, 255, 255);
+  padding: 10px;   
 }
-}
+} */
 </style>

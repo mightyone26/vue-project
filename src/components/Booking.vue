@@ -10,11 +10,10 @@
    <!-- Checkin and checkout  options  -->
     <div>     
       <br>  
-      <label style="float:left "> <b>Check-in:</b> </label>  &nbsp;
-      <label> {{ dateRange.start }} </label>
-      <label style="float:right"> {{ dateRange.end }} </label>      
-      <label style="float:right"> <b>Checkout:</b> &nbsp;</label> 
+      <label > <b>Check-in:</b> {{ dateRange.start }} </label>  
       <br><br>     
+      <label > <b>Checkout:</b> {{ dateRange.end }} </label> 
+      <br><br>    
       <label v-if="daysBooked()">Booked for <b v-if="daysBooked()">{{ daysBooked() }}</b> {{ dayQty() }}</label>       
       <br><br>         
     </div>    
@@ -72,38 +71,31 @@
             <div>
               <label class="inputLabel" >First Name</label> 
               <input v-model="formInfo.firstName" class="inputValue" placeholder="First Name" aria-describedby="firstName">
-              <span  style="color:red" v-for="error in v$.firstName.$errors" :key="error.$uid">
-                 {{error.$message}}            
-              </span>             
+              <label class="inputValue" ><small class="validateInput" v-for="error in v$.firstName.$errors" :key="error.$uid">First Name:  {{error.$message}}</small></label>  
             </div>            
-            <br><br>
+            <br><br><br>
             <div>
               <label class=" inputLabel" >Last Name</label>
               <input v-model="formInfo.lastName" class="inputValue" placeholder="Last Name" aria-describedby="lastName">
-              <span  style="color:red" v-for="error in v$.lastName.$errors" :key="error.$uid">
-                 {{error.$message}}            
-              </span>              
-            </div>           
-            <br><br>
-            <div>             
+              <label class="inputValue" ><small  class="validateInput" v-for="error in v$.lastName.$errors" :key="error.$uid">Last Name: {{error.$message}}</small></label> 
+            </div>
+            <br><br><br>
+            <div>
               <label class=" inputLabel" >Phone</label>
-              <input v-model="formInfo.phone" class="inputValue" placeholder="Phone" aria-describedby="phone">
-              <span  style="color:red" v-for="error in v$.phone.$errors" :key="error.$uid">
-                 {{error.$message}}            
-              </span>              
-            </div>               
-            <br><br>
+              <input v-model="formInfo.phone" class="inputValue" placeholder="Phone" aria-describedby="lastName">
+              <label class="inputValue" ><small  class="validateInput" v-for="error in v$.phone.$errors" :key="error.$uid">Phone number: {{error.$message}}</small></label> 
+            </div>              
+            <br><br><br>            
             <div>
               <label class=" inputLabel"  >Check-in</label> 
               <input class="inputValue" type="text"  v-model="dateRange.start" disabled>                               
             </div>
-            <br>
-            <br>
+            <br><br><br>
             <div>
               <label class=" inputLabel"  >Checkout</label> 
               <input class="inputValue" type="text"  v-model="dateRange.end" disabled>
             </div>
-            <br><br>
+            <br><br><br>
             <div>
               <label class=" inputLabel"  >Adults ($50 per day)</label> 
               <label class=" inputValue"  >{{counterAdults}}</label> 
@@ -160,9 +152,7 @@ import getUser from '../composables/getUser.js'
 const { user } = getUser()
 
 //firebase- add booking details to database
-// const firstName = ref('')
-// const lastName = ref('')
-// const phone = ref('')
+
 const review = ref('') 
 const starRating = ref('') 
 
@@ -171,33 +161,6 @@ let email
 if(user.value){
   email= user.value.email
 }
-
-//sumbit booking to DB
-// const isSubmitted = ref()
-
-// const handleSubmitBooking = async () => {
-//   const colRef = collection(db, 'customers') 
-
-//   await addDoc(colRef, {
-//     firstName: firstName.value,
-//     lastName: lastName.value,
-//     email : email,
-//     phone: phone.value,
-//     checkin: dateRange.value.start,
-//     checkout:dateRange.value.end,
-//     costs:costs(),
-//     adults:counterAdults.value,
-//     kids:counterKids.value,
-//     daysBooked:daysBooked(),
-//     userUid: user.value.uid,
-//     review: review.value    
-//   })
-
-//   isSubmitted.value = true
-//   router.push('/')
-// }
-
-
 
 //valiate with vuelidate library
 import useVuelidate from '@vuelidate/core'
@@ -220,9 +183,8 @@ const v$ = useVuelidate(rules, formInfo)
 //submit booking to DB
 const isSubmitted = ref()
 
-const handleSubmitBooking = async () => {
-   
-  const colRef = collection(db, 'customers') 
+const handleSubmitBooking = async () => {   
+   const colRef = collection(db, 'customers') 
    const result = await v$.value.$validate()
     if(result){
     await addDoc(colRef, {
@@ -242,7 +204,6 @@ const handleSubmitBooking = async () => {
     isSubmitted.value = true   
     }  
  }
-
 
 //v-calendar
   const colRef = collection(db, 'customers')
@@ -287,8 +248,7 @@ const increaseCountKids = () => {
     counterKids.value++
 }
 
-// Days booked
-   
+// Days booked   
   const daysBooked = () => { 
   let dateDifference = new Date((dateRange.value.end)+0).getTime() - new Date((dateRange.value.start)+0).getTime() //the +0 is to make the variable a number when no date is selected. Else it displays as 'NAN'
   let totalDaysDifference = Math.ceil(dateDifference  / (1000 * 3600 * 24))
@@ -314,7 +274,6 @@ let costs = ()=> {
 }
 
 </script>
-
 
 <style scoped>
 .myCard {
@@ -370,66 +329,28 @@ input {
 label {
     font-size: 120%;
 }
-#icon {
+/* #icon {
     background-color: blueviolet;
-}
-/* Application Form Modal */
-.myCardApplicationForm {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 85%;  
-  height: 100%;
-  font-family:Arial, Helvetica, sans-serif;
-  padding: 4% 2%;
-  margin-left: 7%;
-  background-color: rgb(255, 255, 255);
-}
+} */
+
 .inputLabel {
     float: left;
-    margin-left: 5%;
+    margin-left: 4%;
 }
 .inputValue {
     float: right;
     margin-right: 10%;
 }
-
-/* Calendar */
-.demo-date-picker {
-  display: flex;
-  width: 100%;
-  padding: 0;
-  flex-wrap: wrap;
-}
-.demo-date-picker .block {
-  padding: 0px 0;  
-  text-align: center;
-  border-right: solid 1px var(--el-border-color);
-  flex: 1;
-}
-.demo-date-picker .block:last-child {
-  border-right: none;
-}
-.demo-date-picker .demonstration {
-  display: block;
-  color: var(--el-text-color-secondary);
-  font-size: 14px;
-  margin-bottom: 20px;
+.validateInput {
+  color: red;
+  font-size: small;  
 }
 
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-  .myCard {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 100%;  
-  height: 100%;
-  font-family:Arial, Helvetica, sans-serif;  
-  padding-right: 5%;
-  margin-left: 0px;
-  background-color: rgb(255, 255, 255);
+
+@media only screen and (max-width: 768px) {
+  
 }
-}
-/* Medium devices (landscape tablets, 768px and up) */
+
 @media only screen and (min-width: 600px) {
   .myCard {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);

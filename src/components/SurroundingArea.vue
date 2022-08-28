@@ -42,24 +42,6 @@
   padding-left: 10%;
   padding-bottom: 3%;
 }
-/* Medium devices (landscape tablets, 768px and up) */
-/* @media only screen and (min-width: 768px) {
-  .myCard {
-  background-color: rgba(94, 94, 94, 0.068);
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;  
-  width: 100%;
-  height: 100%;  
-  font-family:Arial, Helvetica, sans-serif;
-  font-size: 10%;
-  padding-top: 1%;  
-  padding-left: 10px;
-  margin-left: 0px; 
-  background-color: rgb(255, 255, 255);
-  font-size: 100%;  
-}
-} */
-/* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
    .linkMatrix { 
   display: grid;
@@ -68,19 +50,8 @@
   padding-left: 1%;
   width: 100%; 
 }
-.myCard {
-  background-color: rgba(94, 94, 94, 0.068);
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;  
-  width: 100%;
-  height: 100%;  
-  font-family:Arial, Helvetica, sans-serif;
-  font-size: 10%;
-  padding-top: 1%;  
-  padding-left: 10px;
-  margin-left: 0px; 
-  background-color: rgb(255, 255, 255);
-  font-size: 100%;  
+.myCard { 
+  font-size: 100%;
 }
 }
 /* Extra small devices (phones, 600px and down) */

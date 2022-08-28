@@ -26,18 +26,9 @@ import { GoogleMap, Marker } from "vue3-google-map"
   padding: 1% 1%;
   border-radius: 5px;  
 }
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-  .myCard {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 100%;  
-  height: 100%;
-  font-family:Arial, Helvetica, sans-serif;
-  padding: 1% 1%;
-  margin-left: 0px;
-  background-color: rgb(255, 255, 255);
-}
+
+@media only screen and (max-width: 768px) {
+ 
 }
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 600px) {

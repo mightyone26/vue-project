@@ -68,9 +68,9 @@
       </div>
      </div> 
 
+     
      <br>
-     <br>
-     <button @click="handleUpdate" class="btnSubmitRating" >Submit rating</button>
+     <button @click="handleUpdate" class="btnSubmitRating" >Submit rating and return to home page</button>
      <br>
      <br>
     </div>
@@ -116,10 +116,8 @@ const q = query(colRef, where( 'userUid', '==', user.value.uid))
  const handleUpdate = async () => {
   const docRef = doc(db, 'customers', customerId.value[0] )  
   await updateDoc(docRef, {
-    review: review.value,
-      
-  })
-  confirm('Submitted')
+    review: review.value      
+  })  
   router.push('/')
 }
 
@@ -127,7 +125,7 @@ const q = query(colRef, where( 'userUid', '==', user.value.uid))
 
 <style scoped>
 .myCard {
-  background-color: rgb(248, 247, 242);
+  background-color: rgb(255, 255, 255);
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   width: 95%;
@@ -135,6 +133,7 @@ const q = query(colRef, where( 'userUid', '==', user.value.uid))
   font-family:Arial, Helvetica, sans-serif;
   padding: 2px 26px;
   margin-left: 20px; 
+  margin-bottom: 20px;
 }
 #tableStyle {
   border-collapse: collapse;

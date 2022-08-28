@@ -1,17 +1,15 @@
 <template>
   <div class=" navBar"><NavBar /></div>
-  <div class="grid-container">
-   
+  <div class="grid-container">   
     <div class=" pictureModal"><PictureModal /></div>
     <div class="about"><About /></div>
     <div class="booking"><Booking /></div>
-     <div class=" thingsToKnow" ><ThingsToKnow /></div> 
+    <div class=" thingsToKnow" ><ThingsToKnow /></div> 
     <div class="weather" ><Weather /></div> 
-    <div class="maps" ><Maps /></div>     
-   
+    <div class="maps" ><Maps /></div>
     <div class="surroundingArea" ><SurroundingArea /></div>
-     <div class="review" ><Reviews /></div>
-     <div class="contactUs"><ContactUs /></div>
+    <div class="review" ><Reviews /></div>
+    <div class="contactUs"><ContactUs /></div>
     <div class=" foot"><Foot /></div>
   </div>
 
@@ -38,8 +36,7 @@ import Foot from '@/components/Footer.vue'
 .grid-container {   
   display: grid; 
   grid-template-columns: 45% auto;  
-  gap: 10px;
-  /* background-color: #12a3d424;   */
+  gap: 10px; 
   background-color: #12a3d418;
   padding: 20px 40px;
 }
@@ -59,50 +56,21 @@ import Foot from '@/components/Footer.vue'
   grid-column: 1/ -1;
   grid-row: 7;
 }
-/* @media only screen and (max-width: 1920px) {
-  .grid-container {     
-  display: grid; 
-  grid-template-columns: 50% 50%;  
-  gap: 10px;
-  background-color: #ffffff; 
-}
-}  */
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (max-width: 992px) {
-  .grid-container {     
-  display: grid; 
-  grid-template-columns: 50% 50%;  
-  gap: 8px;
-  background-color: #ffffff; 
-} 
-}
-/* Medium devices (landscape tablets, to 768px) */
+
 @media only screen and (max-width: 768px) {
-  .grid-container {   
-  display: grid; 
-  grid-template-columns:  50% 50%;  
-  gap: 5px;
-  background-color: #ffffff;  
-} 
- .foot {
-  grid-column: 1 / -1;
-  grid-row: 23;
+  .grid-container {
+  grid-template-columns:  50% 50%; 
+  background-color: #ffffff;
+  } 
+
 }
-}
-/* Extra small devices (phones, 600px and down)   */
+
 @media only screen and (max-width: 600px){
   .grid-container {   
-  display: grid; 
   grid-template-columns:  auto;  
-  gap: 10px;
-  width: 100%;
-  background-color: #ffffff;  
+  gap: 2px;
+  padding: 20px 10px;
+  background-color: #238bc0;  
 }
-
- .foot {
-  grid-column: 1 / -1;
-  grid-row: 23;
-}
-
 }
 </style>

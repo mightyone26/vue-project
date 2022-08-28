@@ -12,13 +12,13 @@
     <div class=" item5"> <img src="../assets/Home/Picture5.png  " ></div> 
   </div>
    <!-- Button trigger modal -->
-  <button class="btnSeeMore" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <button class="btnSeeMore" type="button" data-bs-toggle="modal" data-bs-target="#seeMoreModal">
     See more images 
   </button>
   <br>  
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="seeMoreModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div>       
@@ -114,47 +114,11 @@ img {
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (max-width: 992px) {
-.homeDescriptionTitle{  
-  font-size: 120%;
-  text-align: center;  
-  width: 100%;  
-  height: 80%;  
-  background-color: #ffffff;
-}
-.grid-container {
-  display: grid;
-  grid-template-rows: 200px 200px;
-  gap: 1px; 
-  background-color: #ffffff; 
-  padding: 0% 5% 0 5%;
-}
-.btnSeeMore {  
-   background-color: rgb(255, 255, 255);
-  border-radius: 3px;
-  border: solid 1px;  
-  margin-left: 1%;
-  height: 25px; 
-  width: 100%;       
-}
-}
-/* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
-  .homeDescriptionTitle{  
-  font-size: 100%;
-  text-align: center;
-  padding: 0 2% 2% 2%;
-  width: 100%;  
-  height: 100%;  
-  background-color: #ffffff;
-}
-.grid-container {
-  display: grid;
-  grid-template-rows:auto;  
-  background-color: #ffffff; 
-  padding: 1% 5% 0% 5%;
-  width: 100%;  
-  height: 80%;  
+  
+.grid-container { 
+  grid-template-rows:auto; 
+  padding: 1% 5% 0% 5%;  
 }
 .item1 {
  width: 0px;
@@ -172,54 +136,17 @@ img {
 .item5 {
   width: 0px;
 }
-.btnSeeMore {  
-   background-color: rgb(255, 255, 255);
-  border-radius: 3px;
-  border: solid 1px;  
-  margin-left: 1%;  
-  width: 100%;       
+.btnSeeMore {
+  margin: 1% 33%;    
+  width: 30%;       
 }
 }
-/* Extra small devices (phones, 600px and down)   */
+
 @media only screen and (max-width: 600px){
-.homeDescriptionTitle{  
-  font-size: 100%;
-  text-align: center;
-  padding: 0 2% 2% 2%;
-  width: 100%;  
-  height: 100%;  
-  background-color: #ffffff;
-}
-.grid-container {
-  display: grid;
-  grid-template-rows:auto;  
-  background-color: #ffffff; 
-  padding: 1% 5% 0% 5%;
-  width: 100%;  
-  height: 80%;  
-}
-.item1 {
- width: 0px;
-}
-.item2 {
-  grid-column: 0;
-  grid-row: 0;
-}
-.item3 {
-  width: 0px;
-}
-.item4 {
-  width: 0px;
-}
-.item5 {
-  width: 0px;
-}
-.btnSeeMore {  
-  background-color: rgb(210, 231, 240);
-  border-radius: 5px;
-  border: 0;  
-  margin-left: 1%;  
-  width: 100%;       
+
+.btnSeeMore { 
+  margin: 1% 6%;    
+  width: 43%;       
 }
 }
 </style>

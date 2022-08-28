@@ -1,7 +1,6 @@
 <template>
 
-<div class="myCard">     
-  
+<div class="myCard">
     <div>
       <h3 class="titleDecoration"> Things to know</h3>       
     </div>
@@ -36,12 +35,10 @@
           caused by COVID-19 <fa icon="viruses" />.</li>
                       
       </ul>
-    </div>    
-   
+    </div>
 </div> 
 
 </template>
-
 
 <style scoped>
 .myCard {  
@@ -67,67 +64,22 @@
 .cancelPolicy {
   float: left;
 }
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (max-width: 992px) {
-  .myCard {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.187);
-  transition: 0.3s;
-  width: 100%;  
-  height: 100%;
-  font-family:Arial, Helvetica, sans-serif;
-  padding: 4% 2%;
-  margin-left: 0px;
-  background-color: rgb(255, 255, 255);
-  font-size: 90%;
-}
-.leftList{
-  float: left;
-  padding: 0%;
-  text-align: left;
-  margin-left: -25px;
-}
-.rightList {
-  float: right;
-  padding-top: 0%;
-  padding-right: 10%;
-  text-align: left;
-  margin-left: -25px;
-  margin-top: 0px;
-}
-.cancelPolicy {
-  float: left;
-  margin-left: 0%;
-}
-}
+
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
-  .myCard {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 100%;  
-  height: 100%;
-  font-family:Arial, Helvetica, sans-serif;
-  padding: 4% 2%;
-  margin-left: 0px;
-  background-color: rgb(255, 255, 255);
+  .myCard { 
+  padding: 4% 2%; 
   font-size: 80%;
 }
-.leftList{
-  float: left;
-  padding: 0%;
-  text-align: left;
+.leftList{ 
   margin-left: -25px;
 }
-.rightList {
-  float: right;
-  padding-top: 0%;
-  padding-right: 0%;
-  text-align: left;
+.rightList {  
+   padding-right: 0%; 
   margin-left: -25px;
   margin-top: 0px;
 }
-.cancelPolicy {
-  float: left;
+.cancelPolicy { 
   margin-left: -25px;
 }
 }
