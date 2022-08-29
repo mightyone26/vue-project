@@ -52,7 +52,7 @@
 <style scoped>
 .myCard {
   background-color: rgb(255, 255, 255);
-  box-shadow: 1px 1px 10px 1px rgba(116, 116, 116, 0.03);  
+  box-shadow: 1px 1px 10px 1px rgb(255, 255, 255);  
   width: 100%;
   height: 100%;  
   font-family:Arial, Helvetica, sans-serif;
@@ -110,7 +110,8 @@ img {
   border-radius: 3px;
   border: solid 1px;  
   width: 15%; 
-  margin: 2% 40%;   
+  margin: 2% 40%;
+  font-size: 100%;   
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -137,15 +138,16 @@ img {
   width: 0px;
 }
 .btnSeeMore {
-  margin: 1% 33%;    
-  width: 30%;       
+  margin: 0% 33% 5%;    
+  width: 30%;
+  font-size: 80%;       
 }
 }
 
 @media only screen and (max-width: 600px){
 
 .btnSeeMore { 
-  margin: 1% 6%;    
+  margin-left: 6%;    
   width: 43%;       
 }
 }

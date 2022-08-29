@@ -10,8 +10,9 @@
     <div class="surroundingArea" ><SurroundingArea /></div>
     <div class="review" ><Reviews /></div>
     <div class="contactUs"><ContactUs /></div>
-    <div class=" foot"><Foot /></div>
+    <!-- <div class=" foot"><Foot /></div> -->
   </div>
+    <div class=" foot"><Foot /></div>
 
 </template>
 
@@ -36,9 +37,9 @@ import Foot from '@/components/Footer.vue'
 .grid-container {   
   display: grid; 
   grid-template-columns: 45% auto;  
-  gap: 10px; 
-  background-color: #12a3d418;
-  padding: 20px 40px;
+  gap: 20px; 
+  background-color: #ff0000;
+  padding: 1px 0px;
 }
 .pictureModal {
   grid-column: 1 / -1;
@@ -52,15 +53,15 @@ import Foot from '@/components/Footer.vue'
   grid-column: 1/ -1;
   grid-row: 5;
 }
-.foot {
+/* .foot {
   grid-column: 1/ -1;
-  grid-row: 7;
-}
+  grid-row: 10;
+} */
 
 @media only screen and (max-width: 768px) {
   .grid-container {
   grid-template-columns:  50% 50%; 
-  background-color: #ffffff;
+  background-color: #f16fef;
   } 
 
 }
@@ -68,7 +69,7 @@ import Foot from '@/components/Footer.vue'
 @media only screen and (max-width: 600px){
   .grid-container {   
   grid-template-columns:  auto;  
-  gap: 2px;
+  
   padding: 20px 10px;
   background-color: #238bc0;  
 }

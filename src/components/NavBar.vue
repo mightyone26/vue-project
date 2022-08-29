@@ -12,7 +12,7 @@
       <button  class="btnUser" type="button" data-bs-toggle="modal" data-bs-target="#createOrSigninModal">         
       <fa  class="btnUserIcon"  icon="user-circle" />         
       <p v-if="!user">Sign-In</p>
-      <p v-if="user">{{ user.email}}</p>
+      <p class="displayUserEmail" v-if="user">{{ user.email}}</p>
       </button>
       <br>         
 
@@ -23,8 +23,8 @@
             <div class="modal-body">
 
               <!--Select Create account button-->
-              <h5 v-if="!user">Sign in or create a new account.</h5>
-              <h5 v-if="user"> Logged in as: {{ user.email}}</h5>              
+              <h6 v-if="!user">Sign in or create a new account.</h6>
+              <h6 v-if="user"> Logged in as: {{ user.email}}</h6>              
               <hr>
               <button v-if="!user" class="btnSigninOrCreate" type="button" data-bs-toggle="modal" data-bs-target="#createAccountModal">
               <p>Create account</p>
@@ -114,6 +114,8 @@
                 <br> 
                 <br>                    
                 <button v-if="!user" class="btnStyle"  aria-label="Log in">Login your account</button>
+                <button v-if="user" class="btnStyle" type="button"  data-bs-dismiss="modal" aria-label="Close">Close</button>
+
                 <br>
                 <br>                          
                 <p v-if="errorSignIn" style="color:red">Email or password incorrect. Please try again.</p>
@@ -294,7 +296,7 @@ ul {
   background-color: rgb(255, 255, 255);
   height: 100px;
   width: 100%;
-  box-shadow: 1px 1px 5px 1px rgba(116, 116, 116, 0.034); 
+  box-shadow: 1px 1px 5px 1px rgba(116, 116, 116, 0.2); 
 }
 input {
   width: 60%;
@@ -331,7 +333,8 @@ input {
   font-size:  46px;  
   color: rgb(112, 112, 112);  
   padding-bottom:3% ;
-}.inputLabel {
+}
+.inputLabel {
     float: left;
     margin-left: 2%;
 }
@@ -350,10 +353,23 @@ input {
 }
 @media only screen and (max-width: 600px){
 ul {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
+ 
   width: 100%;  
   height: 80%;
+}
+.customerDetailsButton {  
+ margin-top: 6%;
+ margin-bottom: 5%;
+ 
+}
+.displayUserEmail {
+  display:none;
+}
+.btnUserIcon {  
+  float: right;
+  font-size:  46px;  
+  color: rgb(112, 112, 112);  
+  margin-top: -120%;
 }
 }
 

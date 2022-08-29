@@ -1,7 +1,6 @@
 <template>
 
-  <div class="myCard" >       
-  
+  <div class="myCard" >
     <h3>Make a Booking</h3>  
     <br>  
     <!-- Calendar -->
@@ -10,17 +9,19 @@
    <!-- Checkin and checkout  options  -->
     <div>     
       <br>  
-      <label > <b>Check-in:</b> {{ dateRange.start }} </label>  
+      <label > <b>Check-in:</b> </label>
+      <label class="inputValue"> {{ dateRange.start }}</label>  
       <br><br>     
-      <label > <b>Checkout:</b> {{ dateRange.end }} </label> 
+      <label> <b>Checkout:</b></label>
+      <label class="inputValue">{{ dateRange.end }}</label> 
       <br><br>    
       <label v-if="daysBooked()">Booked for <b v-if="daysBooked()">{{ daysBooked() }}</b> {{ dayQty() }}</label>       
       <br><br>         
     </div>    
      
     <div>
-      <label style="float:left padding-top:10% "> Adult Guests ($50 per day) </label> 
-      <div style="float:right ">        
+      <label> Adult Guests ($50 per day) </label> 
+      <div class="inputValue">        
         <button class="btnAddGuest" :disabled="counterAdults === 0" @click="decreaseCountAdults"> <fa icon="circle-minus" /></button>
         &nbsp; <span >{{ counterAdults }}</span> &nbsp;
         <button class="btnAddGuest" :disabled="counterAdults === 6" @click="increaseCountAdults"><fa icon="circle-plus" /></button>
@@ -28,16 +29,16 @@
     </div>   
     <hr>
     <div>
-    <label style="float:left padding-top:5%"> Under 18 yrs ($25 per day)  </label> 
-      <div style="float:right ">
+    <label> Under 18 yrs ($25 per day)  </label> 
+      <div class="inputValue">
       <button class="btnAddGuest" :disabled="counterKids === 0" @click="decreaseCountKids"> <fa icon="circle-minus" /></button>
       &nbsp; <span >{{ counterKids }}</span> &nbsp;
       <button class="btnAddGuest" :disabled="counterKids === 6" @click="increaseCountKids"> <fa icon="circle-plus" /></button>
       </div>            
     </div>
     <hr> 
-    <label style="float:left ">Total</label>   
-    <label  v-if="daysBooked()" style="float:right ">${{ costs() }}</label>  
+    <label>Total</label>   
+    <label  v-if="daysBooked()" class="inputValue">${{ costs() }}</label>  
     <br><br>
     <!-- Conditional buttons for making a booking     -->
     <button v-if="user && !costs()" type="button" class="btnReserveAmber" >
@@ -277,12 +278,13 @@ let costs = ()=> {
 
 <style scoped>
 .myCard {
-  box-shadow: 1px 1px 10px 1px rgba(116, 116, 116, 0.059); 
-  width: 85%;  
+  box-shadow: 1px 1px 10px 1px rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255); 
+  width: 100%;  
   height: 100%;
   font-family:Arial, Helvetica, sans-serif;
-  padding: 4% 2%;  
-  border-radius: 5px;
+  padding: 4% 5%;  
+  border-radius: 3px;
 }
 .btnAddGuest {    
     border: 0;
@@ -313,7 +315,7 @@ let costs = ()=> {
     border: 0;
     box-shadow: 0 8px 16px 0 rgba(114, 176, 243, 0.2);
     width: 100%;
-    height: 7%;   
+    height: 9%;   
     font-size: 130%;      
 } 
 .btnStyle {
@@ -327,7 +329,7 @@ input {
     font-size: 100%;
 }
 label {
-    font-size: 120%;
+    font-size: 100%;
 }
 /* #icon {
     background-color: blueviolet;
@@ -339,40 +341,18 @@ label {
 }
 .inputValue {
     float: right;
-    margin-right: 10%;
+    margin-right: 3%;
 }
 .validateInput {
   color: red;
   font-size: small;  
 }
 
-
 @media only screen and (max-width: 768px) {
   
 }
 
-@media only screen and (min-width: 600px) {
-  .myCard {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 100%;  
-  height: 100%;
-  font-family:Arial, Helvetica, sans-serif;  
-  padding-right: 5%;
-  margin-left: 0px;
-  background-color: rgb(255, 255, 255);
-}
-}
-/* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px){
-.myCard {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 100%;  
-  height: 100%;
-  font-family:Arial, Helvetica, sans-serif; 
-  margin-left: 0px;
-  background-color: rgb(255, 255, 255);
-}
+
 }
 </style>

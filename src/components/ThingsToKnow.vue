@@ -21,20 +21,17 @@
           <li><fa icon="square-virus" /> &nbsp; Mobility parking facility</li>
           <li><fa icon="table-cells" />  &nbsp; Accessible toilet and bathroom</li>
           <li><fa icon="tv" />  &nbsp; Accessible pool</li>
-          <li><fa icon="hand-lizard" />  &nbsp; Games room (pool, table tennis, board games)</li>
+          <li><fa icon="hand-lizard" />  &nbsp; Games room </li>
           <li><fa icon="hands-bubbles" />  &nbsp; Smoke alarms</li>
           <li><fa icon="bacon" />  &nbsp; Landland telephone</li>
         </ul>
     </div> 
     <br>   
-    <div class="cancelPolicy">
-      <ul class="fa-ul">
-          <li> <i>Cancellation policy</i>  is to cancel before 4:00 pm for lorem ipsum, 
+    <div class="cancelPolicy">     
+          <p class="fa-ul"> <i>Cancellation policy</i>  is to cancel before 4:00 pm for lorem ipsum, 
           dolor sit amet consectetur adipisicing elit. Repellat voluptas aliquid
-          repellendus, excepturi temporibus id provident? Quas, nemo? Aliquam, eum.
-          caused by COVID-19 <fa icon="viruses" />.</li>
-                      
-      </ul>
+          repellendus, excepturi provident? Quas, nemo? Aliquam, eum.
+          caused by COVID-19 <fa icon="viruses" />.</p> 
     </div>
 </div> 
 
@@ -64,18 +61,22 @@
 .cancelPolicy {
   float: left;
 }
+li {
+  padding: 0% 5% 5% 0%;
+  inline-size: 280px;
+}
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
   .myCard { 
   padding: 4% 2%; 
-  font-size: 80%;
+  font-size: 100%;
 }
 .leftList{ 
   margin-left: -25px;
 }
 .rightList {  
-   padding-right: 0%; 
+  padding-right: 0%; 
   margin-left: -25px;
   margin-top: 0px;
 }
@@ -83,36 +84,14 @@
   margin-left: -25px;
 }
 }
-/* Extra small devices (phones, 600px and down) */
+
 @media only screen and (max-width: 600px){
-  .myCard {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 100%;  
-  height: 100%;
-  font-family:Arial, Helvetica, sans-serif;
-  padding: 4% 2%;
-  margin-left: 0px;
-  background-color: rgb(255, 255, 255);
-  font-size: 80%;
-}
-.leftList{
-  float: left;
-  padding: 0%;
-  text-align: left;
-  margin-left: -25px;
-}
 .rightList {
   float: left;
   padding-top: 0%;
-  padding-right: 0%;
-  text-align: left;
+  padding-right: 0%; 
   margin-left: -25px;
   margin-top: -15px;
-}
-.cancelPolicy {
-  float: left;
-  margin-left: -25px;
 }
 }
 </style>

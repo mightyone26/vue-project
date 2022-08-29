@@ -12,18 +12,21 @@
 
 </template>
 
-
-
 <style scoped>
 .myCard {
   box-shadow: 1px 1px 10px 1px rgba(116, 116, 116, 0.2); 
   width: 100%;
   height: 100%;  
   font-family:Arial, Helvetica, sans-serif;  
-  font-size: 100%;
   padding: 2px 20px;  
   background-color: rgb(255, 255, 255);
   border-radius: 5px;
+}
+@media only screen and (max-width: 600px){
+  .myCard {
+  width: 100%; 
+  padding: 4% 2%;  
+}
 }
 
 </style>

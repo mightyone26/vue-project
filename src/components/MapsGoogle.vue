@@ -21,39 +21,21 @@ import { GoogleMap, Marker } from "vue3-google-map"
 <style scoped>
 .myCard {
   box-shadow: 1px 1px 10px 1px rgba(116, 116, 116, 0.2);  
-  width: 95%;
+  width: 100%;
   height: 100%;  
   padding: 1% 1%;
-  border-radius: 5px;  
+  border-radius: 5px; 
+  background-color: rgb(255, 255, 255); 
 }
 
 @media only screen and (max-width: 768px) {
  
 }
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 600px) {
-  .myCard {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 100%;  
-  height: 100%;
-  font-family:Arial, Helvetica, sans-serif;
-  padding: 4% 2%;
-  margin-left: 0px;
-  background-color: rgb(255, 255, 255);
-}
-}
-/* Extra small devices (phones, 600px and down) */
+
 @media only screen and (max-width: 600px){
   .myCard {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 100%;  
-  height: 100%;
-  font-family:Arial, Helvetica, sans-serif;
-  padding: 4% 2%;
-  margin-left: 0px;
-  background-color: rgb(255, 255, 255);
+  width: 100%; 
+  padding: 4% 2%;  
 }
 }
 </style>
