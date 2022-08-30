@@ -126,14 +126,13 @@ const q = query(colRef, where( 'userUid', '==', user.value.uid))
 <style scoped>
 .myCard {
   background-color: rgb(255, 255, 255);
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
+  box-shadow: 0 4px 8px 0 rgb(185, 185, 185); 
   width: 95%;
   height: 100%;  
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: 'Lexend Deca', sans-serif;  
   padding: 2px 26px;
-  margin-left: 20px; 
-  margin-bottom: 20px;
+  margin: 20px; 
+  border-radius: 3px;
 }
 #tableStyle {
   border-collapse: collapse;

@@ -19,13 +19,10 @@ import { GoogleMap, Marker } from "vue3-google-map"
 </script>
 
 <style scoped>
-.myCard {
-  box-shadow: 1px 1px 10px 1px rgba(116, 116, 116, 0.2);  
+.myCard {   
   width: 100%;
   height: 100%;  
-  padding: 1% 1%;
-  border-radius: 5px; 
-  background-color: rgb(255, 255, 255); 
+  padding: 1% 8%; 
 }
 
 @media only screen and (max-width: 768px) {

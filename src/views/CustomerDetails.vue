@@ -1,54 +1,55 @@
 <template>
   <NavBar />
-  <div class="searchBox">
-    <label ><b>Search by Last Name:</b></label> &nbsp;
-    <input type="text" v-model="inputText">
-  </div>
 
-  <div >
-    <table id="tableStyle"  >
-      <thead>
-        <tr>      
-          <th>First Name</th>
-          <th >Last Name</th>
-          <th >email</th>
-          <th >Phone</th>
-          <th>Check-in</th>
-          <th>Checkout</th>         
-          <th>Adult Qty</th>
-          <th>Kid Qty</th>
-          <th>Days Booked</th>
-           <th>Cost</th>
-           <th>Review</th>
-          <th>Edit/Delete</th>
-          <th>View</th>         
-          
-        </tr>
-      </thead>
-      <tbody> 
-             
-        <tr v-for="customers in filtered()" :key="customers.id" >       
-        
-          <td>{{ customers.firstName }}</td> 
-          <td>{{ customers.lastName }}</td>
-          <td>{{ customers.email}}</td>
-          <td>{{ customers.phone}}</td>
-          <td>{{ customers.checkin}}</td>
-          <td>{{ customers.checkout}}</td>         
-          <td>{{ customers.adults}}</td>
-          <td>{{ customers.kids}}</td>
-          <td>{{ customers.daysBooked}}</td>
-          <td>{{ customers.costs}}</td>
-          <td>{{ customers.review}}</td>
-          
-          <td><button @click="handleEdit(customers)"> edit/delete</button></td>
-          <td><button @click="handleView(customers)"> view</button></td>          
-          <!-- <td><button @click="handleDelete(customers)"> delete</button></td> -->
-        </tr> 
+  <div class="MyCard">
+    <div class="searchBox">
+      <label ><b>Search by Last Name:</b></label> &nbsp;
+      <input type="text" v-model="inputText">
+    </div>
+
+    <div >
+      <table id="tableStyle"  >
+        <thead>
+          <tr>      
+            <th>First Name</th>
+            <th >Last Name</th>
+            <th >email</th>
+            <th >Phone</th>
+            <th>Check-in</th>
+            <th>Checkout</th>         
+            <th>Adult Qty</th>
+            <th>Kid Qty</th>
+            <th>Days Booked</th>
+            <th>Cost</th>
+            <th>Review</th>
+            <th>Edit/Delete</th>
+            <th>View</th> 
+          </tr>
+        </thead>
+        <tbody> 
               
-      </tbody>
-    </table>    
-  </div>  
+          <tr v-for="customers in filtered()" :key="customers.id" >       
+          
+            <td>{{ customers.firstName }}</td> 
+            <td>{{ customers.lastName }}</td>
+            <td>{{ customers.email}}</td>
+            <td>{{ customers.phone}}</td>
+            <td>{{ customers.checkin}}</td>
+            <td>{{ customers.checkout}}</td>         
+            <td>{{ customers.adults}}</td>
+            <td>{{ customers.kids}}</td>
+            <td>{{ customers.daysBooked}}</td>
+            <td>{{ customers.costs}}</td>
+            <td>{{ customers.review}}</td>
+            
+            <td><button @click="handleEdit(customers)"> edit/delete</button></td>
+            <td><button @click="handleView(customers)"> view</button></td>
+          </tr> 
+                
+        </tbody>
+      </table>    
+    </div> 
+  </div> 
 
 </template>
 
@@ -103,6 +104,10 @@ let unFiltered = ref ([])
 </script>
 
 <style scoped>
+
+.myCard {   
+  font-family: 'Lexend Deca', sans-serif;  
+}
 button {
   background-color: rgb(255, 255, 255);
   border: solid 1px;

@@ -7,32 +7,27 @@
         <label class="inputLabel">First Name</label>
         <input type="text" class="inputValue"  v-model="form.firstName" aria-describedby="firstName">    
       </div>
-      <br>
-      <br>
-      <div >
+      <br><br>
+      <div>
         <label class="inputLabel" >Last Name</label>       
         <input type="text" class="inputValue"  v-model="form.lastName" aria-describedby="lastName">
       </div> 
-      <br>
-      <br> 
-      <div >
+      <br><br> 
+      <div>
         <label class="inputLabel" >Email</label>
         <input type="email" class="inputValue" v-model="form.email"  aria-describedby="email">    
       </div>
-      <br>
-      <br>
+      <br><br>
       <div >
         <label class="inputLabel" >Telephone</label>
         <input type="text" class="inputValue" v-model="form.phone" aria-describedby="phone" >
       </div>
-      <br>
-      <br>
+      <br><br>
        <div >
         <label class="inputLabel" >Check-in</label>
         <label class="inputValue" >{{ checkInDateEdit() }}</label>
       </div> 
-      <br>
-      <br>  
+      <br><br>  
       <div >
         <label class="inputLabel" >Checkout</label>        
         <label class="inputValue" >{{ checkOutDateEdit() }}</label>
@@ -66,9 +61,7 @@
       <br> 
       <label class="inputLabel">Total</label>   
       <label class="inputValue">${{ costs() }}</label>
-      <br>
-      <br>      
-      <br>  
+      <br><br><br>  
       <div class="inputValue" >
         <button  @click="handleUpdate">Update Booking</button>
       </div> 
@@ -83,23 +76,15 @@
         <div class="modal-body">                      
           <h5>Delete booking?</h5>          
           <br>      
-          <button data-bs-dismiss="modal">Cancel</button>&nbsp; &nbsp;             
-          <button style="background-color:red" @click="handleDelete()" data-bs-dismiss="modal" aria-label="delete" >Delete</button>
+          <button data-bs-dismiss="modal">Cancel</button>&nbsp; &nbsp;  
+          <button style="background-color:red "  @click="handleDelete()" data-bs-dismiss="modal" aria-label="delete" >Delete</button>
         </div>      
       </div>
     </div>
   </div> 
    
   <div class="calendarPosition">
-      <v-date-picker  
-        v-model="dateRange" 
-        is-range
-        :model-config="modelConfig" 
-        color="teal"
-        :disabled-dates= "Adisabledates"
-        :columns ="2"
-        is-expanded    
-        />
+      <v-date-picker v-model="dateRange" is-range :model-config="modelConfig" color="teal" :disabled-dates= "Adisabledates" is-expanded :columns="1" />
   </div>
  
 </template>
@@ -258,7 +243,7 @@ const costs = ()=> {
     kids:counterKids.value,
     daysBooked:daysBooked()
   })
-  confirm('Submitted')
+  
   router.push('/CustomerDetails')
 }
 
@@ -281,12 +266,10 @@ button {
   padding: 1%;
 }
 .myCardEditForm {
-  float: left;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 30%;  
+  float: left;  
+  width: 40%;  
   height: 100%;
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: 'Lexend Deca', sans-serif; 
   padding: 2% 2%;
   margin-left: 7%;
   margin-top: 2%;
@@ -312,6 +295,28 @@ button {
 }
 .modal-body {
   text-align: center;
+  font-family: 'Lexend Deca', sans-serif; 
+}
+
+@media only screen and (max-width: 768px) {
+.myCardEditForm {  
+  width: 50%;
+  margin-left: 1%;  
+}
+.calendarPosition {  
+  margin-right: 10%;  
+}  
+}
+
+@media only screen and (max-width: 600px){
+.myCardEditForm {  
+  width: 90%;
+  margin-left: 1%;  
+}
+.calendarPosition {  
+  float: left;
+  margin: 3% 5%;
+} 
 }
 </style>
 

@@ -13,7 +13,7 @@
   </div>
    <!-- Button trigger modal -->
   <button class="btnSeeMore" type="button" data-bs-toggle="modal" data-bs-target="#seeMoreModal">
-    See more images 
+    More images 
   </button>
   <br>  
 
@@ -51,20 +51,19 @@
 
 <style scoped>
 .myCard {
-  background-color: rgb(255, 255, 255);
-  box-shadow: 1px 1px 10px 1px rgb(255, 255, 255);  
+  background-color: rgb(255, 255, 255);     
   width: 100%;
   height: 100%;  
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: 'Lexend Deca', sans-serif;
   font-size: 120%;
   padding-top: 1%;  
   padding-left: 1%; 
-  border-radius: 5px;
+  /* border-radius: 5px; */
 }
 .homeDescriptionTitle{
-    text-align: center;
-    padding: 2% 0% 2% 0%;
+    text-align: center;   
     font-size: 150%;
+    color: rgb(0, 0, 0);
 }
 .grid-container {
   display: grid;
@@ -80,10 +79,9 @@
   padding: 0 5% 0 5%;
 }
 img {
-   border-radius: 1%;
+   border-radius: 3px;
    width:100%;
-   height:100%;
-   
+   height:100%;   
 }
 .item1 {
   grid-column: 1 / span 1;
@@ -109,9 +107,9 @@ img {
   background-color: rgb(255, 255, 255);
   border-radius: 3px;
   border: solid 1px;  
-  width: 15%; 
+  width: 15%;
   margin: 2% 40%;
-  font-size: 100%;   
+  font-size: 80%;   
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -145,10 +143,13 @@ img {
 }
 
 @media only screen and (max-width: 600px){
-
 .btnSeeMore { 
   margin-left: 6%;    
   width: 43%;       
+}
+.homeDescriptionTitle{      
+  font-size: 90%;
+    
 }
 }
 </style>

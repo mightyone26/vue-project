@@ -1,5 +1,6 @@
 <template>
   <NavBar />
+  <div>
     <label class="heading"><h4><b>Customer Details:</b></h4></label>
     <div>
       <table id="tableStyle"  >
@@ -27,6 +28,7 @@
         </tbody>
       </table>   
     </div>
+   </div> 
 </template>
 
 <script setup>
@@ -37,9 +39,7 @@ import { useRoute, useRouter } from 'vue-router'
 
 //firebase imports
 import { db } from '@/firebase/config'
-// import {collection, getDoc, doc, onSnapshot, deleteDoc} from 'firebase/firestore'
 import { doc, getDoc } from 'firebase/firestore'
-// import CustomerDetailsVue from './CustomerDetails.vue'
 
 // data variables
 const route = useRoute()
@@ -56,6 +56,7 @@ const customers = ref()
 </script>
 
 <style scoped>
+   
 #tableStyle {
   border-collapse: collapse;
   width: 80%;

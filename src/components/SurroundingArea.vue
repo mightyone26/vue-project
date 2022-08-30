@@ -1,6 +1,7 @@
 <template>
 
     <div class="myCard">
+      <hr>
       <h3>Surrounding area activities</h3>
       <br> 
       <div class="linkMatrix">
@@ -11,11 +12,9 @@
         <a href="https://manofmany.com/outdoors/best-fishing-spots-sydney">Fishing</a>
         <a href="https://www.wordofmouth.com.au/nsw/sydney/supermarket">Supermarket</a>
         <a href="https://www.sydneyairport.com.au/">Airport</a>
-        <a href="https://www.welcomepickups.com/sydney/taxi/">Taxi</a>
-         
-      </div>
-    </div>
-    
+        <a href="https://www.welcomepickups.com/sydney/taxi/">Taxi</a>         
+      </div>     
+    </div>   
   
 </template>
 
@@ -25,13 +24,11 @@
 
 <style scoped>
 .myCard {
-  background-color: rgb(255, 255, 255);
-  box-shadow: 1px 1px 10px 1px rgba(116, 116, 116, 0.2);  
+  background-color: rgb(255, 255, 255);    
   width: 100%;
   height: 100%;  
-  font-family:Arial, Helvetica, sans-serif; 
-  padding: 2% 2%; 
-  border-radius: 3px;
+  font-family: 'Lexend Deca', sans-serif;
+  padding: 2% 2%;  
 }
 .linkMatrix { 
   display: grid;

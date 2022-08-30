@@ -19,8 +19,8 @@
     flex-direction:row ;
     justify-content: center;        
     padding: 3%;  
-    background-color: rgb(255, 255, 255);
-    box-shadow: 1px 1px 5px 1px rgba(116, 116, 116, 0.2);    
+    background-color: rgb(255, 255, 255);   
+    font-family: 'Lexend Deca', sans-serif;   
 }
 
 @media only screen and (max-width: 600px){

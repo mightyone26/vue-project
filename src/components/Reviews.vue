@@ -1,11 +1,13 @@
 <template>
   <div class="myCard">
-     <h3>Reviews</h3>     
-     <div  v-for="customers in customers" :key="customers.id">     
-      <div v-if="customers.review">
-      <br>
-      <div>{{ customers.firstName }}</div> <i>{{ customers.review }}</i>
-      </div>     
+    <div class="cardData">
+      <h3>Reviews</h3>     
+      <div  v-for="customers in customers" :key="customers.id">     
+        <div v-if="customers.review">
+        <br>
+        <div>{{ customers.firstName }}</div> <i>{{ customers.review }}</i>
+        </div>     
+      </div>
      </div>     
   </div>
 </template>
@@ -29,16 +31,17 @@ const colRef = collection(db, 'customers')
 </script>
 
 <style scoped>
-.myCard {  
-  box-shadow: 1px 1px 10px 1px rgba(116, 116, 116, 0.2);  
+.myCard {      
   width: 100%;
   height: 300px;  
-  font-family:Arial, Helvetica, sans-serif;
-  padding: 2px 26px;
-  border-radius: 5px;
+  font-family: 'Lexend Deca', sans-serif;
+  padding: 30px 26px; 
   overflow-y: scroll;
   scrollbar-width: thin;
   background-color: rgb(255, 255, 255);
+}
+.cardData{
+  padding-left: 20px;
 }
 ::-webkit-scrollbar {
   width: 5px;

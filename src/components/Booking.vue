@@ -15,7 +15,8 @@
       <label> <b>Checkout:</b></label>
       <label class="inputValue">{{ dateRange.end }}</label> 
       <br><br>    
-      <label v-if="daysBooked()">Booked for <b v-if="daysBooked()">{{ daysBooked() }}</b> {{ dayQty() }}</label>       
+      <label v-if="daysBooked()">Booked for <b v-if="daysBooked()">{{ daysBooked() }}</b> {{ dayQty() }}</label>
+      <label v-if="!daysBooked()">Booked for</label> 
       <br><br>         
     </div>    
      
@@ -147,6 +148,10 @@ import { db } from '../firebase/config.js'
 import { addDoc, collection, getDocs, getDoc, doc, onSnapshot  } from 'firebase/firestore'
 import router from '../router'
 
+//valiate with vuelidate library
+import useVuelidate from '@vuelidate/core'
+import { required, numeric, maxLength } from '@vuelidate/validators'
+
 //this is to import user UID (unique id) and add that UID to the booking details in DB
 //this UID is used to retrieve that users data. So only the specific user details are retrieved when that user is logged in.
 import getUser from '../composables/getUser.js'
@@ -164,9 +169,6 @@ if(user.value){
 }
 
 //valiate with vuelidate library
-import useVuelidate from '@vuelidate/core'
-import { required, numeric, maxLength } from '@vuelidate/validators'
-
 const formInfo = reactive({
       firstName: '',
       lastName:'',
@@ -277,75 +279,80 @@ let costs = ()=> {
 </script>
 
 <style scoped>
-.myCard {
-  box-shadow: 1px 1px 10px 1px rgb(255, 255, 255);
+.myCard { 
   background-color: rgb(255, 255, 255); 
   width: 100%;  
   height: 100%;
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: 'Lexend Deca', sans-serif;
   padding: 4% 5%;  
-  border-radius: 3px;
+  /* border-radius: 3px; */
 }
 .btnAddGuest {    
-    border: 0;
-    background-color: white;   
+  border: 0;
+  background-color: white;   
 }
 .btnReserveNotLogged {
-   background-color: rgb(247, 9, 9);
-    border-radius: 5px;
-    border: 0;
-    box-shadow: 0 8px 16px 0 rgba(114, 176, 243, 0.2);
-    width: 100%;
-    height: 7%;   
-    font-size: 130%; 
-    font-weight: bold; 
+  background-color: rgb(247, 9, 9);
+  border-radius: 5px;
+  border: 0;
+  box-shadow: 0 8px 16px 0 rgba(114, 176, 243, 0.2);
+  width: 100%;
+  height: 7%;   
+  font-size: 120%; 
+  font-weight: bold; 
+}
+.btnReserveNotLogged:hover {
+  background-color: rgb(164, 15, 15);
 }
 .btnReserve {    
-    background-color: rgb(169, 225, 250);
-    border-radius: 5px;
-    border: 0;
-    box-shadow: 0 8px 16px 0 rgba(114, 176, 243, 0.2);
-    width: 100%;
-    height: 7%;   
-    font-size: 130%;      
+  background-color: rgb(61, 199, 51);
+  border-radius: 5px;
+  border: 0;
+  box-shadow: 0 8px 16px 0 rgba(114, 176, 243, 0.2);
+  width: 100%;
+  height: 7%;   
+  font-size: 110%;      
 }
 .btnReserveAmber {    
-    background-color: rgb(246, 143, 48);
-    border-radius: 5px;
-    border: 0;
-    box-shadow: 0 8px 16px 0 rgba(114, 176, 243, 0.2);
-    width: 100%;
-    height: 9%;   
-    font-size: 130%;      
+  background-color: rgb(246, 143, 48);   
+  border-radius: 5px;
+  border: 0;   
+  width: 100%;
+  height: 9%;   
+  font-size: 110%;
+  transition-duration: 0.4s;      
 } 
+.btnReserveAmber:hover {
+  background-color: rgb(192, 110, 34);
+}
 .btnStyle {
   background-color: rgb(255, 255, 255);
   border: solid 1px;
   border-radius: 3px;
 }
 input {
-    padding-top: 1%;
-    padding-right: 10%;
-    font-size: 100%;
+  padding-top: 1%;
+  padding-right: 10%;
+  font-size: 100%;
 }
 label {
-    font-size: 100%;
+  font-size: 100%;
 }
 /* #icon {
     background-color: blueviolet;
 } */
 
 .inputLabel {
-    float: left;
-    margin-left: 4%;
+  float: left;
+  margin-left: 4%;
 }
 .inputValue {
-    float: right;
-    margin-right: 3%;
+  float: right;
+  margin-right: 3%;
 }
 .validateInput {
-  color: red;
-  font-size: small;  
+color: red;
+font-size: small;  
 }
 
 @media only screen and (max-width: 768px) {

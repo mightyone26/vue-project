@@ -1,14 +1,14 @@
 <template>
   <ul>
     <!-- company logo link back to homepage -->
-    <li class="logoNav"> 
+    <li > 
       <router-link 
-       to="/"> <img alt="logo" src="..\assets\Home\headlogo.png" height="50"> 
+       to="/"> <img class="logoNav" alt="logo" src="..\assets\Home\headlogo.png" > 
       </router-link>    
     </li>
 
     <li>
-      <button v-if="adminLoggedIn" class="customerDetailsButton"  @click="handleCustomerDetails">View or Edit Customer Details</button>         
+      <button v-if="adminLoggedIn" class="customerDetailsButton"  @click="handleCustomerDetails">Edit Customer Details</button>         
       <button  class="btnUser" type="button" data-bs-toggle="modal" data-bs-target="#createOrSigninModal">         
       <fa  class="btnUserIcon"  icon="user-circle" />         
       <p v-if="!user">Sign-In</p>
@@ -155,7 +155,7 @@
     </li>
   
   </ul>
-
+  <hr>
 </template>
 
 <script setup>
@@ -170,15 +170,16 @@ import getUser from '@/composables/getUser'
 //firebase imports
 import { auth } from '@/firebase/config'
 import { signOut } from 'firebase/auth'
+
+//vuelidate imports
+import useVuelidate from '@vuelidate/core'
+import { required, email, sameAs, minLength } from '@vuelidate/validators'
  
   const { user } = getUser()  
   const { signup, error } = useSignup()
   const router = useRouter()
 
 //valiate with vuelidate library
-import useVuelidate from '@vuelidate/core'
-import { required, email, sameAs, minLength } from '@vuelidate/validators'
-
   const formInfo = reactive({
         email: '',
         password: '',
@@ -275,8 +276,7 @@ import { required, email, sameAs, minLength } from '@vuelidate/validators'
 }
 .modal-content {
   width: 100%;
-  height: 100%;  
-  font-family:Arial, Helvetica, sans-serif;
+  height: 100%; 
   font-size: 100%;  
   color: black;
   background-color: rgb(255, 255, 255);
@@ -286,27 +286,39 @@ import { required, email, sameAs, minLength } from '@vuelidate/validators'
   float: left;
   margin-left: 1%;
   margin-top: 1%; 
-  margin-bottom: 1%;  
+  margin-bottom: 1%;
+  height: 50px; 
+  border: solid rgba(255, 0, 0, 0.155); 
+  border-radius: 10px;
+  border-width: 1px;
+  transition-duration: 0.3s;
 }
+.logoNav:hover{
+  border: solid rgba(255, 0, 0, 0.61) ;
+  border-width: 1px;
+}
+
 ul {   
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
   background-color: rgb(255, 255, 255);
-  height: 100px;
-  width: 100%;
-  box-shadow: 1px 1px 5px 1px rgba(116, 116, 116, 0.2); 
+  height: 90px;
+  width: 100%;   
+  font-family: 'Lexend Deca', sans-serif;
+}
+hr{
+  color: rgba(0, 0, 0, 0.208);
 }
 input {
   width: 60%;
 }
-.customerDetailsButton {
-  float: left;
+.customerDetailsButton { 
   margin-left: 25%;
   margin-top: 30px;
   border: solid 1px;
-  border-radius: 3px;
+  border-radius: 10px;
   border-color: rgb(0, 0, 0);
   background-color: rgb(255, 255, 255);
 }
@@ -321,7 +333,8 @@ input {
   border:none;
   background: none;
   margin-right: 2%;
-  margin-top: 1%;  
+  margin-top: 1%;   
+  font-size: 80%;
 }
 .btnSigninOrCreate {
   border: none;  
@@ -352,15 +365,13 @@ input {
 }
 }
 @media only screen and (max-width: 600px){
-ul {
- 
+ul { 
   width: 100%;  
   height: 80%;
 }
 .customerDetailsButton {  
- margin-top: 6%;
- margin-bottom: 5%;
- 
+  margin:16% 0% 0% -30%;  
+  float: left;
 }
 .displayUserEmail {
   display:none;
@@ -370,6 +381,13 @@ ul {
   font-size:  46px;  
   color: rgb(112, 112, 112);  
   margin-top: -120%;
+}
+.btnUser { 
+  color: rgb(0, 0, 0);
+  float: right;
+  border:none;
+  background: none;
+  margin: 17% 2% 0% 0%;  
 }
 }
 

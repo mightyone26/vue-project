@@ -3,14 +3,13 @@
   <div class="grid-container">   
     <div class=" pictureModal"><PictureModal /></div>
     <div class="about"><About /></div>
-    <div class="booking"><Booking /></div>
+    <div class="booking"><Booking /></div>    
     <div class=" thingsToKnow" ><ThingsToKnow /></div> 
     <div class="weather" ><Weather /></div> 
     <div class="maps" ><Maps /></div>
     <div class="surroundingArea" ><SurroundingArea /></div>
-    <div class="review" ><Reviews /></div>
     <div class="contactUs"><ContactUs /></div>
-    <!-- <div class=" foot"><Foot /></div> -->
+    <div class="review" ><Reviews /></div> 
   </div>
     <div class=" foot"><Foot /></div>
 
@@ -30,16 +29,15 @@ import SurroundingArea from '@/components/SurroundingArea.vue'
 import ContactUs from '@/components/ContactUs.vue'
 import Foot from '@/components/Footer.vue'
 
-
 </script>
 
 <style scoped> 
 .grid-container {   
   display: grid; 
   grid-template-columns: 45% auto;  
-  gap: 20px; 
-  background-color: #ff0000;
-  padding: 1px 0px;
+  gap: 0px; 
+  background-color: #ffffffbe;
+  padding: 1px 0px;  
 }
 .pictureModal {
   grid-column: 1 / -1;
@@ -61,7 +59,7 @@ import Foot from '@/components/Footer.vue'
 @media only screen and (max-width: 768px) {
   .grid-container {
   grid-template-columns:  50% 50%; 
-  background-color: #f16fef;
+  background-color: #ffffff;
   } 
 
 }
@@ -71,7 +69,7 @@ import Foot from '@/components/Footer.vue'
   grid-template-columns:  auto;  
   
   padding: 20px 10px;
-  background-color: #238bc0;  
+  background-color: #ffffff;  
 }
 }
 </style>

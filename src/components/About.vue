@@ -1,14 +1,13 @@
 <template>
 
-  <div class="myCard">    
-     
-      <div>       
-        <h3>About</h3>
-        <br>
-        <fa icon="umbrella-beach" /> <strong><i>136 Beach rd, BeachVille, BeachTown</i></strong> 
-        <p>Stunning ocean views. Lorem ipsum d Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque? Maiores sequi nam consequuntur consectetur. Animi reiciendis suscipit maiores voluptates, provident necessitatibus odit, saepe pariatur fuga commodi, sunt facilis magnam ad iusto voluptatibus beatae. Aliquam rem distinctio recusandae praesentium ad perferendis, dolorum, aut eum vero, sint minus expedita ut labore amet consequatur. Voluptatibus itaque alias rem ipsa quos incidunt quis esse obcaecati nesciunt aliquid placeat blanditiis, porro nemo, corrupti enim eos non deleniti distinctio inventore reiciendis quaerat soluta voluptate sapiente. Suscipit quos quod nam quibusdam consectetur corporis eos incidunt sint, natus eligendi laborum, beatae inventore ullam doloremque explicabo, facilis itaque. olor, sit amet consecous.</p>
-      </div>
+  <div class="myCard"> 
+            
+      <h3>About</h3>  
       <br>
+      <div class="cardData">
+      <fa icon="umbrella-beach" /> <strong><i>136 Beach rd, BeachVille, BeachTown</i></strong> 
+      <p>Stunning ocean views. Lorem ipsum d Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque? Maiores sequi nam consequuntur consectetur. Animi reiciendis suscipit maiores voluptates, provident necessitatibus odit, saepe pariatur fuga commodi, sunt facilis magnam ad iusto voluptatibus beatae. Aliquam rem distinctio recusandae praesentium ad perferendis, dolorum, aut eum vero, sint minus expedita ut labore amet consequatur. Voluptatibus itaque alias rem ipsa quos incidunt quis esse obcaecati nesciunt aliquid placeat blanditiis, porro nemo, corrupti enim eos non deleniti distinctio inventore reiciendis quaerat soluta voluptate sapiente. Suscipit quos quod nam quibusdam consectetur corporis eos incidunt sint, natus eligendi laborum, beatae inventore ullam doloremque explicabo, facilis itaque. olor, sit amet consecous.</p>
+      <hr>
       <div class="gridContainer">      
         <div class="leftList" >
           <ul >
@@ -19,8 +18,8 @@
             <li><fa icon="coffee" />  &nbsp; Coffee Maker</li>            
             <li><fa icon="newspaper" />  &nbsp; Dishwasher</li>
           </ul>
-        </div>    
-        <div class="rightList" >
+       </div>    
+       <div class="rightList" >
           <ul >
             <li><fa icon="square-virus" /> &nbsp; Washing Machine</li>
             <li><fa icon="table-cells" />  &nbsp; Dryer</li>
@@ -31,6 +30,7 @@
           </ul>
         </div>
       </div> 
+    </div>
   </div> 
 
 </template>
@@ -40,26 +40,24 @@
 </script>
 
 <style scoped>
-.myCard {
-  box-shadow: 1px 1px 10px 1px rgb(255, 255, 255);   
+.myCard {  
   width: 100%;
   height: 100%;  
-  font-family:Arial, Helvetica, sans-serif;  
-  padding: 4% 5%;  
-  border-radius: 3px;
+  font-family: 'Lexend Deca', sans-serif;  
+  padding: 5% 5%;   
   background-color: rgb(255, 255, 255);
 }
-.gridContainer {
-  display: grid; 
-  grid-template-columns: auto auto;
+.cardData{
+  padding-left: 20px;
 }
-
+.gridContainer {
+  display: grid;    
+}
 .leftList{
   grid-column: 1 / span 1;
-  grid-row: 1;
-  margin-left: -40px;
+  grid-row: 1; 
   font-size: 90%;
- 
+  margin-left: -30px; 
 }
 .rightList {
   grid-column: 2 / span 1;
@@ -70,35 +68,17 @@ li {
   list-style: none;
   padding: 0% 1% 1% 0%;
   inline-size: 100%;
-}   
-/* .leftList{
-  float: left;  
-  font-size: 90%;
 }
-.rightList {
-  float: right; 
-  font-size: 90%;
-  margin-top: -222px;  
-} */
-/* 
- @media only screen and (max-width: 768px){
-.leftList{
- margin-top: -5%; 
-}
-.rightList {
-  float: left;   
-  padding-top: 0%;
-  padding-right: 30%;
-  margin-top: -15px;  
-}
-li { 
-  margin-left: -14%; 
-}
-} 
+hr{
+  color: rgba(4, 4, 4, 0.804);
+}  
 
 @media only screen and (max-width: 600px){
-.rightList {  
-  padding-right: 25%;  
+.gridContainer {
+  font-size: 80%; 
 }
-} */
+.cardData{
+  padding-left: 0px;
+}
+} 
 </style>
