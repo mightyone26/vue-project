@@ -254,6 +254,10 @@ import { required, email, sameAs, minLength } from '@vuelidate/validators'
   //signout
   const handleSignOut = () => {    
    signOut(auth)
+   
+   //clears form once submitted 
+   formInfo.email=''
+   formInfo.password=''  
    router.push('/')                    
   } 
   //pushes to customers account

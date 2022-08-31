@@ -226,7 +226,7 @@ const handleSubmitBooking = async () => {
    })   
    
   const modelConfig= {
-        mask: 'D MMMM YYYY', // Used to format date , uses 'iso' if missing
+        mask: 'D MMM YY', // Used to format date , uses 'iso' if missing
         type: 'string'       
       }
 

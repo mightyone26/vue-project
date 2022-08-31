@@ -272,7 +272,6 @@ button {
   font-family: 'Lexend Deca', sans-serif; 
   padding: 2% 2%;
   margin-left: 7%;
-  margin-top: 2%;
   margin-bottom: 2%;
   background-color: rgb(255, 255, 255);
 }

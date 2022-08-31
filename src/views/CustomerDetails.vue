@@ -1,28 +1,29 @@
 <template>
   <NavBar />
-
+   
+ 
   <div class="MyCard">
     <div class="searchBox">
       <label ><b>Search by Last Name:</b></label> &nbsp;
       <input type="text" v-model="inputText">
     </div>
 
-    <div >
-      <table id="tableStyle"  >
+    <div style=" overflow:scroll">
+      <table id="tableStyle" >
         <thead>
           <tr>      
             <th>First Name</th>
-            <th >Last Name</th>
-            <th >email</th>
-            <th >Phone</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone</th>
             <th>Check-in</th>
             <th>Checkout</th>         
-            <th>Adult Qty</th>
-            <th>Kid Qty</th>
-            <th>Days Booked</th>
+            <th>Adult</th>
+            <th>Kid</th>
+            <th>Days</th>
             <th>Cost</th>
             <th>Review</th>
-            <th>Edit/Delete</th>
+            <th>Edit</th>
             <th>View</th> 
           </tr>
         </thead>
@@ -32,7 +33,7 @@
           
             <td>{{ customers.firstName }}</td> 
             <td>{{ customers.lastName }}</td>
-            <td>{{ customers.email}}</td>
+            <td >{{ customers.email}}</td>
             <td>{{ customers.phone}}</td>
             <td>{{ customers.checkin}}</td>
             <td>{{ customers.checkout}}</td>         
@@ -42,7 +43,7 @@
             <td>{{ customers.costs}}</td>
             <td>{{ customers.review}}</td>
             
-            <td><button @click="handleEdit(customers)"> edit/delete</button></td>
+            <td><button @click="handleEdit(customers)"> edit</button></td>
             <td><button @click="handleView(customers)"> view</button></td>
           </tr> 
                 
@@ -113,26 +114,28 @@ button {
   border: solid 1px;
   border-radius: 3px;
 }
-#tableStyle {
+#tableStyle { 
   border-collapse: collapse;
-  width: 80%;
-  margin: 3% 5%;
-}
+  width: 95%;
+  margin: 3% 2%;   
+  }
+ 
 #tableStyle td, #tableStyle th {
   border: 1px solid rgb(245, 240, 240);  
-  padding: 8px;
+  padding: 2px; 
 }
-
-#tableStyle tr:nth-child(even){background-color: #f0f0ea;}
-
-#tableStyle tr:hover {background-color: #ddd;}
-
+#tableStyle tr:nth-child(even){
+  background-color: #6e69691a;
+}
+#tableStyle tr:hover {
+  background-color: rgba(122, 50, 57, 0.518);
+}
 #tableStyle th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
   background-color: #f0eeed7d;
-  color: rgb(0, 0, 0);
+  color: rgb(0, 0, 0);  
 }
 .searchBox {
   margin: 2% 10%
