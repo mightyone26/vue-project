@@ -2,12 +2,12 @@
    <div class="itemContainer">  
       <div >
       <a href="https://facebook.com">
-      <img src="src/assets/imagesFooter/facebookLogo.png" alt="link to facebook" width="20" height="20"> Connect on Facebook</a> 
+      <img src="@/assets/imagesFooter/facebookLogo.png" alt="link to facebook" width="20" height="20"> Connect on Facebook</a> 
       </div>
       &nbsp;&nbsp;&nbsp;
       <div >
       <a href="https://instagram.com">
-      <img src="src/assets/imagesFooter/insta.png" alt="link to instagram" width="20" height="20"> Connect on Instagram</a> 
+      <img src="@/assets/imagesFooter/insta.png" alt="link to instagram" width="20" height="20"> Connect on Instagram</a> 
       </div> 
    </div>   
 
