@@ -1,7 +1,7 @@
 <template>
     
    <div class="myCard"> 
-    <GoogleMap api-key="AIzaSyAtj2uLMHeN-Ik4XIfpcbRamIqfHqKCTyA" style="width: 100%; height: 300px" :center="center" :zoom="13">
+    <GoogleMap api-key="AIzaSyAtj2uLMHeN-Ik4XIfpcbRamIqfHqKCTy" style="width: 100%; height: 300px" :center="center" :zoom="13">
       <Marker :options="{ position: center }" />
     </GoogleMap>       
    </div>
