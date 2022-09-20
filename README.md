@@ -7,7 +7,7 @@ Vue JS was not part of the diploma I completed. I created this application to le
 Application layout
 vue-project/src/views/homeView.vue dictates the layout of the application. It uses CSS grid to position all the imported component. CSS media queries implement the responsiveness for various screen sizes. All the component files imported into homeView.vue from vue-project/src/components have descriptive names. Their names identify their function. As an example, Booking.vue handles customer booking functionality.
 
-Components vue-project/src/components/
+Components from vue-project/src/components/ directory.
 NavBar.vue
 Navigational bar. It handles sign in status. It displays if user is logged and displays CRUD button if administrator is logged in. It uses Vuelidate for validating user input and bootstrap modals for signing in/out. 
 Booking.vue
